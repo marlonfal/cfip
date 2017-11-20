@@ -11,6 +11,7 @@ $(document).ready(function() {
  * FACTURA - FACTURA - FACTURA - FACTURA - FACTURA - FACTURA - FACTURA - FACTURA - FACTURA
  */
 a = 0;
+cantidad = 0;
 /**
  * función para añadir los detalles de la factua
  */
@@ -24,19 +25,22 @@ function addProducto(){
         for(i = 0; i< response.length; i++){
             options += '<option value="'+response[i].id+'">'+response[i].nombre_producto+'</option>' ;
         }
-        document.getElementById('cantidaddetalles').value = a;
+
+        cantidad++;
+        document.getElementById('cantidaddetalles').value = cantidad;
+        
         tr.setAttribute('class', 'form-inline');
         tr.innerHTML = '<td width="60" align="center">'+a
-        +'</td> <td colspan="1"><select required id="select'+a+'" name="select'+a+'" onchange="changeSelect('+a+')" placeholder="Seleccione" class="form-control">'
+        +'</td> <td colspan="1"><select required id="select'+a+'" name="select[]" onchange="changeSelect('+a+')" placeholder="Seleccione" class="form-control">'
         + options + '</select> </td>'+
         '<td width="60">'+
-        '<input type="number" disabled required id="pesodetalle'+a+'" min="0" name="pesodetalle'+a+'" onchange="updatePrecios('+a+')" style="width: 90px;" class="form-control"/>'+
+        '<input type="number" disabled required id="pesodetalle'+a+'" min="0" name="pesodetalle[]" onchange="updatePrecios('+a+')" style="width: 90px;" class="form-control"/>'+
         '</td>'+
         '<td width="60">'+
-        '<input type="number" disabled required id="cantidaddetalle'+a+'" min="0" name="cantidaddetalle'+a+'" style="width: 90px;" class="form-control"/>'+
+        '<input type="number" disabled required id="cantidaddetalle'+a+'" min="0" name="cantidaddetalle[]" style="width: 90px;" class="form-control"/>'+
         '</td>'+
         '<td>'+
-        '<input type="number" id="preciodetalle'+a+'" readonly="readonly" name="preciodetalle'+a+'" placeholder="0" style="width: 90px;" class="form-control"/>'+
+        '<input type="number" id="preciodetalle'+a+'" readonly="readonly" name="preciodetalle[]" placeholder="0" style="width: 90px;" class="form-control"/>'+
         '</td>'+
         '<td><a id="btn-borrar' + a + '" class="btn btn-danger" onclick="deleteProducto(' + a + ')"> <i class="fa fa-minus fa-3" aria-hidden="true"></a></td>';
         document.getElementById('productosfactura').appendChild(tr);document.getElementById('productosfactura').appendChild(tr);
@@ -98,7 +102,10 @@ function changeSelect(id){
  */
 function deleteProducto(id) {
     $('#detalle' + id).remove();
+    cantidad--;
+    document.getElementById('cantidaddetalles').value = cantidad;
     calcularTotal();
+
 }
 /**
  * función que guarda la factura
@@ -173,10 +180,10 @@ function addProductoPedido(){
 
         tr.setAttribute('class', 'form-inline');
         tr.innerHTML = '<td width="60" align="center">'+a
-        +'</td> <td colspan="1"><select id="select'+a+'" required="required" name="select'+a+'" onchange="changeSelectPedido('+a+')" placeholder="Seleccione" class="form-control">'
+        +'</td> <td colspan="1"><select id="select'+a+'" required="required" name="select[]" onchange="changeSelectPedido('+a+')" placeholder="Seleccione" class="form-control">'
         + options + '</select> </td>'+
         '<td width="60">'+
-        '<input type="number" disabled id="cantidaddetalle'+a+'" name="cantidad'+a+'" placeholder="0" style="width: 90px;"class="form-control"/>'+
+        '<input type="number" disabled id="cantidaddetalle'+a+'" name="cantidad[]" placeholder="0" style="width: 90px;"class="form-control"/>'+
         '</td>'+
         '<td><a id="btn-borrar' + a + '" class="btn btn-danger" onclick="deleteProducto(' + a + ')">X</a></td>';
         document.getElementById('productospedido').appendChild(tr);document.getElementById('productospedido').appendChild(tr);

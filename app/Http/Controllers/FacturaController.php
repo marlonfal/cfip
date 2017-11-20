@@ -45,26 +45,26 @@ class FacturaController extends Controller
      */
     public function store(Request $request)
     {
-        return $request;
+
         $factura = new Factura();
         $factura->fecha = $request->fecha;
         $factura->vendedor = $request->vendedor;
         $factura->comprador = $request->comprador;
         $factura->total = $request->total;
         $factura->save();
+   
+        for($i = 0; $i < $request->cantidaddetalles; $i++){
+            
+                $detalleFactura = new DetalleFactura();
+                $detalleFactura->id_detalle = $i +1;
+                $detalleFactura->peso_gramo = $request->pesodetalle[$i];
+                $detalleFactura->precio = $request->preciodetalle[$i];
+                $detalleFactura->cantidad = $request->cantidaddetalle[$i];
+                $detalleFactura->id_factura = $factura->id;
+                $detalleFactura->id_tipo_producto = $request->select[$i];
 
-        $detalles = Request::All(); 
-        return responser()->json($detalles);    
-        for($i = 1; $i <= $request->cantidaddetalles; $i++){
-            $detalleFactura = new DetalleFactura();
-            $detalleFactura->id_detalle = $i;
-            $detalleFactura->peso_gramo = $request->pesodetalle[$i];
-            $detalleFactura->precio = $request->preciodetalle[$i];
-            $detalleFactura->cantidad = $request->cantidaddetalle[$i];
-            $detalleFactura->id_factura = $factura->id;
-            $detalleFactura->id_tipo_producto = $request->select[$i];
-
-            $detalleFactura->save();
+                $detalleFactura->save();
+            
         }
 
         return redirect()->route('factura.show', $factura)->with('info', 'Se guardó la factura');
