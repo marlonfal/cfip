@@ -165,7 +165,7 @@ function addProductoPedido(){
     $.get("productosp", function(response){
         
         var tr = document.createElement('tr');
-        var options = '<option value="0">Seleccione</option>';
+        var options = '<option>Seleccione</option>';
         tr.id = 'detalle'+a;
         for(i = 0; i< response.length; i++){
             options += '<option value="'+response[i].id+'">'+response[i].nombre_producto+'</option>' ;
@@ -173,7 +173,7 @@ function addProductoPedido(){
 
         tr.setAttribute('class', 'form-inline');
         tr.innerHTML = '<td width="60" align="center">'+a
-        +'</td> <td colspan="1"><select id="select'+a+'" name="select'+a+'" onchange="changeSelectPedido('+a+')" placeholder="Seleccione" class="form-control">'
+        +'</td> <td colspan="1"><select id="select'+a+'" required="required" name="select'+a+'" onchange="changeSelectPedido('+a+')" placeholder="Seleccione" class="form-control">'
         + options + '</select> </td>'+
         '<td width="60">'+
         '<input type="number" disabled id="cantidaddetalle'+a+'" name="cantidad'+a+'" placeholder="0" style="width: 90px;"class="form-control"/>'+

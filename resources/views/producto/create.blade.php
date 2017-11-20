@@ -13,12 +13,12 @@
                     {!! Form::open(['route' => 'producto.store']) !!}
                         <div class="form-group">
                             {!! Form::label('nombre_producto', 'Nombre del producto') !!}
-                            {!! Form::text('nombre_producto', null, ['class' => 'form-control']) !!}
+                            {!! Form::text('nombre_producto', null, ['class' => 'form-control', 'required' => 'required']) !!}
                         </div>
 
                         <div class="form-group">
                             {!! Form::label('precio_por_gramo', 'Precio por gramo') !!}
-                            {!! Form::number('precio_por_gramo', null, ['class' => 'form-control']) !!}
+                            {!! Form::number('precio_por_gramo', null, ['class' => 'form-control', 'required' => 'required', 'min' => '0']) !!}
                         </div>
 
                         <div class="form-group">

@@ -12,9 +12,9 @@ class ProductoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $productos = Producto::orderBy('id', 'DESC')->paginate(10);
+        $productos = Producto::nombre($request->get('nombre'))->orderBy('id', 'DESC')->paginate(10);
         return view('producto.index', compact('productos'));
     }
 

@@ -10,14 +10,13 @@
             <h2>
         </div>
         <div class="panel-body"> 
-            <!--{!! Form::open(['route' => 'producto.index', 'method' => 'GET', 'class' => 'navbar-form navbar-left pull-right', 'role' => 'search']) !!}
-                <div class="form-group">
-                    {!! Form::label('busquedaporsala', 'Filtrar por salas: ') !!}
-                    {!! Form::select('numerodesala', $productos, null, ['class' => 'form-control'] ) !!}
-                
-                    {!! Form::submit('Filtrar', ['class' => 'btn btn-primary']) !!}
-                    {!! Form::close() !!}
-                </div>-->
+        {!! Form::open(['route' => 'producto.index', 'method' => 'GET', 'class' => 'navbar-form navbar-left pull-right', 'role' => 'search']) !!}
+            <div class="form-group">
+                {!! Form::label('buscar', 'Buscar: ') !!}
+                {!! Form::text('nombre', null, ['class' => 'form-control', 'title' => 'Escriba el nombre del producto', 'placeholder' => 'Nombre de producto'] ) !!}
+            </div>
+        {!! Form::submit('Buscar', ['class' => 'btn btn-primary']) !!}
+        {!! Form::close() !!}
 
             <h4><b> Hay {{ $productos->total() }} productos</b> </h4>
                 <table class="table table-hover table-bordered">

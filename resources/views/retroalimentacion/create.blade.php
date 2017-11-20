@@ -13,27 +13,27 @@
                     {!! Form::open(['route' => 'retroalimentacion.store']) !!}
                         <div class="form-group">
                             {!! Form::label('nombre', 'Nombre') !!}
-                            {!! Form::text('nombre', null, ['class' => 'form-control']) !!}
+                            {!! Form::text('nombre', null, ['class' => 'form-control', 'required' => 'required']) !!}
                         </div>
 
                         <div class="form-group">
                             {!! Form::label('tipo', 'Tipo: ') !!}
-                            {!! Form::select('tipo', ['' => 'Seleccione', 'Queja' => 'Queja', 'Reclamo' => 'Reclamo', 'Sugerencia' => 'Sugerencia'], null, ['class' => 'form-control'] ) !!}
+                            {!! Form::select('tipo', ['' => 'Seleccione', 'Queja' => 'Queja', 'Reclamo' => 'Reclamo', 'Sugerencia' => 'Sugerencia'], null, ['class' => 'form-control', 'required' => 'required'] ) !!}
                         </div>
 
                         <div class="form-group">
                             {!! Form::label('titulo', 'Titulo') !!}
-                            {!! Form::text('titulo', null, ['class' => 'form-control']) !!}
+                            {!! Form::text('titulo', null, ['class' => 'form-control', 'required' => 'required']) !!}
                         </div>
 
                         <div class="form-group">
                             {!! Form::label('contenido', 'Contenido') !!}
-                            {!! Form::text('contenido', null, ['class' => 'form-control']) !!}
+                            {!! Form::text('contenido', null, ['class' => 'form-control', 'required' => 'required']) !!}
                         </div>
 
                         <div class="form-group">
                             {!! Form::label('email', 'Su correo, si desea que respondamos') !!}
-                            {!! Form::text('email', 'ninguno@gmail.com', ['class' => 'form-control']) !!}
+                            {!! Form::text('email', 'ninguno@gmail.com', ['class' => 'form-control', 'required' => 'required']) !!}
                         </div>
 
                         <div class="form-group">
