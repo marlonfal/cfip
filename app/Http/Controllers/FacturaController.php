@@ -47,6 +47,7 @@ class FacturaController extends Controller
         return $request;
         $factura = new Factura();
         $factura->fecha = $request->fecha;
+        $factura->vendedor = $request->vendedor;
         $factura->comprador = $request->comprador;
         $factura->total = $request->total;
         $factura->save();
@@ -103,6 +104,7 @@ class FacturaController extends Controller
     {
         $factura->fecha = $request->fecha;
         $factura->comprador = $request->comprador;
+        $factura->vendedor = $request->vendedor; 
 
         $factura->save();
         return redirect()->route('factura.show', $factura)->with('info', 'Se actualizó la información de la factura');

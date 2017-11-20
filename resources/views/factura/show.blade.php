@@ -26,14 +26,17 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td colspan="3" width="100">
+                            <td colspan="2" width="100">
                                 {!! Form::label('comprador', 'Comprador: ') !!}                       
                                 {{$factura->comprador}}
                             </td>
-                            <td colspan="3">
+                            <td colspan="2" width="100">
+                                {!! Form::label('vendedor', 'Vendedor: ') !!}                       
+                                {{$factura->vendedor}}
+                            </td>
+                            <td colspan="2">
                                 {!! Form::label('fecha', 'Fecha: ') !!}
                                 {{ $factura->fecha }}
-                                
                             </td>
                         </tr>
                         <tr>

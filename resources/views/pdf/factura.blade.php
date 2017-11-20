@@ -23,6 +23,7 @@
     <p>Factura de Venta # {{ $factura->id }} </p>
     <p>Fecha {{ $factura->fecha }} </p>
     <p>Comprador: {{ $factura->comprador }} </p>
+    <p>Vendedor: {{ $factura->vendedor }} </p>
     ------------------------------------
 </center>
     <table align="center">
@@ -40,7 +41,7 @@
                     <label>{{ $detalle->producto->nombre_producto }}</label>
                 </td>
                 <td>{{ $detalle->peso_gramo }} /  {{ $detalle->cantidad }}</td>
-                <td>$ {{ $detalle->precio }}</td>
+                <td>${{ $detalle->precio }}</td>
             </tr>
         @endforeach
             <tr>
@@ -48,7 +49,7 @@
             </tr>
             <tr>
                 <td colspan="2" align="right"><b>Total: </b></td>
-                <td>$ {{ $factura->total }}</td>
+                <td>${{ $factura->total }}</td>
             </tr>
             <tr>
             <td colspan="3">----------------------------------------------------</td>

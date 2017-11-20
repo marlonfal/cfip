@@ -23,11 +23,15 @@
                     </thead>
                     <tbody id="productosfactura">                
                         <tr>
-                            <td colspan="3">
+                            <td colspan="2">
                                 {!! Form::label('comprador', 'Comprador') !!}
-                                <input type="text" name="comprador" id="comprador"class="form-control" required/>
-                                </td>
-                            <td colspan="3">
+                                {!! Form::text('comprador', null, ['class' => 'form-control', 'id' => 'comprador', 'required' => 'required']) !!}
+                            </td>
+                            <td colspan="2">
+                                {!! Form::label('vendedor', 'Vendedor') !!}
+                                {!! Form::text('vendedor', Auth::user()->name, ['class' => 'form-control', 'id' => 'fecha', 'readonly' => 'readonly']) !!}
+                            </td>
+                            <td colspan="2">
                                 {!! Form::label('fecha', 'Fecha') !!}
                                 {!! Form::date('fecha', null, ['class' => 'form-control', 'id' => 'fecha', 'required' => 'required']) !!}
                             </td>

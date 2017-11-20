@@ -34,6 +34,7 @@ $factory->define(App\Producto::class, function (Faker\Generator $faker) {
 $factory->define(App\Factura::class, function (Faker\Generator $faker) {
     return [
         'fecha' => $faker->date,
+        'vendedor' => $faker->name,
         'comprador' => $faker->name,
         'total' => $faker->numberBetween(1000, 3000),      
     ];

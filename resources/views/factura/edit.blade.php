@@ -25,10 +25,10 @@
                         <tr><td colspan="4"></td></tr>               
                         <tr>
                             <td>
-                                <b> Factura número: </b> 
+                                <b> Factura número:  {{ $factura->id }} </b> 
                             </td>
                             <td> 
-                                {{ $factura->id }} 
+                                <b>Vendedor</b> {{ $factura->vendedor }} 
                             </td>
                             <td>
                                 {!! Form::label('fecha', 'Fecha') !!}
