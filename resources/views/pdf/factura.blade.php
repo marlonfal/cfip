@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+<style>
+   @page { size: 46mm {{ $height }}pt; margin: 0px;}
+   table {
+        font-size: 10px;
+   }
+   p {
+       margin: 0px;
+       font-size: 12px;
+   }
+  </style>
+<center>
+<br>
+    <img src="{{ asset('img/logo.png')}}" alt="" witdh="58" height="58"> <br>
+    <p>POLLOS EL PAISITA </p>
+    <p>La Buitrera - Palmira </p>
+    <p>Tel: 2682668 </p>
+    <p>NIT: 123456789 </p>
+
+    <p>Factura de Venta # {{ $factura->id }} </p>
+    <p>Fecha {{ $factura->fecha }} </p>
+    <p>Comprador: {{ $factura->comprador }} </p>
+    ------------------------------------
+</center>
+    <table align="center">
+        <thead>
+            <tr>
+                <th><b> Producto </b></th>
+                <th><b> Cant/Gr  </b></th>
+                <th><b> Valor  </b></th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach($detalles as $detalle)
+            <tr>
+                <td>
+                    <label>{{ $detalle->producto->nombre_producto }}</label>
+                </td>
+                <td>{{ $detalle->peso_gramo }} /  {{ $detalle->cantidad }}</td>
+                <td>$ {{ $detalle->precio }}</td>
+            </tr>
+        @endforeach
+            <tr>
+            <td colspan="3">----------------------------------------------------</td>
+            </tr>
+            <tr>
+                <td colspan="2" align="right"><b>Total: </b></td>
+                <td>$ {{ $factura->total }}</td>
+            </tr>
+            <tr>
+            <td colspan="3">----------------------------------------------------</td>
+        </tbody>
+    </table>
+<center>
+   <p>Página web </p>
+   <p>polloselpaisita.com </p>
+   <p>email </p>
+   <p>polloselpaisita@gamin.com </p>
+
+</center>
+</body>
+</html>
