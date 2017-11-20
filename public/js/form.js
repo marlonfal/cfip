@@ -19,7 +19,7 @@ function addProducto(){
     $.get("productos", function(response){
         
         var tr = document.createElement('tr');
-        var options = '<option value="0">Seleccione</option>';
+        var options = '<option value="">Seleccione</option>';
         tr.id = 'detalle'+a;
         for(i = 0; i< response.length; i++){
             options += '<option value="'+response[i].id+'">'+response[i].nombre_producto+'</option>' ;
@@ -27,7 +27,7 @@ function addProducto(){
         document.getElementById('cantidaddetalles').value = a;
         tr.setAttribute('class', 'form-inline');
         tr.innerHTML = '<td width="60" align="center">'+a
-        +'</td> <td colspan="1"><select id="select'+a+'" name="select'+a+'" onchange="changeSelect('+a+')" placeholder="Seleccione" class="form-control">'
+        +'</td> <td colspan="1"><select required id="select'+a+'" name="select'+a+'" onchange="changeSelect('+a+')" placeholder="Seleccione" class="form-control">'
         + options + '</select> </td>'+
         '<td width="60">'+
         '<input type="number" disabled required id="pesodetalle'+a+'" min="0" name="pesodetalle'+a+'" onchange="updatePrecios('+a+')" style="width: 90px;" class="form-control"/>'+
@@ -165,7 +165,7 @@ function addProductoPedido(){
     $.get("productosp", function(response){
         
         var tr = document.createElement('tr');
-        var options = '<option>Seleccione</option>';
+        var options = '<option value="" selected>Seleccione</option>';
         tr.id = 'detalle'+a;
         for(i = 0; i< response.length; i++){
             options += '<option value="'+response[i].id+'">'+response[i].nombre_producto+'</option>' ;
