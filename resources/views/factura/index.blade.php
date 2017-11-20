@@ -10,7 +10,14 @@
             </h1>
         </div>
         <div class="panel-body">
-        
+        {!! Form::open(['route' => 'factura.index', 'method' => 'GET', 'class' => 'navbar-form navbar-left pull-right', 'role' => 'search']) !!}
+                <div class="form-group">
+                    {!! Form::label('buscar', 'Buscar: ') !!}
+                    {!! Form::text('comprador', null, ['class' => 'form-control', 'title' => 'Escriba el nombre del comprador', 'placeholder' => 'Nombre de comprador'] ) !!}
+                    {!! Form::text('id', null, ['class' => 'form-control', 'title' => 'Escriba el número de factura', 'placeholder' => 'Número de factura'] ) !!}
+                </div>
+            {!! Form::submit('Buscar', ['class' => 'btn btn-primary']) !!}
+        {!! Form::close() !!}
         <h3>Hay {{ $facturas->total() }} facturas</h3>
             <table class="table table-bordered table-hover">
                 <thead>
@@ -44,7 +51,7 @@
                     @endforeach
                 </tbody>
             </table>
-            {!! $facturas->render() !!}
+            {!! $facturas->appends(Request::only(['comprador', 'id']))->render() !!}
         </div>
     </div>
 </div>

@@ -20,9 +20,10 @@ class FacturaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $facturas = Factura::orderBy('id', 'DESC')->paginate(15);
+        
+        $facturas = Factura::Id($request->get('id'))->comprador($request->get('comprador'))->orderBy('id', 'DESC')->paginate(15);
         return view('factura.index', compact('facturas'));
     }
 
