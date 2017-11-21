@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', 'Crear tipo de gasto')
 @section('content')
 <div class="container animatedParent">
     <div class="row">

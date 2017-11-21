@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title', 'Editar venta')
 @section('content')
 <div class="container animatedParent">
     <div class="col-md-6 col-md-offset-3">

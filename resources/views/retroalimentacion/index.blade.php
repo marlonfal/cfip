@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', 'Retroalimentaciones')
 @section('content')
 <div class="container animatedParent col-md-8 col-md-offset-2">
     <div class="panel panel-primary animated bounceInUp">

@@ -178,14 +178,17 @@ function addProductoPedido(){
             options += '<option value="'+response[i].id+'">'+response[i].nombre_producto+'</option>' ;
         }
 
+        cantidad++;
+        document.getElementById('cantidaddetalles').value = cantidad;
+
         tr.setAttribute('class', 'form-inline');
         tr.innerHTML = '<td width="60" align="center">'+a
         +'</td> <td colspan="1"><select id="select'+a+'" required="required" name="select[]" onchange="changeSelectPedido('+a+')" placeholder="Seleccione" class="form-control">'
         + options + '</select> </td>'+
         '<td width="60">'+
-        '<input type="number" disabled id="cantidaddetalle'+a+'" name="cantidad[]" placeholder="0" style="width: 90px;"class="form-control"/>'+
+        '<input type="number" min="1" required disabled id="cantidaddetalle'+a+'" name="cantidad[]" placeholder="0" style="width: 90px;"class="form-control"/>'+
         '</td>'+
-        '<td><a id="btn-borrar' + a + '" class="btn btn-danger" onclick="deleteProducto(' + a + ')">X</a></td>';
+        '<td><a id="btn-borrar' + a + '" class="btn btn-danger" onclick="deleteProductoP(' + a + ')"><i class="fa fa-minus"></i></a></td>';
         document.getElementById('productospedido').appendChild(tr);document.getElementById('productospedido').appendChild(tr);
     })
 }
@@ -196,42 +199,12 @@ function changeSelectPedido(id){
     }
 }
 
-async function guardarPedido(){
-    var nombrecomprador = $("#nombre").val();
-    var route = "guardarp";
-    var token = $("#token").val();
-    var direccionp = $("#direccion").val();
-    await $.ajax({
-        url: route,
-        headers: {'X-CSRF-TOKEN': token},
-        type: 'POST',
-        dataType: 'json',
-        data: {nombre: nombrecomprador, direccion: direccionp},
-        success: function(response){
-            idfactura = response;
-            guardardetallepedido(response);
-        }
-    });
-    
-    window.location=idfactura;
-}
-
-function guardardetallepedido(id){
-    var token = $("#token").val();
-    for(i = 1; i <= a; i++){
-        if($('#detalle' + i).length){
-                $.ajax({
-                url: "guardardetallep",
-                headers: {'X-CSRF-TOKEN': token},
-                type: 'POST',
-                dataType: 'json',
-                data: { id_detalle: i,
-                        cantidad: parseFloat($("#cantidaddetalle"+i).val()),
-                        id_pedido: id,
-                        id_tipo_producto: document.getElementById('select'+ i).value},
-                success: function (){
-                }
-            });
-        }
-    }
+/**
+ * función que elimina un detalle del pedido
+ * @param {*} id 
+ */
+function deleteProductoP(id) {
+    $('#detalle' + id).remove();
+    cantidad--;
+    document.getElementById('cantidaddetalles').value = cantidad;
 }

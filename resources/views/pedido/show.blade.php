@@ -1,12 +1,12 @@
 @extends('layouts.app')
-
+@section('title', 'Detalles pedido')
 @section('content')
 <div class="container animatedParent">
     <div class="col-md-8 col-md-offset-2">
         <div class="panel panel-primary animated bounceInUp">
             <div class="panel-heading">
                 @include('_mensaje')
-                <h1 align="center">Detalles de la factura #{{ $pedido->id }}
+                <h1 align="center">Detalles del pedido #{{ $pedido->id }}
                 </h1>
             </div>
             <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token" />

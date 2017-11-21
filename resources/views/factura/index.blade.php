@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title', 'Ventas')
 @section ('content')
 <div class="container animatedParent">
     <div class="panel panel-primary animated bounceInUp">

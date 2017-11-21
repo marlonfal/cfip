@@ -1,12 +1,12 @@
 @extends('layouts.app')
-
+@section('title', 'Detalles venta')
 @section('content')
 <div class="container animatedParent">
     <div class="col-md-8 col-md-offset-2">
         <div class="panel panel-primary animated bounceInUp">
             <div class="panel-heading">
                 @include('_mensaje')
-                <h1 align="center">Detalles de la factura #{{ $factura->id }}
+                <h1 align="center">Detalles de la venta #{{ $factura->id }}
                     <a href="{{ route('imprimirfactura', $factura->id) }}" target="_blank" class="btn btn-default pull-right">
                         <i class="fa fa-print fa-2x" aria-hidden="true"></i>
                     </a>

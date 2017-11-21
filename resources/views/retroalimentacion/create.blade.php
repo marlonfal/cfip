@@ -1,5 +1,5 @@
 @extends('layouts.paginaweb')
-
+@section('title', 'Enviar retroalimentación')
 @section('content')
 <div class="container animatedParent" style="margin-top: 55px;">
     <div class="row">

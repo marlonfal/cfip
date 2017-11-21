@@ -37,7 +37,7 @@ class PedidoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
         $pedido = new Pedido();
         $pedido->fecha_pedido = "2012-09-17";
         $pedido->fecha_entrega = "2012-09-17";
@@ -45,7 +45,18 @@ class PedidoController extends Controller
         $pedido->direccion = $request->direccion;
 
         $pedido->save();
-        return response()->json($pedido->id);
+
+        for($i = 0; $i < $request->cantidaddetalles; $i++){
+            $detallePedido = new DetallePedido();
+            $detallePedido->id_detalle = $i + 1;
+            $detallePedido->id_pedido = $pedido->id;
+            $detallePedido->id_tipo_producto = $request->select[$i];
+            $detallePedido->cantidad = $request->cantidad[$i];
+
+            $detallePedido->save();
+        }
+
+        return redirect()->route('pedido.show', $pedido)->with('info', 'Se hizo el pedido');
     }
 
     /**

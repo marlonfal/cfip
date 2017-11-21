@@ -1,11 +1,11 @@
 @extends('layouts.app')
-
+@section('title', 'Registrar venta')
 @section('content')
 <div class="container animatedParent">
     <div class="col-md-8 col-md-offset-2">
         <div class="panel panel-primary animated bounceInUp">
             <div class="panel-heading">
-                <h1 align="center">Registrar Factura</h1>
+                <h1 align="center">Registrar venta</h1>
             </div>
             @include('_error')
             {!! Form::open(['route' => 'factura.store']) !!}

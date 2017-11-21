@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', 'Pedidos')
 @section('content') 
 <div class="container animatedParent">
     <div class="panel panel-primary animated bounceInUp">
@@ -8,7 +9,7 @@
         </div>
         <div class="panel-body">
         
-        <h3>Hay {{ $pedidos->total() }} facturas</h3>
+        <h3>Hay {{ $pedidos->total() }} pedidos</h3>
             <table class="table table-bordered table-hover">
                 <thead>
                     <th>#</th>

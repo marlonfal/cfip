@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title', 'Hacer pedido')
 @section('content')
 <div class="container animatedParent">
     <div class="col-md-6 col-md-offset-3">
@@ -25,13 +25,13 @@
                         <tr>
                             <td colspan="4">
                                 {!! Form::label('nombre', 'Nombre: ') !!}
-                                {!! Form::text('nombre',Auth::user()->name,['class' => 'form-control'] ) !!}
+                                {!! Form::text('nombre',Auth::user()->name,['class' => 'form-control', 'required' => 'required'] ) !!}
                             </td>
                         </tr>
                         <tr>
                             <td colspan="4">
                                 {!! Form::label('direccion', 'Dirección: ') !!}
-                                <input type="text"  id="direccion"class="form-control"/>
+                                {!! Form::text('direccion', null, ['class' => 'form-control', 'required' => 'required']) !!}
                             </td>
                         </tr>
                         <tr>   
@@ -46,13 +46,14 @@
                         <tr>
                             <td colspan="4">
                                 <center>
-                                    <input type="button" class="btn btn-success" id="add_producto()" onClick="addProductoPedido()" value="Agregar producto (+)" />
+                                    <a class="btn btn-success" id="add_producto()" onClick="addProductoPedido()"><i class="fa fa-plus"></i> Agregar producto</a>
                                 </center>
                             </td>
-                        </tr>                      
+                        </tr>
+                        <input type="text" name="cantidaddetalles" id="cantidaddetalles"  hidden/>        
                         <tr align="center">
                             <td colspan="4">
-                                <input type="button" class="btn btn-primary pull-right" id="guardarPedido()" onClick="guardarPedido()" value="Pedir" />
+                                {!! Form::submit('Guardar', ['class' => 'btn btn-primary pull-right']) !!}
                                 <a href="{{ url()->previous() }}" class="btn btn-default pull-left"><b> Volver </b> </a>
                             </td>
                         </tr>
