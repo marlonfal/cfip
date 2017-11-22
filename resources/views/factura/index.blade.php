@@ -1,11 +1,11 @@
-@extends('layouts.app')
+﻿@extends('layouts.app')
 @section('title', 'Ventas')
 @section ('content')
 <div class="container animatedParent">
     <div class="panel panel-primary animated bounceInUp">
         <div class="panel-heading">
             @include('_mensaje')
-            <h1>Listado de facturas
+            <h1>Listado de factura
                 <a href="{{ route('factura.create') }}" class="btn btn-success btn-lg pull-right"><b>Nueva (+)</b></a>
             </h1>
         </div>
