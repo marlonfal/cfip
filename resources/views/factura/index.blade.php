@@ -5,7 +5,7 @@
     <div class="panel panel-primary animated bounceInUp">
         <div class="panel-heading">
             @include('_mensaje')
-            <h1>Listado de factura
+            <h1>Listado de facturas
                 <a href="{{ route('factura.create') }}" class="btn btn-success btn-lg pull-right"><b>Nueva (+)</b></a>
             </h1>
         </div>
