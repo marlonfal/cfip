@@ -1,5 +1,5 @@
 @extends('layouts.paginaweb')
-
+@section('title', 'Inicio')
 @section ('content')
 
     <!-- IMAGEN DEL HEADER -->
