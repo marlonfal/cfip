@@ -16,7 +16,8 @@ class PedidoMigration extends Migration
             $table->increments('id');
             $table->string('nombre');
             $table->string('direccion');
-            $table->date('fecha_pedido');
+            $table->string('estado');
+            $table->string('hora_entrega');
             $table->date('fecha_entrega');
             $table->timestamps();
         });

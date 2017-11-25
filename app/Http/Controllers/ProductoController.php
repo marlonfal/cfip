@@ -58,7 +58,7 @@ class ProductoController extends Controller
         ]);
         $producto = new Producto();
         $producto->nombre_producto = $request->nombre_producto;
-        $producto->precio_por_gramo = $request->precio_por_gramo;
+        $producto->precio_por_gramo = $request->precio_por_gramo / 1000;
 
         $producto->save();
         return redirect()->route('producto.show', $producto)->with('info', 'Se creó del producto');
@@ -100,7 +100,7 @@ class ProductoController extends Controller
             'precio_por_gramo'=> 'required'
         ]);
         $producto->nombre_producto = $request->nombre_producto;
-        $producto->precio_por_gramo = $request->precio_por_gramo;
+        $producto->precio_por_gramo = ($request->precio_por_gramo / 1000);
 
         $producto->save();
         return redirect()->route('producto.show', $producto)->with('info', 'Se actualizó la información del producto');

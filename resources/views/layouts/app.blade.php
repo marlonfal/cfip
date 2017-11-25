@@ -20,66 +20,85 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-default navbar-static-top yellow">
+        <div class="container-fluid navbar-default yellow">
             <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
-
-                    <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                        <span class="sr-only">Toggle Navigation</span>
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-
-                    <!-- Branding Image -->
                     <img src="{{ asset('img/logo.png') }}" class="pull-left" height="50" width="50">
-                    @guest
-                        <a class="navbar-brand" href="{{ url('/login') }}">
-                            <b style="color: black !important"> {{ config('app.name', 'Laravel') }} </b>
-                        </a>
-                    @else
-                        <a class="navbar-brand" href="{{ url('/admin') }}">
-                            <b style="color: black !important"> {{ config('app.name', 'Laravel') }} </b>
-                        </a>
-                    @endguest
+                    <a class="navbar-brand" href="{{ url('/inicio') }}">
+                        <b> {{ config('app.name', 'Laravel') }} </b>  
+                    </a>
                 </div>
 
-                <div class="collapse navbar-collapse" id="app-navbar-collapse"> 
-                    @guest
-                    @else
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a href="{{ url('/configuracion') }}">
-                                <i class="fa fa-cog fa-3" aria-hidden="true"></i>
-                            </a>
-                        </li>
-
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                {{ Auth::user()->name }} <span class="caret"></span>
-                            </a>
-                            
-                            <ul class="dropdown-menu" role="menu">
-                                <li>
-                                    <a href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">
-                                        Salir
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        <input type="hidden" name="_token" value="{{ csrf_token() }}" >
-                                        {{ csrf_field() }}
-                                    </form>
-                                </li>
-                            </ul>                              
-                        </li>           
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Registrar <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="{{ route('factura.create') }}">Venta</a></li>
+                    <li><a href="#">Gasto - </a></li>
+                    <li role="separator" class="divider"></li>
+                </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ver <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="{{ route('factura.index') }}">Ventas</a></li>
+                    <li><a href="#">Gastos - </a></li>
+                    <li><a href="#">Inventario - </a></li>
+                    <li><a href="{{ route('pedido.index') }}">Pedidos </a></li>
+                    <li><a href="{{ route('retroalimentacion.index') }}">Retroalimentaciones</a></li>
+                    <li><a href="{{ route('producto.index') }}">Productos</a></li>
+                    <li><a href="{{ url('admin/users') }}"> Usuarios </a></li>
+                    <li><a href="#">Gastos - </a></li>
+                </ul>
+                </li>
+            </ul>
+            
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    Configuración <i class="fa fa-cog"></i>  <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li> &nbsp; Agregar</li>
+                        <li><a href="{{ route('producto.create') }}"> Producto </a></li>
+                        <li><a href="{{ route('tipodegasto.create') }}"> Tipo de gasto </a></li>
+                        <li><a href="{{ url('admin/users/create') }}"> Usuario </a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="{{ url('')}}">Cambiar contraseña</a></li>
                     </ul>
-                        @endguest
-                </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
+                                Salir
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}" >
+                                {{ csrf_field() }}
+                            </form>    
+                        </li>
+                        <li><a href="{{ url('')}}">Cambiar contraseña</a></li>
+                    </ul>
+                </li>
+            </ul>
+            </div><!-- /.navbar-collapse -->
             </div>
-        </nav>
+        </div><!-- /.container-fluid -->
+        <br>
             @yield('content')
     </div>
     <!-- Scripts -->

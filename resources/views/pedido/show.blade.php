@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('title', 'Detalles pedido')
 @section('content')
+@if(Auth::user()->name == $pedido->nombre)
 <div class="container animatedParent">
     <div class="col-md-8 col-md-offset-2">
         <div class="panel panel-primary animated bounceInUp">
@@ -23,13 +24,24 @@
                     </thead>
                     <tbody>
                         <tr>
+                            @if($pedido->estado == 'Pendiente')
+                                <td>
+                                    {!! Form::label('fecha', 'Estado: ') !!} {{ $pedido->estado }} <i class="fa fa-clock-o"></i> 
+                                </td>
+                            @endif
+                            @if($pedido->estado == 'En camino')
+                                <td>
+                                    {!! Form::label('fecha', 'Estado: ') !!} {{ $pedido->estado }} <i class="fa fa-motorcycle"></i> 
+                                </td>
+                            @endif
+                            @if($pedido->estado == 'Entregado')
+                                <td>
+                                    {!! Form::label('fecha', 'Estado: ') !!} {{ $pedido->estado }} <i class="fa fa-check-square-o"></i> 
+                                </td>
+                            @endif
                             <td>
                                 {!! Form::label('comprador', 'Comprador: ') !!}                       
                                 {{$pedido->nombre}}
-                            </td>
-                            <td>
-                                {!! Form::label('fecha', 'Fecha: ') !!}
-                                {{ $pedido->fecha_pedido }} 
                             </td>
                             <td>
                                 {!! Form::label('fecha', 'Dirección: ') !!}
@@ -37,17 +49,31 @@
                             </td>
                         </tr>
                         <tr>
+                            <td>
+                                {!! Form::label('fecha', 'Fecha creado: ') !!}
+                                {{ $pedido->created_at }} 
+                            </td>
+                            <td>
+                                {!! Form::label('comprador', 'Fecha entrega: ') !!}                       
+                                {{$pedido->fecha_entrega}}
+                            </td>
+                            <td>
+                                {!! Form::label('fecha', 'Hora Entrega (24h):  ') !!}
+                                {{ $pedido->hora_entrega }} 
+                            </td>                   
                         </tr>
-                        <tr class="bg-warning" align="center">
+                        <tr>
+                        </tr>
+                        <tr class="bg-primary" align="center">
                             <td><b> Número </b></td>
-                            <td><b>Producto: id - nombre </b></td>
+                            <td><b>Producto </b></td>
                             <td><b> Cantidad </b></td>
                         </tr>
                         @foreach($detalles as $detalle)
                             <tr align="center">
                                 <td>{{ $detalle->id_detalle }}</td>
                                 <td>
-                                    <label>{{ $detalle->id_tipo_producto}} - {{ $detalle->producto->nombre_producto }} </label> 
+                                    <label>{{ $detalle->producto->nombre_producto }} </label> 
                                 </td>
                                 <td><b> {{ $detalle->cantidad }} </b></td>
                             </tr>
@@ -72,4 +98,5 @@
         </div>
     </div>
 </div>
+@endif
 @endsection

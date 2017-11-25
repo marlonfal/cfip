@@ -18,8 +18,8 @@
                         </div>
 
                         <div class="form-group">
-                            {!! Form::label('precio_por_gramo', 'Precio por gramo') !!}
-                            {!! Form::number('precio_por_gramo', $producto->precio_por_gramo, ['class' => 'form-control']) !!}
+                            {!! Form::label('precio_por_gramo', 'Precio por kilo') !!}
+                            {!! Form::number('precio_por_gramo', $producto->precio_por_gramo * 1000, ['class' => 'form-control']) !!}
                         </div>
 
                         <div class="form-group">

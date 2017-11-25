@@ -23,7 +23,7 @@ Route::POST('factura/guardar', 'FacturaController@store')->name('guardar');
 Route::get('/imprimirfactura/{factura}', 'FacturaController@print')->name('imprimirfactura');
 
 Route::get('/', 'InfoController@index');
-Route::get('/admin', 'InfoController@admindex');
+Route::get('/inicio', 'InfoController@inicio');
 Route::get('/configuracion', 'InfoController@configuracion');
 Route::group(['middleware' => 'auth'], function(){
     Route::resource('producto', 'ProductoController');
@@ -40,5 +40,7 @@ Route::resource('pedido', "PedidoController");
 
 
 Auth::routes();
+
+route::get('cambiar', 'InfoController@contraseña');
 Route::get('/home', 'HomeController@index')->name('home');
 

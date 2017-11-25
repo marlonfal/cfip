@@ -1,5 +1,5 @@
 @extends ('layouts.app')
-
+@section('title', 'Detalles producto')
 @section ('content')
 <div class="container animatedParent">
     <div class="row">
@@ -22,8 +22,8 @@
                                 <td>{{$producto->nombre_producto}}</td>
                             </tr>
                             <tr>
-                                <td>Precio:</td>
-                                <td>{{ $producto->precio_por_gramo }}</td>
+                                <td>Precio por kilo:</td>
+                                <td>{{ $producto->precio_por_gramo * 1000 }}</td>
                             </tr>
                             <tr>
                                 

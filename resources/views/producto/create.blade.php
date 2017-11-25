@@ -17,7 +17,7 @@
                         </div>
 
                         <div class="form-group">
-                            {!! Form::label('precio_por_gramo', 'Precio por gramo') !!}
+                            {!! Form::label('precio_por_gramo', 'Precio por libra') !!}
                             {!! Form::number('precio_por_gramo', null, ['class' => 'form-control', 'required' => 'required', 'min' => '0']) !!}
                         </div>
 

@@ -1,7 +1,7 @@
 <?php
 return [
-    "layout" => "entrust-gui::app",
-    "route-prefix" => "entrust-gui",
+    "layout" => "layouts.app",
+    "route-prefix" => "admin",
     "pagination" => [
         "users" => 5,
         "roles" => 5,

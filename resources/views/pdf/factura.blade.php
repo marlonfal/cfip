@@ -3,7 +3,7 @@
 
 <body>
 <style>
-   @page { size: 46mm {{ $height }}pt; margin: 0px;}
+   @page { size: 50mm {{ $height }}pt; margin: 0px;}
    table {
         font-size: 10px;
    }

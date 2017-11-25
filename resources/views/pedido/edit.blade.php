@@ -1,14 +1,15 @@
 @extends('layouts.app')
-@section('title', 'Hacer pedido')
+@section('title', 'Editar pedido')
 @section('content')
+@if(Auth::user()->name == $pedido->nombre)
 <div class="container animatedParent">
     <div class="col-md-6 col-md-offset-3">
         <div class="panel panel-primary animated bounceInUp">
             <div class="panel-heading">
-                <h1 align="center">Hacer pedido</h1>
+                <h1 align="center">Editar pedido # {{ $pedido->id}}</h1>
             </div>
             @include('_error')
-            {!! Form::open(['route' => 'pedido.store']) !!}
+            {!! Form::open(['route' => ['pedido.update', $pedido], 'method' => 'PATCH']) !!}
             <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token" />
             <div class="panel-body">
                 <table class="table table-bordered">
@@ -30,36 +31,43 @@
                         </tr>
                         <tr>
                             <td colspan="4">
+                                <div class="form-group">
+                                    {!! Form::label('estado', 'Estado: ') !!}
+                                    {!! Form::select('estado', ['' => 'Seleccione', 'Pendiente' => 'Pendiente', 'En camino' => 'En camino', 'Entregado' => 'Entregado', 'Cancelado' => 'Cancelado'], $pedido->estado, ['class' => 'form-control', 'required' => 'required'] ) !!}
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4">
                                 {!! Form::label('direccion', 'Dirección: ') !!}
-                                {!! Form::text('direccion', null, ['class' => 'form-control', 'required' => 'required']) !!}
+                                {!! Form::text('direccion', $pedido->direccion, ['class' => 'form-control', 'required' => 'required']) !!}
                             </td>
                         </tr>
                         <tr>
                             <td colspan="2">
                                 {!! Form::label('fecha_entrega', 'Fecha entrega: ') !!}
-                                {!! Form::date('fecha_entrega', null, ['class' => 'form-control', 'required' => 'required']) !!}
+                                {!! Form::date('fecha_entrega', $pedido->fecha_entrega, ['class' => 'form-control', 'required' => 'required']) !!}
                             </td>
                             <td colspan="2">
                                 {!! Form::label('hora_entrega', 'Hora entrega: ') !!}
-                                {!! Form::time('hora_entrega', null, ['class' => 'form-control', 'required' => 'required', 'min' => '0', 'max' => '']) !!}
+                                {!! Form::time('hora_entrega', $pedido->hora_entrega, ['class' => 'form-control', 'required' => 'required', 'min' => '0', 'max' => '']) !!}
                             </td>
                         </tr>
                         <tr>   
                         </tr>
                         <tr class="bg-warning" align="center">
                             <td width="60"><b> Número </b></td>
-                            <td><b> Producto </b></td>
-                            <td width="90"><b> Cantidad </b></td>
-                            <td colspan="1"></td>
+                            <td colspan="2"><b> Producto </b></td>
+                            <td><b> Cantidad </b></td>
                         </tr>
+                        @foreach($detalles as $detalle)
+                        <tr align="center">
+                            <td><b> {{ $detalle->id_detalle }} </b></td>
+                            <td colspan="2"><b> {{ $detalle->producto->nombre_producto}} </b></td>
+                            <td width="60"><b> {{ $detalle->cantidad }} </b></td>
+                        </tr>
+                        @endforeach
                     </tbody>
-                        <tr>
-                            <td colspan="4">
-                                <center>
-                                    <a class="btn btn-success" id="add_producto()" onClick="addProductoPedido()"><i class="fa fa-plus"></i> Agregar producto</a>
-                                </center>
-                            </td>
-                        </tr>
                         <input type="text" name="cantidaddetalles" id="cantidaddetalles"  hidden/>        
                         <tr align="center">
                             <td colspan="4">
@@ -73,9 +81,5 @@
         </div>
     </div>
 </div>
-
-@endsection
-
-@section('scripts')
-<script src="{{ asset('js/form.js') }}"></script>
+@endif
 @endsection

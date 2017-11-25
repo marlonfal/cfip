@@ -39,8 +39,9 @@ class PedidoController extends Controller
     public function store(Request $request)
     {   
         $pedido = new Pedido();
-        $pedido->fecha_pedido = "2012-09-17";
-        $pedido->fecha_entrega = "2012-09-17";
+        $pedido->estado = 'Pendiente';
+        $pedido->fecha_entrega = $request->fecha_entrega;
+        $pedido->hora_entrega = $request->hora_entrega;
         $pedido->nombre = $request->nombre;
         $pedido->direccion = $request->direccion;
 
@@ -81,7 +82,8 @@ class PedidoController extends Controller
      */
     public function edit(Pedido $pedido)
     {
-        //
+        $detalles = DetallePedido::orderBy('id_detalle', 'ASC')->with('producto')->where('id_pedido', '=', $pedido->id)->get();
+        return view('pedido.edit', compact('pedido', 'detalles'));
     }
 
     /**

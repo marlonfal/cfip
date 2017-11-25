@@ -15,7 +15,8 @@
                     <th>#</th>
                     <th>Nombre</th>
                     <th>Dirección</th>
-                    <th>Detalles</th>
+                    <th>Estado</th>
+                    <th>Fecha y hora de entrega</th>
                     <th colspan="3">Opciones</th>
                 </thead>
                 <tbody>
@@ -24,7 +25,22 @@
                             <td>{{ $pedido->id }}</td>
                             <td>{{ $pedido->nombre }}</td>
                             <td>{{ $pedido->direccion }}</td>
-                            <td>{{ $pedido->detalles }}</td>
+                            @if($pedido->estado == 'Pendiente')
+                                <td>
+                                    {{ $pedido->estado }} <i class="fa fa-clock-o"></i> 
+                                </td>
+                            @endif
+                            @if($pedido->estado == 'En camino')
+                                <td>
+                                    {{ $pedido->estado }} <i class="fa fa-motorcycle"></i> 
+                                </td>
+                            @endif
+                            @if($pedido->estado == 'Entregado')
+                                <td>
+                                    {{ $pedido->estado }} <i class="fa fa-check-square-o"></i> 
+                                </td>
+                            @endif
+                            <td>{{ $pedido->fecha_entrega }} - {{ $pedido->hora_entrega }}</td>
                             <td width="50">
                                 <a href="{{ route('pedido.show', $pedido->id) }}" class="btn btn-success">Ver</a>
                             </td>
