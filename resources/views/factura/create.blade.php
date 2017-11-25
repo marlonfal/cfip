@@ -50,7 +50,7 @@
                         <tr>
                             <td colspan="6">
                                 <center>
-                                    <a class="btn btn-success" id="add_producto()" onClick="addProducto()"> <i class="fa fa-plus" aria-hidden="true"></i> Agregar producto</a>
+                                    <a class="btn btn-success" id="add_producto()" onClick="addProducto()"> Agregar producto <i class="fa fa-plus" aria-hidden="true"></i></a>
                                 </center>
                             </td>
                         </tr>
@@ -61,15 +61,16 @@
                             </td>
                         </tr>
                         <input type="text" name="cantidaddetalles" id="cantidaddetalles"  hidden/>                        
-                        <tr align="center">
-                            <td colspan="6">
-                                {!! Form::submit('Guardar', ['class' => 'btn btn-primary pull-right']) !!}
-                                <a href="{{ url()->previous() }}" class="btn btn-default pull-left"><b> Volver </b> </a>
-                            </td>
-                        </tr>
                 </table>
-            {!! Form::close() !!}   
+               
             </div>
+            <div class="panel-footer">
+                
+                {!! Form::submit('Guardar', ['class' => 'btn btn-primary pull-right']) !!}
+                <a href="{{ url()->previous() }}" class="btn btn-default pull-left"><b> Volver </b> </a>
+                <span>&nbsp;</span><br><span>&nbsp;</span>
+            </div>
+            {!! Form::close() !!}
         </div>
     </div>
 </div>

@@ -49,32 +49,33 @@
                     @guest
                     @else
                     <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="{{ url('/configuracion') }}">
+                                <i class="fa fa-cog fa-3" aria-hidden="true"></i>
+                            </a>
+                        </li>
 
-                            <li><a href="{{ url('/configuracion') }}">
-                            <i class="fa fa-cogs fa-3" aria-hidden="true"></i>
-                            </a></li>
-
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                 {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-                                
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Salir
-                                        </a>
+                            </a>
+                            
+                            <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    <a href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                                        Salir
+                                    </a>
 
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            <input type="hidden" name="_token" value="{{ csrf_token() }}" >
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>                              
-                            </li>           
-                        </ul>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        <input type="hidden" name="_token" value="{{ csrf_token() }}" >
+                                        {{ csrf_field() }}
+                                    </form>
+                                </li>
+                            </ul>                              
+                        </li>           
+                    </ul>
                         @endguest
                 </div>
             </div>

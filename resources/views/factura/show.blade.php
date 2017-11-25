@@ -67,21 +67,21 @@
                                 <p align="center">$ <b> {{ $factura->total }} </b></p>
                             </td>
                         </tr>
-                        <tr>
-                            <td colspan="6">
-                                <a href="{{ route('factura.index') }}" class="btn btn-default pull-left"><b> Volver a la lista </b> </a>
-                                <a href="{{ route('factura.create') }}" class="btn btn-success pull-right"><b> Nueva (+) </b> </a>
-                                <!--<a href="{{ route('factura.edit', $factura->id) }}" class="btn btn-warning pull-right">Editar</a>
-                                <span class="pull-right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                            
-                                {!! Form::model($factura, ['route' => ['factura.update', $factura->id], 'method' => 'DELETE']) !!}
-                                {!! Form::submit('Eliminar', ['class' => 'btn btn-danger pull-right']) !!}
-                                {!! Form::close() !!}-->
-                            </td>
-                            
-                        </tr>
                     </tbody>
                 </table>
+            </div>
+            <div class="panel-footer">
+                <a href="{{ route('factura.index') }}" class="btn btn-default pull-left"><b> Volver a la lista </b></a>
+                <a href="{{ route('factura.create') }}" class="btn btn-success btn-md pull-right"> 
+                    Nueva 
+                    <i class="fa fa-plus-square-o" aria-hidden="true"></i>
+                </a> 
+                <span class="pull-right"> &nbsp; </span>    
+                <a href="{{ route('factura.edit', $factura->id) }}" class="btn btn-warning pull-right">
+                    Editar
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i> 
+                </a>
+                <p>&nbsp;</p>
             </div>
         </div>
     </div>

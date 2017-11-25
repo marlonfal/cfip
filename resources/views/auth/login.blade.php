@@ -13,7 +13,7 @@
                     <h2 align="center"><b> Inicio de sesión </b></h2>
                 </div>
 
-                <div class="panel-body ">
+                <div class="panel-body">
                     <form class="form-horizontal" method="POST" action="{{ route('login') }}">
                     
                         {{ csrf_field() }}

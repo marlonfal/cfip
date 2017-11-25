@@ -11,8 +11,8 @@
     <title>@yield('title') - {{ config('app.name', 'Laravel') }}</title>
     <!-- Icono -->
     <link rel="icon" type="image/png" href="img/logo.png" />
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!-- Styles --> 
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet"> 
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/animations.css') }}">   
     <link rel="stylesheet" type="text/css" href="{{ asset('css/font-awesome.min.css') }}">
