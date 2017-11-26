@@ -26,19 +26,23 @@
                                 <td>{{ $producto->precio_por_gramo * 1000 }}</td>
                             </tr>
                             <tr>
-                                
-                             
+                                <td colspan="2">
+                                <div>
+                                    {!! Form::label('imagen', 'Imagen') !!}
+                                    <img class="img-responsive" width="200px" height="180px" src="{{ asset(Storage::url($producto->imagen)) }}" alt="">
+                                </div>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
+                </div>
+                <div class="panel-footer">
                     <a href="{{route('producto.index')}}" class="btn btn-default pull-left"><b>Volver a la lista</b></a>                                                           
-                    <a href="{{route('producto.edit', $producto->id)}}" class="btn btn-primary pull-right"><b>Editar</b></a>
-
-                    <span class="pull-right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-
-                    {!! Form::model($producto, ['route' => ['producto.update', $producto->id], 'method' => 'DELETE']) !!}
-                    {!! Form::submit('Eliminar', ['class' => 'btn btn-danger pull-right']) !!}
-                    {!! Form::close() !!}          
+                    <a href="{{route('producto.edit', $producto->id)}}" class="btn btn-warning pull-right">
+                        <b>Editar</b>
+                        <i class="fa fa-pencil-square-o"></i>
+                    </a>
+                    <span>&nbsp; </span><br><span>&nbsp;</span>
                 </div>
             </div>
         </div>

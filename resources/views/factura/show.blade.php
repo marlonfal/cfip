@@ -77,10 +77,10 @@
                     <i class="fa fa-plus-square-o" aria-hidden="true"></i>
                 </a> 
                 <span class="pull-right"> &nbsp; </span>    
-                <a href="{{ route('factura.edit', $factura->id) }}" class="btn btn-warning pull-right">
+                <!-- <a href="{{ route('factura.edit', $factura->id) }}" class="btn btn-warning pull-right">
                     Editar
                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i> 
-                </a>
+                </a> -->
                 <p>&nbsp;</p>
             </div>
         </div>

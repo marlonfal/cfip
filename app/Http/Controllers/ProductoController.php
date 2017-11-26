@@ -57,6 +57,7 @@ class ProductoController extends Controller
             'precio_por_gramo'=> 'required'
         ]);
         $producto = new Producto();
+        $producto->imagen = $request->file('imagen')->store('public');
         $producto->nombre_producto = $request->nombre_producto;
         $producto->precio_por_gramo = $request->precio_por_gramo / 1000;
 
@@ -99,6 +100,10 @@ class ProductoController extends Controller
             'nombre_producto' => 'required',
             'precio_por_gramo'=> 'required'
         ]);
+        if($request->hasFile('imagen')){
+            $producto->imagen = $request->file('imagen')->store('public');
+        }
+        
         $producto->nombre_producto = $request->nombre_producto;
         $producto->precio_por_gramo = ($request->precio_por_gramo / 1000);
 

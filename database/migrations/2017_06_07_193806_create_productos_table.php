@@ -17,6 +17,7 @@ class CreateProductosTable extends Migration
             $table->increments('id');
             $table->string('nombre_producto');
             $table->double('precio_por_gramo');
+            $table->string('imagen');
             $table->timestamps();
         });
     }

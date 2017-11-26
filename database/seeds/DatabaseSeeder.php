@@ -19,34 +19,41 @@ class DatabaseSeeder extends Seeder
         DB::table('productos')->insert([
             'nombre_producto' => 'Pernil',
             'precio_por_gramo' => 6.28,
+            'imagen' => 'muslo.png',
         ]);
              
         DB::table('productos')->insert([
             'nombre_producto' => 'Alas',
             'precio_por_gramo' => 5,
+            'imagen' => 'ala.png',
         ]);
 
         DB::table('productos')->insert([
             'nombre_producto' => 'Pechuga',
             'precio_por_gramo' => 10,
+            'imagen' => 'pechuga.png',
         ]);
 
         DB::table('productos')->insert([
             'nombre_producto' => 'Muslos',
             'precio_por_gramo' => 9,
+            'imagen' => 'muslo.png',
         ]);
 
         DB::table('productos')->insert([
             'nombre_producto' => 'Pollo Entero',
             'precio_por_gramo' => 8,
+            'imagen' => "polloentero.png",
         ]);
         DB::table('productos')->insert([
             'nombre_producto' => 'Visceras',
             'precio_por_gramo' => 5,
+            'imagen' => 'default.png',
         ]);
         DB::table('productos')->insert([
             'nombre_producto' => 'Corazones',
             'precio_por_gramo' => 6,
+            'imagen' => 'default.png',
         ]);
 
         DB::table('roles')->insert([

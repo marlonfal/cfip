@@ -10,7 +10,7 @@
                 </div>
                 @include('_error')
                 <div class="panel-body">
-                    {!! Form::open(['route' => 'producto.store']) !!}
+                    {!! Form::open(['route' => 'producto.store', 'enctype' => 'multipart/form-data']) !!}
                         <div class="form-group">
                             {!! Form::label('nombre_producto', 'Nombre del producto') !!}
                             {!! Form::text('nombre_producto', null, ['class' => 'form-control', 'required' => 'required']) !!}
@@ -19,6 +19,11 @@
                         <div class="form-group">
                             {!! Form::label('precio_por_gramo', 'Precio por libra') !!}
                             {!! Form::number('precio_por_gramo', null, ['class' => 'form-control', 'required' => 'required', 'min' => '0']) !!}
+                        </div>
+
+                        <div class="form-group">
+                            {!! Form::label('imagen', 'Imagen') !!}
+                            <input type="file" name="imagen" Required>
                         </div>
 
                         <div class="form-group">

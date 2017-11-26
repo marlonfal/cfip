@@ -38,6 +38,7 @@ Route::resource('retroalimentacion', 'RetroalimentacionController');
 Route::resource('detallefactura', "DetalleFacturaController");
 Route::resource('pedido', "PedidoController");
 route::get('cancelarpedido/{pedido}', 'PedidoController@cancelar')->name('cancelarpedido');
+Route::resource('inventario', "InventarioController");
 
 
 Auth::routes();

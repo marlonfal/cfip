@@ -77,10 +77,9 @@ class FacturaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Factura $factura)
-    {
-        $productos = Producto::all();       
+    {      
         $detalles = DetalleFactura::orderBy('id_detalle', 'ASC')->with('producto')->where('id_factura', '=', $factura->id)->get();
-        return view('factura.show', compact('factura', 'detalles', 'productos'));
+        return view('factura.show', compact('factura', 'detalles'));
     }
 
     /**
@@ -91,7 +90,8 @@ class FacturaController extends Controller
      */
     public function edit(Factura $factura)
     {
-        return view('factura.edit', compact('factura'));
+        $detalles = DetalleFactura::orderBy('id_detalle', 'ASC')->with('producto')->where('id_factura', '=', $factura->id)->get();
+        return view('factura.edit', compact('factura', 'detalles'));
     }
 
     /**
