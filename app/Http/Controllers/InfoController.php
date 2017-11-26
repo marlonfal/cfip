@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Factura;
 use App\Pedido;
+use App\Producto;
 
 class InfoController extends Controller
 {
     public function index()
     {   
-        return view('info.index');
+        $productos = Producto::orderBy('id', 'ASC')->get();
+        return view('info.index', compact('productos'));
     }
     public function inicio()
     {

@@ -18,50 +18,19 @@
         </div>
         <br>
         <div class="row animated bounceInUp">
+            @foreach($productos as $producto)
             <div class="col-md-3 col-lg-3 col-sm-3 col-xs-6">
                 <div class="card bordecard">
                     <center>
-                        <img class="card-img-top img-responsive" src="img/polloentero.png">
+                        <img class="card-img-top img-responsive" src="{{asset(Storage::url($producto->imagen))}}">
                         <div class="card-body">
-                            <h4 class="card-title">Pollo entero</h4>
+                            <h4 class="card-title">{{ $producto->nombre_producto }}</h4>
                             <p class="card-text">Lorem Ipsum</p>
                         </div>
                     </center>
                 </div>
             </div>
-            <div class="col-md-3 col-lg-3 col-sm-3 col-xs-6">
-                <div class="card bordecard">
-                    <center>
-                        <img class="card-img-top img-responsive" src="img/ala.jpeg">
-                        <div class="card-body">
-                            <h4 class="card-title">Ala</h4>
-                            <p class="card-text">Lorem Ipsum</p>
-                        </div>
-                    </center>
-                </div>
-            </div>
-            <div class="col-md-3 col-lg-3 col-sm-3 col-xs-6">
-                <div class="card bordecard">
-                    <center>
-                        <img class="card-img-top img-responsive" src="img/muslo.jpg">
-                        <div class="card-body">
-                            <h4 class="card-title">Muslo</h4>
-                            <p class="card-text">Lorem Ipsum</p>
-                        </div>
-                    </center>
-                </div>
-            </div>
-            <div class="col-md-3 col-lg-3 col-sm-3 col-xs-6">
-                <div class="card bordecard">
-                    <center>
-                        <img class="card-img-top img-responsive" src="img/pechuga.jpg">
-                        <div class="card-body">
-                            <h4 class="card-title">Pechuga</h4>
-                            <p class="card-text">Lorem Ipsum</p>
-                        </div>
-                    </center>
-                </div>
-            </div>
+            @endforeach
         </div>
         <br>
 
