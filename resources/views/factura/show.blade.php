@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Detalles venta')
+@section('title', 'Detalles venta #'. $factura->id)
 @section('content')
 <div class="container animatedParent">
     <div class="col-md-8 col-md-offset-2">

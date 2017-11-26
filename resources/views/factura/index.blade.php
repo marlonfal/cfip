@@ -41,11 +41,7 @@
                                 <a href="{{ route('factura.edit', $factura->id) }}" class="btn btn-warning">Editar</a>
                             </td>
                             <td width="50">
-                                {!! Form::model($factura, ['route' => ['factura.update',
-                                $factura->id], 'method' => 'DELETE']) !!}
-                                {!! Form::submit('Eliminar', ['class' => 'btn btn-danger pull-right'])
-                                !!}
-                                {!! Form::close() !!}
+                                
                             </td>
                         </tr>
                     @endforeach

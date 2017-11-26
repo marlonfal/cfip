@@ -11,10 +11,6 @@ use PDF;
 
 class FacturaController extends Controller
 {
-    public function detalles()
-    {
-        return $this->hasMany('App\DetalleFactura');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -119,7 +115,6 @@ class FacturaController extends Controller
      */
     public function destroy(Factura $factura)
     {
-
         $factura->delete();
         return redirect()->route('factura.index')->with('info', 'Fue eliminado exitosamente');
     }

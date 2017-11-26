@@ -5,6 +5,9 @@ $(document).ready(function() {
     if($('#productospedido').length){
         addProductoPedido();
     }
+    if($('#productoscompra').length){
+        addProductoCompra();
+    }
 
 });
 /**
@@ -259,6 +262,97 @@ function confirmarpedido(){
                     btnClass: 'btn-success',
                     action: function(){
                             document.crearfactura.submit();
+                        } 
+                },
+            }
+        });
+    }
+}
+
+/**
+ * función para añadir los detalles de la compra
+ */
+function addProductoCompra(){
+    a++;
+    $.get("productosc", function(response){
+        
+        var tr = document.createElement('tr');
+        var options = '<option value="">Seleccione</option>';
+        tr.id = 'detalle'+a;
+        for(i = 0; i< response.length; i++){
+            options += '<option value="'+response[i].id+'">'+response[i].nombre_producto+'</option>' ;
+        }
+
+        cantidad++;
+        document.getElementById('cantidaddetalles').value = cantidad;
+        
+        tr.setAttribute('class', 'form-inline');
+        tr.innerHTML = '<td width="60" align="center">'+a
+        +'</td> <td colspan="1"><select required id="select'+a+'" name="select[]" onchange="changeSelect('+a+')" placeholder="Seleccione" class="form-control">'
+        + options + '</select> </td>'+
+        '<td width="60">'+
+        '<input type="number" disabled required id="pesodetalle'+a+'" min="0" name="pesodetalle[]" onchange="updatePrecios('+a+')" style="width: 90px;" class="form-control"/>'+
+        '</td>'+
+        '<td width="60" align="center">'+
+        '<input type="number" disabled required id="cantidaddetalle'+a+'" min="0" name="cantidaddetalle[]" style="width: 90px;" class="form-control"/>'+
+        '</td>'+
+        '<td align="center">'+
+        '<input type="number" id="preciodetalle'+a+'" name="preciodetalle[]" placeholder="0" style="width: 90px;" class="form-control"/>'+
+        '</td>'+
+        '<td><a id="btn-borrar' + a + '" class="btn btn-danger" onclick="deleteProducto(' + a + ')"> <i class="fa fa-minus fa-3" aria-hidden="true"></a></td>';
+        document.getElementById('productoscompra').appendChild(tr);document.getElementById('productoscompra').appendChild(tr);
+    })
+}
+
+function confirmarcompra(){
+    var r = 0;
+    var proveedor = document.getElementById('proveedor').value;
+    var fecha = document.getElementById('fecha').value;
+    var total = document.getElementById('total').value;
+    if(!proveedor || !fecha || !total){
+        r = 1;
+        $.alert({
+            icon: 'fa fa-warning',
+            type: 'orange',
+            title: 'Formulario incompleto',
+            content: 'Completa todos los campos',
+        });
+
+    }
+    if(r == 0){
+        for(i = 1; i <= a; i++){
+            if($('#detalle' + i).length){
+                r = 0;
+                var producto = document.getElementById('select' + i).value;
+                var cantidad = document.getElementById('cantidaddetalle' + i).value;
+                var pesodetalle = document.getElementById('pesodetalle' + i).value;
+                
+                if(!producto || !cantidad || !pesodetalle){
+                    r = 1;
+                    $.alert({
+                        type: 'orange',
+                        title: 'Formulario incompleto',
+                        content: 'Completa todos los campos',
+                    }); 
+                }
+            }
+        }
+    }
+    if(r == 0){
+        $.confirm({
+            type: 'green',
+            animation: 'zoom',
+            icon: 'fa fa-question-circle-o',        
+            title: 'Confirmar la venta',
+            content: '¿Estás seguro de guardar la venta? NO podrás modificarla después',
+            buttons: {
+                Cancelar: {
+                    btnClass: 'btn-danger',
+                },
+                Confirmar: {
+                    btnClass: 'btn-success',
+                    action: function(){
+                            document.guardarcompra.submit();
                         } 
                 },
             }

@@ -12,14 +12,10 @@
 */
 // Rutas para los pedidos
 Route::get('pedido/productosp', 'ProductoController@getProductos')->name('productosp');
-Route::POST('pedido/guardardetallep', 'DetallePedidoController@store')->name('guardardetallep');
-Route::POST('pedido/guardarp', 'PedidoController@store')->name('guardarp');
-
+Route::get('compra/productosc', 'ProductoController@getProductos')->name('productosc');
 // Rutas para las facturas
 Route::get('factura/productos', 'ProductoController@getProductos')->name('productos');
 Route::get('factura/producto/{id}', 'ProductoController@getProducto');
-Route::POST('factura/guardardetalle', 'DetalleFacturaController@store')->name('guardardetalle');
-Route::POST('factura/guardar', 'FacturaController@store')->name('guardar');
 Route::get('/imprimirfactura/{factura}', 'FacturaController@print')->name('imprimirfactura');
 
 Route::get('/', 'InfoController@index');
@@ -39,6 +35,7 @@ Route::resource('detallefactura', "DetalleFacturaController");
 Route::resource('pedido', "PedidoController");
 route::get('cancelarpedido/{pedido}', 'PedidoController@cancelar')->name('cancelarpedido');
 Route::resource('inventario', "InventarioController");
+Route::resource('compra', "CompraController");
 
 
 Auth::routes();

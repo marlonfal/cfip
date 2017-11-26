@@ -16,10 +16,17 @@ body {
   -moz-border-radius: 10px 10px 10px 10px;
   -webkit-border-radius: 10px 10px 10px 10px;
   background-color: rgb(255, 255, 255);
-  border: 4px solid #3097D1;
+  border: 3px solid #3097D1;
   margin-left: 0px;
   padding: 0px;
+  color: white;
   margin-top: 10px;
+  margin-bottom: 0px;
+}
+.nombreproducto {
+  padding: 0px;
+  margin: 0px;
+  background-color: #3097D1;
 }
 
 .btn-yellow {
