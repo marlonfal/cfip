@@ -14,6 +14,7 @@ class Pedido extends Model
                             'estado',
                             'nombre',
                             'detalles'];
+                            
     public function producto()
     {
         return $this->belongsToMany('App\Producto');

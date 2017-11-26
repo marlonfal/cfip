@@ -36,10 +36,10 @@ function addProducto(){
         '<td width="60">'+
         '<input type="number" disabled required id="pesodetalle'+a+'" min="0" name="pesodetalle[]" onchange="updatePrecios('+a+')" style="width: 90px;" class="form-control"/>'+
         '</td>'+
-        '<td width="60">'+
+        '<td width="60" align="center">'+
         '<input type="number" disabled required id="cantidaddetalle'+a+'" min="0" name="cantidaddetalle[]" style="width: 90px;" class="form-control"/>'+
         '</td>'+
-        '<td>'+
+        '<td align="center">'+
         '<input type="number" id="preciodetalle'+a+'" readonly="readonly" name="preciodetalle[]" placeholder="0" style="width: 90px;" class="form-control"/>'+
         '</td>'+
         '<td><a id="btn-borrar' + a + '" class="btn btn-danger" onclick="deleteProducto(' + a + ')"> <i class="fa fa-minus fa-3" aria-hidden="true"></a></td>';
@@ -107,53 +107,57 @@ function deleteProducto(id) {
     calcularTotal();
 
 }
-/**
- * función que guarda la factura
- */
-async function guardar(){
-    var nombrecomprador = $("#comprador").val();
-    var fechafactura = $("#fecha").val();
-    var route = "guardar";
-    var token = $("#token").val();
-    var totalfactura = document.getElementById('total').innerHTML;
-    idfactura = 0;
-    await $.ajax({
-        url: route,
-        headers: {'X-CSRF-TOKEN': token},
-        type: 'POST',
-        dataType: 'json',
-        data: {comprador: nombrecomprador, fecha: fechafactura, total: totalfactura},
-        success: function(response){
-            idfactura = response;
-            guardardetalle(response);
-        }
-    });
-    
-    window.location=idfactura;
-}
-/**
- * función que guarda los detalles de la factura
- * @param {*} id 
- */
-function guardardetalle(id){
-    var token = $("#token").val();
-    for(i = 1; i <= a; i++){
-        if($('#detalle' + i).length){
-                $.ajax({
-                url: "guardardetalle",
-                headers: {'X-CSRF-TOKEN': token},
-                type: 'POST',
-                dataType: 'json',
-                data: { id_detalle: i,
-                        peso_gramo: parseFloat($("#pesodetalle"+i).val()),
-                        precio: parseFloat(document.getElementById('preciodetalle'+i).innerHTML), 
-                        cantidad: parseFloat($("#cantidaddetalle"+i).val()),
-                        id_factura: id,
-                        id_tipo_producto: document.getElementById('select'+ i).value},
-                success: function (){
+function confirmarventa(){
+    var r = 0;
+    var nombre = document.getElementById('comprador').value;
+    var fecha = document.getElementById('fecha').value;
+    if(!nombre || !fecha){
+        r = 1;
+        $.alert({
+            icon: 'fa fa-warning',
+            type: 'orange',
+            title: 'Formulario incompleto',
+            content: 'Completa todos los campos',
+        });
+
+    }
+    if(r == 0){
+        for(i = 1; i <= a; i++){
+            if($('#detalle' + i).length){
+                r = 0;
+                var producto = document.getElementById('select' + i).value;
+                var cantidad = document.getElementById('cantidaddetalle' + i).value;
+                var pesodetalle = document.getElementById('pesodetalle' + i).value;
+                if(!producto || !cantidad || !pesodetalle){
+                    r = 1;
+                    $.alert({
+                        type: 'orange',
+                        title: 'Formulario incompleto',
+                        content: 'Completa todos los campos',
+                    }); 
                 }
-            });
+            }
         }
+    }
+    if(r == 0){
+        $.confirm({
+            type: 'green',
+            animation: 'zoom',
+            icon: 'fa fa-question-circle-o',        
+            title: 'Confirmar la venta',
+            content: '¿Estás seguro de guardar la venta? NO podrás modificarla después',
+            buttons: {
+                Cancelar: {
+                    btnClass: 'btn-danger',
+                },
+                Confirmar: {
+                    btnClass: 'btn-success',
+                    action: function(){
+                            document.guardarventa.submit();
+                        } 
+                },
+            }
+        });
     }
 }
 
@@ -207,4 +211,57 @@ function deleteProductoP(id) {
     $('#detalle' + id).remove();
     cantidad--;
     document.getElementById('cantidaddetalles').value = cantidad;
+}
+
+function confirmarpedido(){
+    var r = 0;
+    var nombre = document.getElementById('nombre').value;
+    var direccion = document.getElementById('direccion').value;
+    var fecha_e = document.getElementById('fecha_entrega').value;
+    var hora_e = document.getElementById('hora_entrega').value;
+    if(!nombre || !direccion || !fecha_e || !hora_e){
+        r = 1;
+        $.alert({
+            title: 'Formulario incompleto',
+            content: 'Completa todos los campos',
+        });
+
+    }
+    if(r == 0){
+        for(i = 1; i <= a; i++){
+            if($('#detalle' + i).length){
+                r = 0;
+                var producto = document.getElementById('select' + i).value;
+                var cantidad = document.getElementById('cantidaddetalle' + i).value;
+                if(!producto || !cantidad){
+                    r = 1;
+                    $.alert({
+                        type: 'orange',
+                        title: 'Formulario incompleto',
+                        content: 'Completa todos los campos',
+                    }); 
+                }
+            }
+        }
+    }
+    if(r == 0){
+        $.confirm({
+            type: 'orange',
+            animation: 'zoom',
+            icon: 'fa fa-question-circle-o',        
+            title: 'Confirmar el pedido',
+            content: '¿Estás seguro de hacer el pedido?',
+            buttons: {
+                Cancelar: {
+                    btnClass: 'btn-danger',
+                },
+                Confirmar: {
+                    btnClass: 'btn-success',
+                    action: function(){
+                            document.crearfactura.submit();
+                        } 
+                },
+            }
+        });
+    }
 }

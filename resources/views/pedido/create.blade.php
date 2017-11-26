@@ -2,16 +2,16 @@
 @section('title', 'Hacer pedido')
 @section('content')
 <div class="container animatedParent">
-    <div class="col-md-6 col-md-offset-3">
+    <div class="col-md-6 col-xs-12 col-sm-12 col-lg-6 col-md-offset-3">
         <div class="panel panel-primary animated bounceInUp">
             <div class="panel-heading">
                 <h1 align="center">Hacer pedido</h1>
             </div>
             @include('_error')
-            {!! Form::open(['route' => 'pedido.store']) !!}
+            {!! Form::open(['route' => 'pedido.store', 'name' => 'crearfactura']) !!}
             <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token" />
             <div class="panel-body">
-                <table class="table table-bordered">
+                <table class="table table-bordered table-responsive">
                     <thead>
                         <th colspan="4"> 
                             <div align="center">
@@ -50,7 +50,7 @@
                             <td width="60"><b> Número </b></td>
                             <td><b> Producto </b></td>
                             <td width="90"><b> Cantidad </b></td>
-                            <td colspan="1"></td>
+                            <td colspan="1" width="20"></td>
                         </tr>
                     </tbody>
                         <tr>
@@ -61,14 +61,13 @@
                             </td>
                         </tr>
                         <input type="text" name="cantidaddetalles" id="cantidaddetalles"  hidden/>        
-                        <tr align="center">
-                            <td colspan="4">
-                                {!! Form::submit('Guardar', ['class' => 'btn btn-primary pull-right']) !!}
-                                <a href="{{ url()->previous() }}" class="btn btn-default pull-left"><b> Volver </b> </a>
-                            </td>
-                        </tr>
                 </table>
             {!! Form::close() !!}   
+            </div>
+            <div class="panel-footer">
+                <input type="button" onclick="confirmarpedido()" value="Hacer pedido" class="btn btn-primary pull-right">
+                <a href="{{ url()->previous() }}" class="btn btn-default pull-left"><b> Volver </b> </a>
+                <span>&nbsp;</span><br><span>&nbsp;</span>
             </div>
         </div>
     </div>

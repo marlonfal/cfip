@@ -1,10 +1,9 @@
 @extends('layouts.app')
 @section('title', 'Detalles pedido')
 @section('content')
-@if(Auth::user()->name == $pedido->nombre)
 <div class="container animatedParent">
     <div class="col-md-8 col-md-offset-2">
-        <div class="panel panel-primary animated bounceInUp">
+        <div class="panel panel-primary">
             <div class="panel-heading">
                 @include('_mensaje')
                 <h1 align="center">Detalles del pedido #{{ $pedido->id }}
@@ -37,6 +36,11 @@
                             @if($pedido->estado == 'Entregado')
                                 <td>
                                     {!! Form::label('fecha', 'Estado: ') !!} {{ $pedido->estado }} <i class="fa fa-check-square-o"></i> 
+                                </td>
+                            @endif
+                            @if($pedido->estado == 'Cancelado')
+                                <td>
+                                    {!! Form::label('fecha', 'Estado: ') !!} {{ $pedido->estado }} <i class="fa fa-times"></i> 
                                 </td>
                             @endif
                             <td>
@@ -79,24 +83,31 @@
                             </tr>
                         @endforeach
 
-                        <tr>
-                            <td colspan="3">
-                                <a href="{{ route('pedido.index') }}" class="btn btn-default pull-left"><b> Volver a la lista </b> </a>
-                                <a href="{{ route('pedido.create') }}" class="btn btn-success pull-right"><b> Nueva (+) </b> </a>
-                                <!--<a href="{{ route('pedido.edit', $pedido->id) }}" class="btn btn-warning pull-right">Editar</a>
-                                <span class="pull-right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                            
-                                {!! Form::model($pedido, ['route' => ['pedido.update', $pedido->id], 'method' => 'DELETE']) !!}
-                                {!! Form::submit('Eliminar', ['class' => 'btn btn-danger pull-right']) !!}
-                                {!! Form::close() !!}-->
-                            </td>
-                            
-                        </tr>
                     </tbody>
                 </table>
             </div>
+            @if($pedido->estado != 'Cancelado')
+            <div class="panel-footer">
+                @role('admin')
+                <a href="{{ route('pedido.index') }}" class="btn btn-default pull-left">
+                    <b> Volver a la lista </b> 
+                </a>
+                @endrole
+                <a href="{{ route('pedido.edit', $pedido->id) }}" class="btn btn-warning pull-right">
+                    Editar
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                </a>
+                           
+                <span class="pull-right">&nbsp;</span>
+                
+                <span>&nbsp;</span> <br>   <span>&nbsp;</span>            
+            </div>
+            @endif
         </div>
     </div>
 </div>
-@endif
+
+@endsection
+@section('scripts')
+<script src="{{ asset('js/form.js') }}"></script>
 @endsection

@@ -8,7 +8,7 @@
                 <h1 align="center">Registrar venta</h1>
             </div>
             @include('_error')
-            {!! Form::open(['route' => 'factura.store']) !!}
+            {!! Form::open(['route' => 'factura.store', 'name' => 'guardarventa']) !!}
             <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token" />
             <div class="panel-body">
                 <table class="table table-bordered">
@@ -41,9 +41,9 @@
                         <tr class="bg-warning" align="center">
                             <td width="60"><b> Número </b></td>
                             <td><b> Producto </b></td>
-                            <td width="90"><b> Peso </b></td>
-                            <td width="90"><b> Cantidad </b></td>
-                            <td width="90"><b> Precio </b></td>
+                            <td><b> Peso </b></td>
+                            <td><b> Cantidad </b></td>
+                            <td><b> Precio </b></td>
                             <td colspan="1"></td>
                         </tr>
                     </tbody>
@@ -65,8 +65,7 @@
                
             </div>
             <div class="panel-footer">
-                
-                {!! Form::submit('Guardar', ['class' => 'btn btn-primary pull-right']) !!}
+                <input type="button" onclick="confirmarventa()" value="Guardar" class="btn btn-primary pull-right">
                 <a href="{{ url()->previous() }}" class="btn btn-default pull-left"><b> Volver </b> </a>
                 <span>&nbsp;</span><br><span>&nbsp;</span>
             </div>

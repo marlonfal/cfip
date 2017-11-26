@@ -95,7 +95,14 @@ class PedidoController extends Controller
      */
     public function update(Request $request, Pedido $pedido)
     {
-        //
+        $pedido->estado = $request->estado;
+        $pedido->fecha_entrega = $request->fecha_entrega;
+        $pedido->hora_entrega = $request->hora_entrega;
+        $pedido->nombre = $request->nombre;
+        $pedido->direccion = $request->direccion;
+
+        $pedido->save();
+        return redirect()->route('pedido.show', $pedido)->with('info', 'Se actualizó el pedido');
     }
 
     /**
@@ -107,5 +114,12 @@ class PedidoController extends Controller
     public function destroy(Pedido $pedido)
     {
         //
+    }
+
+    public function cancelar(Pedido $pedido){
+        $pedido->estado = 'Cancelado';
+
+        $pedido->save();
+        return redirect()->route('pedido.show', $pedido)->with('info', 'Se canceló el pedido');
     }
 }

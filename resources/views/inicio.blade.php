@@ -53,8 +53,7 @@
                         <th>#</th>
                         <th>Nombre</th>
                         <th>Dirección</th>
-                        <th>Fecha realización</th>
-                        <th>Fecha Entrega</th>
+                        <th>Fecha y hora de entrega</th>
                         <th colspan="2">Opciones</th>
                     </thead>
                     <tbody>
@@ -63,8 +62,7 @@
                                 <td>{{ $pedido->id }}</td>
                                 <td>{{ $pedido->nombre }}</td>
                                 <td>{{ $pedido->direccion }}</td>
-                                <td>{{ $pedido->fecha_pedido }}</td>
-                                <td>{{ $pedido->fecha_entrega }}</td>
+                                <td>{{ $pedido->fecha_entrega }} - {{ $pedido->hora_entrega }}</td>
                                 <td align="center">
                                     <a href="{{ route('pedido.show', $pedido->id) }}" class="btn btn-xs btn-success">Ver</a>
                                 </td>

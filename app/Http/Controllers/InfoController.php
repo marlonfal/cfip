@@ -14,7 +14,7 @@ class InfoController extends Controller
     }
     public function inicio()
     {
-        $pedidos = Pedido::orderBy('created_at', 'DESC')->take(5)->get();
+        $pedidos = Pedido::orderBy('created_at', 'DESC')->where('estado', '=', 'Pendiente')->take(5)->get();
         $facturas = Factura::orderBy('created_at', 'DESC')->take(5)->get();
         return view('inicio', compact('facturas', 'pedidos'));
     }
