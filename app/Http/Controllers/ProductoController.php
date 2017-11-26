@@ -53,8 +53,7 @@ class ProductoController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'nombre_producto' => 'required',
-            'precio_por_gramo'=> 'required'
+            'imagen' => 'image'
         ]);
         $producto = new Producto();
         $producto->imagen = $request->file('imagen')->store('public');
@@ -97,8 +96,7 @@ class ProductoController extends Controller
     public function update(Request $request, Producto $producto)
     {
         $this->validate($request, [
-            'nombre_producto' => 'required',
-            'precio_por_gramo'=> 'required'
+            'imagen' => 'image'
         ]);
         if($request->hasFile('imagen')){
             $producto->imagen = $request->file('imagen')->store('public');
