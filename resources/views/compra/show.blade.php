@@ -6,7 +6,7 @@
         <div class="panel panel-primary">
             <div class="panel-heading">
                 @include('_mensaje')
-                <h1 align="center">Detalles de la compra # {{ $compra->id }}
+                <h1 align="center">Detalles de la compra #{{ $compra->id }}
                 </h1>
             </div>
             <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token" />
@@ -27,8 +27,6 @@
                                 {{ $compra->fecha }}
                             </td>
                         </tr>
-                        <tr>
-                        </tr>
                         <tr class="bg-warning" align="center">
                             <td width="60"><b> Número </b></td>
                             <td colspan="2"><b>Producto: id - nombre </b></td>
@@ -36,6 +34,18 @@
                             <td width="60"><b> Cantidad </b></td>
                             <td><b> Precio </b></td>
                         </tr>
+                        
+                        @foreach($detalles as $detalle)
+                            <tr align="center">
+                                <td width="60">{{ $detalle->id_detalle }}</td>
+                                <td colspan="2">
+                                    <label>{{ $detalle->id_tipo_producto}} - {{ $detalle->producto->nombre_producto }} </label> 
+                                </td>
+                                <td width="60"><b> {{ $detalle->peso_gramo }} </b></td>
+                                <td width="60"><b> {{ $detalle->cantidad }} </b></td>
+                                <td><b>$ {{ $detalle->precio }} </b></td>
+                            </tr>
+                        @endforeach
                         
                         <tr>
                             <td colspan="5">

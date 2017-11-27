@@ -25,29 +25,31 @@
                         <tr>
                             <th>Id</th>
                             <th>Nombre</th>
-                            <th>Precio por gramo</th>
+                            <th>Precio por kilo</th>
+                            <th>Cantidad disponible</th>
+                            <th>Gramos disponibles</th>
                             <th colspan="3">Opciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($productos as $producto)
+                        @if($producto->cantidad <= 5)
+                            <tr style="background-color: #FF6347;">
+                        @else
                             <tr>
+                        @endif
                                 <td>{{ $producto->id }}</td>
                                 <td>{{ $producto->nombre_producto }}</td>
-                                <td>{{ $producto->precio_por_gramo }}</td>
+                                <td>{{ $producto->precio_por_gramo *1000 }}</td>
+                                <td>{{ $producto->cantidad }}</td>
+                                <td>{{ $producto->gramos }}</td>
                                 <td width="50">
                                     <a href="{{route('producto.show', $producto->id)}}" class="btn btn-success pull-right">Ver</a>
                                 </td>
                                 <td width="50">
                                     <a href="{{route('producto.edit', $producto->id)}}" class="btn btn-warning pull-right">Editar</a>
                                 </td>
-                                <td width="50">
-                                    {!! Form::model($producto, ['route' => ['producto.update',
-                                    $producto->id], 'method' => 'DELETE']) !!}
-                                    {!! Form::submit('Eliminar', ['class' => 'btn btn-danger pull-right'])
-                                    !!}
-                                    {!! Form::close() !!}
-                                </td>
+                                
                             </tr>
                         @endforeach
                     </tbody>

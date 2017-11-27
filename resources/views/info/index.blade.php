@@ -44,7 +44,7 @@
     <!-- SOBRE NOSOTROS -->
     <br>
 
-    <div class="animatedParent" id="nosotros">
+    <div class="animatedParent" id="nosotros" >
         <div class="seccion animated bounceInUp">
             <p><b>SOBRE NOSOTROS</b><p>
         </div>
@@ -54,8 +54,8 @@
                 <div class="col-md-7 col-lg-7 col-sm-5 col-xs-11 ">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d532.508467862627!2d-76.2093206951104!3d3.4839906399061404!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3a1a713b08dfa9%3A0xeab6d1ce3b898cd1!2sPollos+El+Paisita!5e0!3m2!1ses-419!2sco!4v1509826862779" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
                 </div>
-                <div class="col-md-5 col-lg-5 col-sm-8 col-xs-hide">
-                    <center>
+                <div class="col-md-5 col-lg-5 col-sm-8 col-xs-hide" style="color: black !important">
+                    <center style="padding-right: 40px; !important">
                         <h1><b> ¿Quiénes somos? </b></h1>
                         <p>
                             Somos una empresa Distribuidora de pollo 100% campesino,

@@ -56,8 +56,8 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ver <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li><a href="{{ route('factura.index') }}">Ventas</a></li>
-                    <li><a href="#">Gastos - </a></li>
-                    <li><a href="#">Inventario - </a></li>
+                    <li><a href="{{ route('compra.index') }}">Compras </a></li>
+                    <li><a href="{{ route('producto.index') }}">Inventario </a></li>
                     <li><a href="{{ route('pedido.index') }}">Pedidos </a></li>
                     <li><a href="{{ route('retroalimentacion.index') }}">Retroalimentaciones</a></li>
                     <li><a href="{{ route('producto.index') }}">Productos</a></li>

@@ -33,7 +33,7 @@
                             </td>
                             <td colspan="2">
                                 {!! Form::label('fecha', 'Fecha') !!}
-                                {!! Form::date('fecha', null, ['class' => 'form-control', 'id' => 'fecha', 'required' => 'required']) !!}
+                                {!! Form::date('fecha', \Carbon\Carbon::now()->subHours(5), ['class' => 'form-control', 'id' => 'fecha', 'required' => 'required']) !!}
                             </td>
                         </tr>
                         <tr>   
@@ -57,7 +57,7 @@
                         <tr>
                             <td colspan="4" align="right"><b>Total: </b></td>
                             <td colspan="2">
-                                <input type="number" readonly="readonly" id="total" name="total" class="form-control pull-left" placeholder="12" />
+                                <input type="number" readonly="readonly" id="total" name="total" class="form-control pull-left" placeholder="0" />
                             </td>
                         </tr>
                         <input type="text" name="cantidaddetalles" id="cantidaddetalles"  hidden/>                        

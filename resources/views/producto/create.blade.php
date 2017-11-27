@@ -17,8 +17,18 @@
                         </div>
 
                         <div class="form-group">
-                            {!! Form::label('precio_por_gramo', 'Precio por libra') !!}
+                            {!! Form::label('precio_por_gramo', 'Precio por kilo') !!}
                             {!! Form::number('precio_por_gramo', null, ['class' => 'form-control', 'required' => 'required', 'min' => '0']) !!}
+                        </div>
+
+                        <div class="form-group">
+                            {!! Form::label('cantidad', 'Cantidad disponible') !!}
+                            {!! Form::number('cantidad', null, ['class' => 'form-control', 'required' => 'required', 'min' => '0']) !!}
+                        </div>
+
+                        <div class="form-group">
+                            {!! Form::label('gramos', 'Gramos disponibles') !!}
+                            {!! Form::number('gramos', null, ['class' => 'form-control', 'required' => 'required', 'min' => '0']) !!}
                         </div>
 
                         <div class="form-group">

@@ -50,7 +50,7 @@ class FacturaController extends Controller
         $factura->save();
    
         for($i = 0; $i < $request->cantidaddetalles; $i++){
-            
+                //Select es el producto
                 $detalleFactura = new DetalleFactura();
                 $detalleFactura->id_detalle = $i +1;
                 $detalleFactura->peso_gramo = $request->pesodetalle[$i];
@@ -60,6 +60,11 @@ class FacturaController extends Controller
                 $detalleFactura->id_tipo_producto = $request->select[$i];
 
                 $detalleFactura->save();
+
+                $producto = Producto::where('id', '=', $request->select[$i])->first();
+                $producto->cantidad -= $request->cantidaddetalle[$i];
+                $producto->gramos -= $request->preciodetalle[$i];
+                $producto->save();
             
         }
 

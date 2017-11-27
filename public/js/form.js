@@ -58,10 +58,12 @@ function calcularTotal(){
     total = 0;
     for(i = 1; i <= a; i++){
         if($('#detalle' + i).length){
-            total += parseFloat(document.getElementById('preciodetalle'+i).value);
+            if(document.getElementById('preciodetalle'+i).value != 0){
+                total += parseFloat(document.getElementById('preciodetalle'+i).value);
+            }
         }
     }
-    document.getElementById('total').value = total;
+    document.getElementById('total').value = total.toFixed(0);
 }
 /**
  * función para obtener el nombre de un productp
@@ -115,6 +117,7 @@ function confirmarventa(){
     var nombre = document.getElementById('comprador').value;
     var fecha = document.getElementById('fecha').value;
     if(!nombre || !fecha){
+        console.log(1);
         r = 1;
         $.alert({
             icon: 'fa fa-warning',
@@ -125,8 +128,10 @@ function confirmarventa(){
 
     }
     if(r == 0){
+        
         for(i = 1; i <= a; i++){
             if($('#detalle' + i).length){
+                console.log(2);
                 r = 0;
                 var producto = document.getElementById('select' + i).value;
                 var cantidad = document.getElementById('cantidaddetalle' + i).value;
@@ -162,6 +167,7 @@ function confirmarventa(){
             }
         });
     }
+    r = 0;
 }
 
 function imprimir(id){
@@ -288,16 +294,16 @@ function addProductoCompra(){
         
         tr.setAttribute('class', 'form-inline');
         tr.innerHTML = '<td width="60" align="center">'+a
-        +'</td> <td colspan="1"><select required id="select'+a+'" name="select[]" onchange="changeSelect('+a+')" placeholder="Seleccione" class="form-control">'
+        +'</td> <td colspan="1"><select required id="select'+a+'" onchange="changeSelectCompra('+a+')" name="select[]" placeholder="Seleccione" class="form-control">'
         + options + '</select> </td>'+
         '<td width="60">'+
-        '<input type="number" disabled required id="pesodetalle'+a+'" min="0" name="pesodetalle[]" onchange="updatePrecios('+a+')" style="width: 90px;" class="form-control"/>'+
+        '<input type="number" disabled required id="pesodetalle'+a+'" min="0" name="pesodetalle[]"  style="width: 90px;" class="form-control"/>'+
         '</td>'+
         '<td width="60" align="center">'+
         '<input type="number" disabled required id="cantidaddetalle'+a+'" min="0" name="cantidaddetalle[]" style="width: 90px;" class="form-control"/>'+
         '</td>'+
         '<td align="center">'+
-        '<input type="number" id="preciodetalle'+a+'" name="preciodetalle[]" placeholder="0" style="width: 90px;" class="form-control"/>'+
+        '<input type="number" disabled id="preciodetalle'+a+'" onchange="calcularTotal()" name="preciodetalle[]" placeholder="0" style="width: 90px;" class="form-control"/>'+
         '</td>'+
         '<td><a id="btn-borrar' + a + '" class="btn btn-danger" onclick="deleteProducto(' + a + ')"> <i class="fa fa-minus fa-3" aria-hidden="true"></a></td>';
         document.getElementById('productoscompra').appendChild(tr);document.getElementById('productoscompra').appendChild(tr);
@@ -344,7 +350,7 @@ function confirmarcompra(){
             animation: 'zoom',
             icon: 'fa fa-question-circle-o',        
             title: 'Confirmar la venta',
-            content: '¿Estás seguro de guardar la venta? NO podrás modificarla después',
+            content: '¿Estás seguro de guardar la compra? NO podrás modificarla después',
             buttons: {
                 Cancelar: {
                     btnClass: 'btn-danger',
@@ -357,5 +363,15 @@ function confirmarcompra(){
                 },
             }
         });
+    }
+}
+
+function changeSelectCompra(id){
+    if(document.getElementById('cantidaddetalle'+ id).disabled){   
+        document.getElementById('cantidaddetalle'+ id).disabled = false;       
+        document.getElementById('pesodetalle'+ id).disabled = false;
+        document.getElementById('preciodetalle'+ id).disabled = false;
+    }else{
+        updatePrecios(id);
     }
 }

@@ -12,7 +12,7 @@
             <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token" />
             <div class="panel-body">
                 <table class="table table-bordered">
-                    <tbody id="productoscompr">                
+                    <tbody id="productoscompra">                
                         <tr>
                             <td colspan="2">
                                 {!! Form::label('proveedor', 'Proveedor') !!}
@@ -24,7 +24,7 @@
                             </td>
                             <td colspan="2">
                                 {!! Form::label('fecha', 'Fecha') !!}
-                                {!! Form::date('fecha', null, ['class' => 'form-control', 'id' => 'fecha', 'required' => 'required']) !!}
+                                {!! Form::date('fecha', \Carbon\Carbon::now()->subHours(5), ['class' => 'form-control', 'id' => 'fecha', 'required' => 'required']) !!}
                             </td>
                         </tr>
                         <tr>   
@@ -41,14 +41,14 @@
                         <tr>
                             <td colspan="6">
                                 <center>
-                                    <a class="btn btn-success" id="add_producto()" onClick="addProducto()"> Agregar producto <i class="fa fa-plus" aria-hidden="true"></i></a>
+                                    <a class="btn btn-success" id="add_producto()" onClick="addProductoCompra()"> Agregar producto <i class="fa fa-plus" aria-hidden="true"></i></a>
                                 </center>
                             </td>
                         </tr>
                         <tr>
                             <td colspan="4" align="right"><b>Total: </b></td>
                             <td colspan="2">
-                                <input type="number" id="total" name="total" class="form-control pull-left" placeholder="12" />
+                                <input type="number" id="total" name="total" class="form-control pull-left" placeholder="0" />
                             </td>
                         </tr>
                         <input type="text" name="cantidaddetalles" id="cantidaddetalles"  hidden/>                        

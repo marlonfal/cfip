@@ -37,7 +37,7 @@
                         <tr>
                             <td colspan="2">
                                 {!! Form::label('fecha_entrega', 'Fecha entrega: ') !!}
-                                {!! Form::date('fecha_entrega', null, ['class' => 'form-control', 'required' => 'required']) !!}
+                                {!! Form::date('fecha_entrega', \Carbon\Carbon::now()->subHours(5), ['class' => 'form-control', 'required' => 'required']) !!}
                             </td>
                             <td colspan="2">
                                 {!! Form::label('hora_entrega', 'Hora entrega: ') !!}

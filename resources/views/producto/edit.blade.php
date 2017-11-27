@@ -21,6 +21,14 @@
                             {!! Form::label('precio_por_gramo', 'Precio por kilo') !!}
                             {!! Form::number('precio_por_gramo', $producto->precio_por_gramo * 1000, ['class' => 'form-control']) !!}
                         </div>
+                        <div class="form-group">
+                            {!! Form::label('cantidad', 'Cantidad') !!}
+                            {!! Form::number('cantidad', $producto->cantidad, ['class' => 'form-control', 'required' => 'required', 'min' => '0']) !!}
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('gramos', 'Gramos') !!}
+                            {!! Form::number('gramos', $producto->gramos, ['class' => 'form-control', 'required' => 'required', 'min' => '0']) !!}
+                        </div>
                         <div>
                             {!! Form::label('imagen', 'Imagen') !!}
                             <img class="img-responsive" width="200px" height="180px" src="{{ asset(Storage::url($producto->imagen)) }}" alt="">

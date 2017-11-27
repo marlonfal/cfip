@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Compra;
 use Illuminate\Http\Request;
+use App\DetalleCompra;
+use App\Producto;
 
 class CompraController extends Controller
 {
@@ -44,6 +46,24 @@ class CompraController extends Controller
 
         $compra->save();
 
+        for($i = 0; $i < $request->cantidaddetalles; $i++){
+
+            $detalleCompra = new DetalleCompra();
+            $detalleCompra->id_detalle = $i +1;
+            $detalleCompra->peso_gramo = $request->pesodetalle[$i];
+            $detalleCompra->precio = $request->preciodetalle[$i];
+            $detalleCompra->cantidad = $request->cantidaddetalle[$i];
+            $detalleCompra->id_compra = $compra->id;
+            $detalleCompra->id_tipo_producto = $request->select[$i];
+
+            $detalleCompra->save();
+
+            $producto = Producto::where('id', '=', $request->select[$i])->first();
+            $producto->cantidad += $request->cantidaddetalle[$i];
+            $producto->gramos += $request->preciodetalle[$i];
+            $producto->save();
+        }
+
         return redirect()->route('compra.show', $compra)->with('info', 'Se guardó la compra');
     }
 
@@ -55,7 +75,8 @@ class CompraController extends Controller
      */
     public function show(Compra $compra)
     {
-        return view('compra.show', compact('compra'));
+        $detalles = DetalleCompra::orderBy('id_detalle', 'ASC')->with('producto')->where('id_compra', '=', $compra->id)->get();
+        return view('compra.show', compact('compra', 'detalles'));
     }
 
     /**

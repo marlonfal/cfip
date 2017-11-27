@@ -59,6 +59,8 @@ class ProductoController extends Controller
         $producto->imagen = $request->file('imagen')->store('public');
         $producto->nombre_producto = $request->nombre_producto;
         $producto->precio_por_gramo = $request->precio_por_gramo / 1000;
+        $producto->cantidad = $request->cantidad;
+        $producto->gramos = $request->gramos;
 
         $producto->save();
         return redirect()->route('producto.show', $producto)->with('info', 'Se creó del producto');
@@ -104,6 +106,8 @@ class ProductoController extends Controller
         
         $producto->nombre_producto = $request->nombre_producto;
         $producto->precio_por_gramo = ($request->precio_por_gramo / 1000);
+        $producto->cantidad = $request->cantidad;
+        $producto->gramos = $request->gramos;
 
         $producto->save();
         return redirect()->route('producto.show', $producto)->with('info', 'Se actualizó la información del producto');

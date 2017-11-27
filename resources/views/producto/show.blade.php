@@ -26,6 +26,14 @@
                                 <td>{{ $producto->precio_por_gramo * 1000 }}</td>
                             </tr>
                             <tr>
+                                <td>Cantidad disponible:</td>
+                                <td>{{ $producto->cantidad }}</td>
+                            </tr>
+                            <tr>
+                                <td>Gramos disponibles:</td>
+                                <td>{{ $producto->gramos }}</td>
+                            </tr>
+                            <tr>
                                 <td colspan="2">
                                 <div>
                                     {!! Form::label('imagen', 'Imagen') !!}

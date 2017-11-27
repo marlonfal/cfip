@@ -7,6 +7,12 @@
    table {
         font-size: 10px;
    }
+   body {
+       marign: 0px;
+   }
+   table {
+       margin: 0;
+   }
    p {
        margin: 0px;
        font-size: 12px;
@@ -60,6 +66,8 @@
    <p>polloselpaisita.com </p>
    <p>email </p>
    <p>polloselpaisita@gamin.com </p>
+   <p>Gracias por su compra!</p>
+   <p>Vuelva pronto</p>
 
 </center>
 <br>

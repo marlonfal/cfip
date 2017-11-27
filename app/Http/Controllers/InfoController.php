@@ -7,6 +7,7 @@ use App\Factura;
 use App\Pedido;
 use App\Producto;
 
+
 class InfoController extends Controller
 {
     public function index()
@@ -16,9 +17,10 @@ class InfoController extends Controller
     }
     public function inicio()
     {
+        $productos = Producto::orderBy('cantidad', 'ASC')->take(5)->get();
         $pedidos = Pedido::orderBy('created_at', 'DESC')->where('estado', '=', 'Pendiente')->take(5)->get();
         $facturas = Factura::orderBy('created_at', 'DESC')->take(5)->get();
-        return view('inicio', compact('facturas', 'pedidos'));
+        return view('inicio', compact('facturas', 'pedidos', 'productos'));
     }
 
     public function configuracion()
