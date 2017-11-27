@@ -8,6 +8,7 @@ use App\DetalleFactura;
 use App\Producto;
 use Illuminate\Http\Request;
 use PDF;
+use App\InfoGeneral;
 
 class FacturaController extends Controller
 {
@@ -29,8 +30,9 @@ class FacturaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {       
-        return view('factura.create');
+    {
+        $infogeneral = InfoGeneral::first();
+        return view('factura.create', compact('infogeneral'));
     }
 
     /**
@@ -46,6 +48,8 @@ class FacturaController extends Controller
         $factura->fecha = $request->fecha;
         $factura->vendedor = $request->vendedor;
         $factura->comprador = $request->comprador;
+        $factura->subtotal = $request->subtotal;
+        $factura->iva = $request->ivacompra;
         $factura->total = $request->total;
         $factura->save();
    
@@ -126,9 +130,10 @@ class FacturaController extends Controller
 
     public function print(Factura $factura){
         $height = 300;
+        $nit = InfoGeneral::first()->nit;
         $detalles = DetalleFactura::orderBy('id_detalle', 'ASC')->with('producto')->where('id_factura', '=', $factura->id)->get();
-        $height += sizeOf($detalles)*19;
-        $pdf = PDF::loadView('pdf.factura', ['detalles' => $detalles, 'factura' => $factura, 'height' => $height]);
+        $height += sizeOf($detalles)*24;
+        $pdf = PDF::loadView('pdf.factura', ['detalles' => $detalles, 'factura' => $factura, 'height' => $height, 'nit' => $nit]);
         $numero = $factura->id;
         return $pdf->stream();
     }

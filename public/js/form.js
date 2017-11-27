@@ -58,15 +58,21 @@ function addProducto(){
  * función para calcular el total de la factura
  */
 function calcularTotal(){
-    total = 0;
+    subtotal = 0, ivacompra = 0;
+    iva = (document.getElementById('iva').value)/100;
     for(i = 1; i <= a; i++){
         if($('#detalle' + i).length){
             if(document.getElementById('preciodetalle'+i).value != 0){
-                total += parseFloat(document.getElementById('preciodetalle'+i).value);
+                subtotal += parseFloat(document.getElementById('preciodetalle'+i).value);
             }
         }
     }
-    document.getElementById('total').value = total.toFixed(0);
+    console.log(iva);
+    ivacompra = subtotal * iva;
+    document.getElementById('subtotal').value = subtotal.toFixed(0);
+    document.getElementById('ivacompra').value = ivacompra.toFixed(0);
+    document.getElementById('total').value = (ivacompra + subtotal).toFixed(0);
+    
 }
 /**
  * función para obtener el nombre de un productp
@@ -306,11 +312,25 @@ function addProductoCompra(){
         '<input type="number" disabled required id="cantidaddetalle'+a+'" min="0" name="cantidaddetalle[]" style="width: 90px;" class="form-control"/>'+
         '</td>'+
         '<td align="center">'+
-        '<input type="number" disabled id="preciodetalle'+a+'" onchange="calcularTotal()" name="preciodetalle[]" placeholder="0" style="width: 90px;" class="form-control"/>'+
+        '<input type="number" disabled id="preciodetalle'+a+'" onchange="calcularTotalCompra()" name="preciodetalle[]" placeholder="0" style="width: 90px;" class="form-control"/>'+
         '</td>'+
         '<td><a id="btn-borrar' + a + '" class="btn btn-danger" onclick="deleteProducto(' + a + ')"> <i class="fa fa-minus fa-3" aria-hidden="true"></a></td>';
         document.getElementById('productoscompra').appendChild(tr);document.getElementById('productoscompra').appendChild(tr);
     })
+}
+
+function calcularTotalCompra(){
+    total = 0;
+    for(i = 1; i <= a; i++){
+        if($('#detalle' + i).length){
+            if(document.getElementById('preciodetalle'+i).value != 0){
+                total += parseFloat(document.getElementById('preciodetalle'+i).value);
+            }
+        }
+    }
+
+    document.getElementById('total').value = total.toFixed(0);
+    
 }
 
 function confirmarcompra(){

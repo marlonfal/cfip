@@ -63,6 +63,7 @@
                     <li><a href="{{ route('retroalimentacion.index') }}">Retroalimentaciones</a></li>
                     <li><a href="{{ route('producto.index') }}">Productos</a></li>
                     <li><a href="{{ url('admin/users') }}"> Usuarios </a></li>
+                    <li><a href="{{ route('infogeneral.show', 1) }}">Información general</a></li>
                 </ul>
                 </li>
                 <li>
@@ -80,7 +81,9 @@
                         <li><a href="{{ route('tipodegasto.create') }}"> Tipo de gasto </a></li>
                         <li><a href="{{ url('admin/users/create') }}"> Usuario </a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="{{ url('')}}">Cambiar contraseña</a></li>
+                        <li> &nbsp; Cambiar</li>
+                        <li><a href="{{ route('infogeneral.edit', 1) }}">IVA</a></li>
+                        <li><a href="{{ route('infogeneral.edit', 1) }}">Información general</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">

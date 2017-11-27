@@ -37,7 +37,7 @@ route::get('cancelarpedido/{pedido}', 'PedidoController@cancelar')->name('cancel
 Route::resource('inventario', "InventarioController");
 Route::resource('compra', "CompraController");
 Route::resource('gasto', "GastoController");
-
+Route::resource('infogeneral', "InfoGeneralController");
 
 Auth::routes();
 

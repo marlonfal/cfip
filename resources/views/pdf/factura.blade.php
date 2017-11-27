@@ -24,7 +24,7 @@
     <p>POLLOS EL PAISITA </p>
     <p>La Buitrera - Palmira </p>
     <p>Tel: 2682668 </p>
-    <p>NIT: 123456789 </p>
+    <p>NIT: {{ $nit }} </p>
 
     <p>Factura de Venta # {{ $factura->id }} </p>
     <p>Fecha {{ $factura->fecha }} </p>
@@ -52,6 +52,14 @@
         @endforeach
             <tr>
             <td colspan="3">----------------------------------------------------</td>
+            </tr>
+            <tr>
+                <td colspan="2" align="right"><b>Subtotal: </b></td>
+                <td>${{ $factura->subtotal }}</td>
+            </tr>
+            <tr>
+                <td colspan="2" align="right"><b>+ IVA: </b></td>
+                <td>${{ $factura->iva }}</td>
             </tr>
             <tr>
                 <td colspan="2" align="right"><b>Total: </b></td>

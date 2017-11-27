@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFacturasTable extends Migration
+class CreateInfoGeneralsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,12 @@ class CreateFacturasTable extends Migration
      */
     public function up()
     {
-        Schema::create('facturas', function (Blueprint $table) {
+        Schema::create('info_generals', function (Blueprint $table) {
             $table->increments('id');
-            $table->date('fecha');
-            $table->string('vendedor');
-            $table->string('comprador');
-            $table->integer('subtotal');
-            $table->integer('iva');
-            $table->integer('total');
+            $table->double('iva');
+            $table->string('telefono');
+            $table->string('correo');
+            $table->string('nit');
             $table->timestamps();
         });
     }
@@ -32,6 +30,6 @@ class CreateFacturasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('facturas');
+        Schema::dropIfExists('info_generals');
     }
 }
