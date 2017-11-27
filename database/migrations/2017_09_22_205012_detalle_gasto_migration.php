@@ -14,11 +14,12 @@ class DetalleGastoMigration extends Migration
     {
         Schema::create('detalle_gasto', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('descripcion');
-            $table->integer('numero')->unsigned();
-            $table->integer('id_tipo_producto')->unsigned();
-            $table->foreign('numero')->references('id')->on('gasto');
-            $table->foreign('id_tipo_producto')->references('id')->on('productos');
+            $table->integer('id_gasto')->unsigned();
+            $table->integer('id_detalle');
+            $table->string('producto');
+            $table->integer('cantidad');
+            $table->integer('precio');
+            $table->foreign('id_gasto')->references('id')->on('gasto');
             $table->timestamps();
         });
     }

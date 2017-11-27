@@ -47,7 +47,7 @@
                     <li><a href="{{ route('compra.create') }}">Compra </a></li>
                     <li role="separator" class="divider"></li>
                     
-                    <li><a href="{{ route('compra.create') }}">Gasto </a></li>
+                    <li><a href="{{ route('gasto.create') }}">Gasto </a></li>
                 </ul>
                 </li>
             </ul>
@@ -58,12 +58,15 @@
                     <li><a href="{{ route('factura.index') }}">Ventas</a></li>
                     <li><a href="{{ route('compra.index') }}">Compras </a></li>
                     <li><a href="{{ route('producto.index') }}">Inventario </a></li>
+                    <li><a href="{{ route('gasto.index')}}">Gastos </a></li>
                     <li><a href="{{ route('pedido.index') }}">Pedidos </a></li>
                     <li><a href="{{ route('retroalimentacion.index') }}">Retroalimentaciones</a></li>
                     <li><a href="{{ route('producto.index') }}">Productos</a></li>
                     <li><a href="{{ url('admin/users') }}"> Usuarios </a></li>
-                    <li><a href="#">Gastos - </a></li>
                 </ul>
+                </li>
+                <li>
+                   <a> {{ \Carbon\Carbon::now()->subHours(5)  }} </a>
                 </li>
             </ul>
             

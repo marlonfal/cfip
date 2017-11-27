@@ -13,8 +13,8 @@
                         <a href=" {{route('factura.index')}} " class="btn btn-default pull-right">Ver todas <i class="fa fa-plus"></i> </a>
                     </h3>
                 </div>
-                <div class="panel-body" style="padding-top: 0; padding-bottom: 0; margin 0;">
-                        <table class="table table-bordered" width="100%">
+                <div class="panel-body" style="padding: 0;">
+                        <table class="table table-bordered" style="margin: 0px;">
                             <thead>
                                 <th>#</th>
                                 <th>Fecha</th>
@@ -48,8 +48,8 @@
                         <a href=" {{route('producto.index')}} " class="btn btn-default pull-right">Ver todos <i class="fa fa-plus"></i> </a>
                     </h3>
                 </div>
-                <div class="panel-body" style="padding-top: 0; padding-bottom: 0; margin 0;">
-                        <table class="table table-bordered" width="100%">
+                <div class="panel-body" style="padding: 0;">
+                    <table class="table table-bordered" style="margin: 0px;">
                             <thead>
                                 <th>Nombre</th>
                                 <th>Cantidad disponible</th>
@@ -87,8 +87,8 @@
                 <a href=" {{route('pedido.index')}} " class="btn btn-default pull-right">Ver todos <i class="fa fa-plus"></i> </a>
             </h3>
         </div>
-        <div class="panel-body" style="padding-top: 0; padding-bottom: 0; margin 0;">
-                <table class="table table-bordered" width="100%">
+        <div class="panel-body" style="padding: 0;">
+            <table class="table table-bordered" style="margin: 0px;">
                     <thead>
                         <th>#</th>
                         <th>Nombre</th>

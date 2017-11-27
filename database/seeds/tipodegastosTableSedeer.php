@@ -12,6 +12,19 @@ class tipodegastosTableSedeer extends Seeder
      */
     public function run()
     {
-        factory(tipodegasto::class, 20)->create();
+        DB::table('tipodegastos')->insert([
+            'nombre_tipo_gasto' => 'Papeleria',
+            'descripcion' => 'Talonarios',
+        ]);
+
+        DB::table('tipodegastos')->insert([
+            'nombre_tipo_gasto' => 'Cafeteria',
+            'descripcion' => 'Alimentacion',
+        ]);
+
+        DB::table('tipodegastos')->insert([
+            'nombre_tipo_gasto' => 'Servicios',
+            'descripcion' => 'Energia, Agua, internet',
+        ]);
     }
 }

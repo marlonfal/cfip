@@ -36,6 +36,7 @@ Route::resource('pedido', "PedidoController");
 route::get('cancelarpedido/{pedido}', 'PedidoController@cancelar')->name('cancelarpedido');
 Route::resource('inventario', "InventarioController");
 Route::resource('compra', "CompraController");
+Route::resource('gasto', "GastoController");
 
 
 Auth::routes();

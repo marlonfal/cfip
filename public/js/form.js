@@ -8,6 +8,9 @@ $(document).ready(function() {
     if($('#productoscompra').length){
         addProductoCompra();
     }
+    if($('#productosgasto').length){
+        addProductoGasto();
+    }
 
 });
 /**
@@ -373,5 +376,99 @@ function changeSelectCompra(id){
         document.getElementById('preciodetalle'+ id).disabled = false;
     }else{
         updatePrecios(id);
+    }
+}
+
+
+/**
+ * 
+ * 
+ */
+function addProductoGasto(){
+    a++;
+    var tr = document.createElement('tr');
+    tr.id = 'detalle'+a;
+    cantidad++;
+    document.getElementById('cantidaddetalles').value = cantidad;
+
+    tr.setAttribute('class', 'form-inline');
+    tr.innerHTML = ''
+    +'<td colspan="2"><input type="text" required id="producto'+a+'" name="producto[]" class="form-control"/></td>'+
+    '<td>'+
+    '<input type="number" min="1" required id="cantidad'+a+'" name="cantidad[]" class="form-control"/>'+
+    '</td>'+
+    '<td>'+
+    '<input type="number" min="1"  required id="precio'+a+'" onchange="calcularTotalG()" name="precio[]" class="form-control"/>'+
+    '</td>'+
+    '<td><a id="btn-borrar' + a + '" class="btn btn-danger" onclick="deleteProductoG(' + a + ')"><i class="fa fa-minus"></i></a></td>';
+    document.getElementById('productosgasto').appendChild(tr);document.getElementById('productosgasto').appendChild(tr); 
+}
+
+function deleteProductoG(id) {
+    $('#detalle' + id).remove();
+    cantidad--;
+    document.getElementById('cantidaddetalles').value = cantidad;
+}
+
+function calcularTotalG(){
+    total = 0;
+    for(i = 1; i <= a; i++){
+        if($('#detalle' + i).length){
+            if(document.getElementById('precio'+i).value != 0){
+                total += parseFloat(document.getElementById('precio'+i).value);
+            }
+        }
+    }
+    document.getElementById('total').value = total.toFixed(0);
+}
+
+function confirmargasto(){
+    var r = 0;
+    var decripcion = document.getElementById('descripcion').value;
+    if(!descripcion){
+        r = 1;
+        $.alert({
+            title: 'Formulario incompleto',
+            content: 'Completa todos los campos',
+        });
+
+    }
+    if(r == 0){
+        for(i = 1; i <= a; i++){
+            if($('#detalle' + i).length){
+                r = 0;
+                var producto = document.getElementById('producto' + i).value;
+                var cantidad = document.getElementById('cantidad' + i).value;
+                var precio = document.getElementById('precio' + i).value;
+                if(!producto || !cantidad || !precio){
+                    r = 1;
+                    $.alert({
+                        type: 'orange',
+                        title: 'Formulario incompleto',
+                        content: 'Completa todos los campos',
+                    }); 
+                }
+            }
+        }
+    }
+    if(r == 0){
+        $.confirm({
+            type: 'orange',
+            animation: 'zoom',
+            icon: 'fa fa-question-circle-o',        
+            title: 'Confirmar el pedido',
+            content: '¿Estás seguro de hacer el pedido?',
+            buttons: {
+                Cancelar: {
+                    btnClass: 'btn-danger',
+                },
+                Confirmar: {
+                    btnClass: 'btn-success',
+                    action: function(){
+                            document.creargasto.submit();
+                        } 
+                },
+            }
+        });
     }
 }

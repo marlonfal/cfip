@@ -16,6 +16,7 @@ class GastoMigration extends Migration
             $table->increments('id');
             $table->date('fecha');
             $table->string('descripcion');
+            $table->string('usuario');
             $table->integer('total');
             $table->integer('id_tipo_gasto')->unsigned();
             $table->foreign('id_tipo_gasto')->references('id')->on('tipodegastos');
