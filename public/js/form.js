@@ -162,7 +162,7 @@ function confirmarventa(){
             animation: 'zoom',
             icon: 'fa fa-question-circle-o',        
             title: 'Confirmar la venta',
-            content: '¿Estás seguro de guardar la venta? NO podrás modificarla después',
+            content: '¿Está seguro de guardar la venta? NO podrá modificarla después',
             buttons: {
                 Cancelar: {
                     btnClass: 'btn-danger',
@@ -372,8 +372,8 @@ function confirmarcompra(){
             type: 'green',
             animation: 'zoom',
             icon: 'fa fa-question-circle-o',        
-            title: 'Confirmar la venta',
-            content: '¿Estás seguro de guardar la compra? NO podrás modificarla después',
+            title: 'Confirmar la compra',
+            content: '¿Está seguro de guardar la compra? NO podrá modificarla después',
             buttons: {
                 Cancelar: {
                     btnClass: 'btn-danger',
@@ -476,8 +476,8 @@ function confirmargasto(){
             type: 'orange',
             animation: 'zoom',
             icon: 'fa fa-question-circle-o',        
-            title: 'Confirmar el pedido',
-            content: '¿Estás seguro de hacer el pedido?',
+            title: 'Confirmar el gasto',
+            content: '¿Está seguro de registrar el gasto? NO podrá modificarlo después.',
             buttons: {
                 Cancelar: {
                     btnClass: 'btn-danger',

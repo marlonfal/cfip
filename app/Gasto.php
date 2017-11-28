@@ -11,6 +11,6 @@ class Gasto extends Model
 
     public function tipodegasto()
     {
-        return $this->belongsTo('App\tipodegasto', 'id');
+        return $this->belongsTo('App\tipodegasto', 'id_tipo_gasto');
     }
 }

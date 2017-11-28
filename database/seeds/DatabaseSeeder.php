@@ -11,15 +11,30 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->call(ProductosTableSeeder::class);
          //$this->call(ProductosTableSeeder::class);
-         //$this->call(FacturaTableSeeder::class);
-         $this->call(tipodegastosTableSedeer::class);
-         $this->call(RetroalimetacionsTableSeeder::class);
-         $this->call(ProductosTableSeeder::class);
+        $this->call(FacturaTableSeeder::class);
+        $this->call(tipodegastosTableSedeer::class);
+        $this->call(RetroalimetacionsTableSeeder::class);
+        $this->call(GastoTableSeeder::class);
+        $this->call(CompraTableSeeder::class);
+        $this->call(PedidoTableSeeder::class);
 
 
         DB::table('users')->insert([
             'name' => 'Marlon Adarme',
+            'email' => 'admin@test.com',
+            'password' => bcrypt('del1al9'),
+        ]);
+
+        DB::table('users')->insert([
+            'name' => 'Jhan Karlo Trejos',
+            'email' => 'vendedor@test.com',
+            'password' => bcrypt('del1al9'),
+        ]);
+
+        DB::table('users')->insert([
+            'name' => 'Sebastián Moncada',
             'email' => 'test@test.com',
             'password' => bcrypt('del1al9'),
         ]);
@@ -31,8 +46,25 @@ class DatabaseSeeder extends Seeder
             'description' => 'Administrador',
         ]);
 
+        DB::table('roles')->insert([
+            'id' => 2,
+            'name' => 'vendedor',
+            'display_name' => 'Vendedor',
+            'description' => 'Vendedor',
+        ]);
+
         DB::table('role_user')->insert([
             'user_id' => 1,
+            'role_id' => 1,
+        ]);
+
+        DB::table('role_user')->insert([
+            'user_id' => 2,
+            'role_id' => 2,
+        ]);
+
+        DB::table('role_user')->insert([
+            'user_id' => 3,
             'role_id' => 1,
         ]);
 

@@ -16,6 +16,7 @@ class GastoController extends Controller
      */
     public function index()
     {
+
         $gastos = Gasto::orderBy('id', 'DESC')->with('tipodegasto')->paginate(10);
         return view('gasto.index', compact('gastos'));
     }

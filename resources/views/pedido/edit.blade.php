@@ -1,7 +1,6 @@
 @extends('layouts.app')
 @section('title', 'Editar pedido')
 @section('content')
-@if(Auth::user()->name == $pedido->nombre)
 <div class="container animatedParent">
     <div class="col-md-6 col-md-offset-3">
         <div class="panel panel-primary animated bounceInUp">
@@ -26,7 +25,7 @@
                         <tr>
                             <td colspan="4">
                                 {!! Form::label('nombre', 'Nombre: ') !!}
-                                {!! Form::text('nombre',Auth::user()->name,['class' => 'form-control', 'required' => 'required'] ) !!}
+                                {!! Form::text('nombre',Auth::user()->name,['class' => 'form-control', 'readonly' => 'readonly', 'required' => 'required'] ) !!}
                             </td>
                         </tr>
                         <tr>
@@ -40,7 +39,7 @@
                         <tr>
                             <td colspan="4">
                                 {!! Form::label('direccion', 'Dirección: ') !!}
-                                {!! Form::text('direccion', $pedido->direccion, ['class' => 'form-control', 'required' => 'required']) !!}
+                                {!! Form::text('direccion', $pedido->direccion, ['class' => 'form-control', 'required' => 'required', 'readonly' => 'readonly']) !!}
                             </td>
                         </tr>
                         <tr>
@@ -81,5 +80,5 @@
         </div>
     </div>
 </div>
-@endif
+
 @endsection

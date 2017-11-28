@@ -1,10 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Factura;
-use App\DetalleFactura;
+use App\Compra;
 
-class FacturaTableSeeder extends Seeder
+class CompraTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,6 +12,6 @@ class FacturaTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Factura::class, 1000)->create();
+        factory(Compra::class, 200)->create();
     }
 }

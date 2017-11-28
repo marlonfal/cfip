@@ -16,8 +16,8 @@
                 <div class="panel-body" style="padding: 0;">
                         <table class="table table-bordered" style="margin: 0px;">
                             <thead>
-                                <th>#</th>
-                                <th>Fecha</th>
+                                <th class="hidden-xs">#</th>
+                                <th class="hidden-xs">Fecha</th>
                                 <th>Comprador</th>
                                 <th>Total</th>
                                 <th>Opciones</th>
@@ -25,11 +25,11 @@
                             <tbody>
                                 @foreach($facturas as $factura)
                                     <tr style="line-height: 20px; min-height: 20px; height: 20px;" >
-                                        <td>{{ $factura->id }}</td>
-                                        <td>{{ $factura->fecha }}</td>
+                                        <td class="hidden-xs">{{ $factura->id }}</td>
+                                        <td class="hidden-xs">{{ $factura->fecha }}</td>
                                         <td>{{ $factura->comprador }}</td>
                                         <td>{{ $factura->total }}</td>
-                                        <td width="50" align="center">
+                                        <td align="center">
                                             <a href="{{ route('factura.show', $factura->id) }}" class="btn btn-xs btn-success">Ver</a>
                                         </td>
 
@@ -53,7 +53,7 @@
                             <thead>
                                 <th>Nombre</th>
                                 <th>Cantidad disponible</th>
-                                <th colspan="2">Opciones</th>
+                                <th class="hidden-xs">Opciones</th>
                             </thead>
                             <tbody>
                                 @foreach($productos as $producto)
@@ -67,8 +67,7 @@
                                         <td>{{ $producto->cantidad }}</td>
                                         <td align="center">
                                             <a href="{{ route('producto.show', $producto->id) }}" class="btn btn-xs btn-success">Ver</a>
-                                        </td>
-                                        <td align="center">
+                                        
                                         <a href="{{ route('producto.edit', $producto->id) }}" class="btn btn-xs btn-warning">Editar</a>
                                         </td>
 
@@ -90,7 +89,7 @@
         <div class="panel-body" style="padding: 0;">
             <table class="table table-bordered" style="margin: 0px;">
                     <thead>
-                        <th>#</th>
+                        <th class="hidden-xs">#</th>
                         <th>Nombre</th>
                         <th>Dirección</th>
                         <th>Fecha y hora de entrega</th>
@@ -98,8 +97,8 @@
                     </thead>
                     <tbody>
                         @foreach($pedidos as $pedido)
-                            <tr style="line-height: 20px; min-height: 20px; height: 20px;" >
-                                <td>{{ $pedido->id }}</td>
+                            <tr>
+                                <td class="hidden-xs">{{ $pedido->id }}</td>
                                 <td>{{ $pedido->nombre }}</td>
                                 <td>{{ $pedido->direccion }}</td>
                                 <td>{{ $pedido->fecha_entrega }} - {{ $pedido->hora_entrega }}</td>
