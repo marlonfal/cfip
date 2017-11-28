@@ -77,7 +77,7 @@ $factory->define(App\Compra::class, function (Faker\Generator $faker) {
         'fecha' => $faker->dateTimeBetween($startDate = '-2 years', $endDate = 'now', $timezone = date_default_timezone_get()),
         'proveedor' => $faker->name,
         'usuario' => $faker->name,
-        'total' => $faker->numberBetween(1000, 500000),  
+        'total' => $faker->numberBetween(1000, 300000),  
     ];
 });
 

@@ -12,6 +12,6 @@ class CompraTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Compra::class, 200)->create();
+        factory(Compra::class, 150)->create();
     }
 }

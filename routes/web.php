@@ -38,7 +38,7 @@ Route::resource('inventario', "InventarioController");
 Route::resource('compra', "CompraController");
 Route::resource('gasto', "GastoController");
 Route::resource('infogeneral', "InfoGeneralController");
-
+Route::get('balance', "BalanceController@index")->name('balance');
 Auth::routes();
 
 route::get('cambiar', 'InfoController@contraseña');
