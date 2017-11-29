@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class BalanceController extends Controller
 {
     public function index(Request $request){
-
+        $lcompras = Compra::orderBy('fecha', 'DESC')->take(5)->get();
         $ventas = 0;
         $compras = 0;
         $gastos = 0;
@@ -20,6 +20,6 @@ class BalanceController extends Controller
             $gastos = Gasto::whereBetween('fecha', array($request->fechainicio, $request->fechafinal))->sum('total');
         }
 
-        return view('balance.index', compact('ventas', 'compras', 'gastos'));
+        return view('balance.index', compact('ventas', 'compras', 'gastos', 'lcompras'));
     }
 }

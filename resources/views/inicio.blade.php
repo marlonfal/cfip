@@ -10,7 +10,7 @@
                     <h3>Últimas 5 ventas
                         <a href=" {{route('factura.create')}} " class="btn btn-success pull-right">Nueva <i class="fa fa-plus"></i> </a>
                         <span class="pull-right">&nbsp;</span>
-                        <a href=" {{route('factura.index')}} " class="btn btn-default pull-right">Ver todas <i class="fa fa-plus"></i> </a>
+                        <a href=" {{route('factura.index')}} " class="btn btn-default pull-right">Ver todas <i class="fa fa-eye"></i></a>
                     </h3>
                 </div>
                 <div class="panel-body" style="padding: 0;">
@@ -29,8 +29,10 @@
                                         <td class="hidden-xs">{{ $factura->fecha }}</td>
                                         <td>{{ $factura->comprador }}</td>
                                         <td>{{ $factura->total }}</td>
-                                        <td align="center">
-                                            <a href="{{ route('factura.show', $factura->id) }}" class="btn btn-xs btn-success">Ver</a>
+                                        <td align="center" style="padding: 0;">
+                                            <a href="{{ route('factura.show', $factura->id) }}" class="btn btn-success">
+                                                Ver <i class="fa fa-eye"></i>
+                                            </a>
                                         </td>
 
                                     </tr>
@@ -45,7 +47,7 @@
                 <div class="panel-heading" >
                     <h3>Productos
                         <span class="pull-right">&nbsp;</span>
-                        <a href=" {{route('producto.index')}} " class="btn btn-default pull-right">Ver todos <i class="fa fa-plus"></i> </a>
+                        <a href=" {{route('producto.index')}} " class="btn btn-default pull-right">Ver todos <i class="fa fa-eye"></i></a>
                     </h3>
                 </div>
                 <div class="panel-body" style="padding: 0;">
@@ -65,10 +67,13 @@
 
                                         <td><b> {{ $producto->nombre_producto }} </b></td>
                                         <td>{{ $producto->cantidad }}</td>
-                                        <td align="center">
-                                            <a href="{{ route('producto.show', $producto->id) }}" class="btn btn-xs btn-success">Ver</a>
-                                        
-                                        <a href="{{ route('producto.edit', $producto->id) }}" class="btn btn-xs btn-warning">Editar</a>
+                                        <td align="center" style="padding: 0;">
+                                            <a href="{{ route('producto.show', $producto->id) }}" class="btn btn-success">
+                                                Ver <i class="fa fa-eye"></i>
+                                            </a>
+                                            <a href="{{ route('producto.edit', $producto->id) }}" class="btn btn-warning">
+                                                Editar <i class="fa fa-pencil-square-o"></i>
+                                            </a>
                                         </td>
 
                                     </tr>
@@ -81,9 +86,9 @@
     </div>
     <div class="panel panel-primary animated bounceInDown">
         <div class="panel-heading">
-            <h3>Pedidos pendientes
+            <h3><b>Pedidos pendientes</b> 
                 <span class="pull-right">&nbsp;</span>
-                <a href=" {{route('pedido.index')}} " class="btn btn-default pull-right">Ver todos <i class="fa fa-plus"></i> </a>
+                <a href=" {{route('pedido.index')}} " class="btn btn-default pull-right">Ver todos <i class="fa fa-eye"></i></a>
             </h3>
         </div>
         <div class="panel-body" style="padding: 0;">
@@ -93,7 +98,7 @@
                         <th>Nombre</th>
                         <th>Dirección</th>
                         <th>Fecha y hora de entrega</th>
-                        <th colspan="2">Opciones</th>
+                        <th>Opciones</th>
                     </thead>
                     <tbody>
                         @foreach($pedidos as $pedido)
@@ -102,11 +107,13 @@
                                 <td>{{ $pedido->nombre }}</td>
                                 <td>{{ $pedido->direccion }}</td>
                                 <td>{{ $pedido->fecha_entrega }} - {{ $pedido->hora_entrega }}</td>
-                                <td align="center">
-                                    <a href="{{ route('pedido.show', $pedido->id) }}" class="btn btn-xs btn-success">Ver</a>
-                                </td>
-                                <td align="center">
-                                <a href="{{ route('pedido.edit', $pedido->id) }}" class="btn btn-xs btn-warning">Editar</a>
+                                <td align="center" style="padding: 0;">
+                                    <a href="{{ route('pedido.show', $pedido->id) }}" class="btn btn-success">
+                                        Ver <i class="fa fa-eye"></i>
+                                    </a>
+                                    <a href="{{ route('pedido.edit', $pedido->id) }}" class="btn btn-warning">
+                                        Editar <i class="fa fa-pencil-square-o"></i>
+                                    </a>
                                 </td>
 
                             </tr>

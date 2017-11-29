@@ -68,6 +68,12 @@ class FacturaController extends Controller
                 $producto = Producto::where('id', '=', $request->select[$i])->first();
                 $producto->cantidad -= $request->cantidaddetalle[$i];
                 $producto->gramos -= $request->preciodetalle[$i];
+                if($producto->cantidad < 0){
+                    $producto->cantidad = 0;
+                }
+                if($producto->gramos < 0){
+                    $producto->gramos = 0;
+                }
                 $producto->save();
             
         }

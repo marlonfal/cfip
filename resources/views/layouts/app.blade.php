@@ -56,12 +56,14 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ver <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li><a href="{{ route('factura.index') }}">Ventas</a></li>
-                    <li><a href="{{ route('compra.index') }}">Compras </a></li>
-                    <li><a href="{{ route('producto.index') }}">Inventario </a></li>
-                    <li><a href="{{ route('gasto.index')}}">Gastos </a></li>
                     <li><a href="{{ route('pedido.index') }}">Pedidos </a></li>
+                    <li><a href="{{ route('compra.index') }}">Compras </a></li>
+                    <li><a href="{{ route('gasto.index')}}">Gastos </a></li>
+                    <li><a href="{{ route('producto.index') }}">Inventario </a></li>
                     <li><a href="{{ route('producto.index') }}">Productos</a></li>
                     @role('admin')
+                    <li role="separator" class="divider"></li>
+                    <li><a href="{{ route('balance') }}">Balance</a></li>
                     <li><a href="{{ route('retroalimentacion.index') }}">Retroalimentaciones</a></li>
                     <li><a href="{{ url('admin/users') }}"> Usuarios </a></li>
                     <li><a href="{{ route('infogeneral.show', 1) }}">Información general</a></li>

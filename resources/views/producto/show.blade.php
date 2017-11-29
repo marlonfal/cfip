@@ -4,7 +4,7 @@
 <div class="container animatedParent">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-            <div class="panel panel-primary animated bounceInUp">
+            <div class="panel panel-primary">
                 <div class="panel-heading">
                     @include('_mensaje')
                     <h1 align="center"><b>Detalles del producto {{$producto->id}}</b></h1>

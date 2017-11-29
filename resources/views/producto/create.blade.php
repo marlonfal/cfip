@@ -8,9 +8,10 @@
                 <div class="panel-heading">
                     <h1 align="center">Crear producto</h1>
                 </div>
+                {!! Form::open(['route' => 'producto.store', 'enctype' => 'multipart/form-data']) !!}
                 @include('_error')
                 <div class="panel-body">
-                    {!! Form::open(['route' => 'producto.store', 'enctype' => 'multipart/form-data']) !!}
+                    
                         <div class="form-group">
                             {!! Form::label('nombre_producto', 'Nombre del producto') !!}
                             {!! Form::text('nombre_producto', null, ['class' => 'form-control', 'required' => 'required']) !!}
@@ -35,14 +36,19 @@
                             {!! Form::label('imagen', 'Imagen') !!}
                             <input type="file" name="imagen" Required>
                         </div>
-
-                        <div class="form-group">
-                            <a href="{{url()->previous()}}" class="btn btn-default pull-left"><b>Volver</b></a>
-                            {!! Form::submit('Guardar', ['class' => 'btn btn-primary pull-right']) !!}
-                        </div>
-                    {!! Form::close() !!}
+                        
+                        
                     
                 </div>
+                <div class="panel-footer">
+                    <div class="form-group">
+                                <a href="{{url()->previous()}}" class="btn btn-default pull-left"><b>Volver</b></a>
+                                {!! Form::submit('Guardar', ['class' => 'btn btn-primary pull-right']) !!}
+                        </div>
+                        <span>&nbsp; </span>
+                        
+                </div>
+                {!! Form::close() !!}
             </div>
         </div>
     </div>
