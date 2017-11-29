@@ -1,5 +1,5 @@
 @extends('layouts.paginaweb')
-@section('title', 'Registrarse')
+@section('title', 'Registrarse - ')
 @section('content')
 <br><br><br>
 <div class="container animatedParent">

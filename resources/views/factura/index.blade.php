@@ -5,7 +5,7 @@
     <div class="panel panel-primary animated bounceInUp">
         <div class="panel-heading">
             @include('_mensaje')
-            <h1>Listado de facturas
+            <h1>Listado de ventas
                 <a href="{{ route('factura.create') }}" class="btn btn-success btn-lg pull-right"><b>Nueva (+)</b></a>
             </h1>
         </div>
@@ -14,11 +14,11 @@
                     <div class="form-group">
                         {!! Form::label('buscar', 'Buscar: ') !!}
                         {!! Form::text('comprador', null, ['class' => 'form-control', 'title' => 'Escriba el nombre del comprador', 'placeholder' => 'Nombre de comprador'] ) !!}
-                        {!! Form::text('id', null, ['class' => 'form-control', 'title' => 'Escriba el número de factura', 'placeholder' => 'Número de factura'] ) !!}
+                        {!! Form::text('id', null, ['class' => 'form-control', 'title' => 'Escriba el número de factura', 'placeholder' => 'Número de venta'] ) !!}
                     </div>
                 {!! Form::submit('Buscar', ['class' => 'btn btn-primary']) !!}
             {!! Form::close() !!}
-            <h3>Hay {{ $facturas->total() }} facturas</h3>
+            <h3>Hay {{ $facturas->total() }} ventas</h3>
             <div class="table-responsive">
                 <table class="table table-bordered table-hover">
                     <thead class="bg-primary">

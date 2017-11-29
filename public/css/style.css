@@ -2,7 +2,7 @@ body {
   color: black;
   overflow-x:hidden;
   background-color: #ffffff;
-  background-image: url("https://www.transparenttextures.com/patterns/food.png");
+  background-image: url("food.png");
   /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 }
 
