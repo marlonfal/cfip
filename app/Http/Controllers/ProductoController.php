@@ -55,15 +55,21 @@ class ProductoController extends Controller
         $this->validate($request, [
             'imagen' => 'image'
         ]);
-        $producto = new Producto();
-        $producto->imagen = $request->file('imagen')->store('public');
-        $producto->nombre_producto = $request->nombre_producto;
-        $producto->precio_por_gramo = $request->precio_por_gramo / 1000;
-        $producto->cantidad = $request->cantidad;
-        $producto->gramos = $request->gramos;
+        if(Producto::where('nombre_producto', '=', $request->nombre_producto)->count() > 0){
+            $producto = Producto::where('nombre_producto', '=', $request->nombre_producto)->get();
 
-        $producto->save();
-        return redirect()->route('producto.show', $producto)->with('info', 'Se creó del producto');
+            return redirect()->route('producto.create')->with('info', 'Ya existe un producto con ese nombre!');
+        }else{
+            $producto = new Producto();
+            $producto->imagen = $request->file('imagen')->store('public');
+            $producto->nombre_producto = $request->nombre_producto;
+            $producto->precio_por_gramo = $request->precio_por_gramo / 1000;
+            $producto->cantidad = $request->cantidad;
+            $producto->gramos = $request->gramos;
+
+            $producto->save();
+            return redirect()->route('producto.show', $producto)->with('info', 'Se creó del producto');
+        }
     }
 
     /**

@@ -19,20 +19,20 @@ Route::get('factura/producto/{id}', 'ProductoController@getProducto');
 Route::get('/imprimirfactura/{factura}', 'FacturaController@print')->name('imprimirfactura');
 
 Route::get('/', 'InfoController@index');
-Route::get('/inicio', 'InfoController@inicio');
+Route::get('/inicio', 'InfoController@inicio')->name('inicio');
 Route::get('/configuracion', 'InfoController@configuracion');
 Route::group(['middleware' => 'auth'], function(){
     Route::resource('producto', 'ProductoController');
-
+    Route::resource('retroalimentacion', 'RetroalimentacionController');
+    Route::resource('pedido', 'PedidoController');
+    Route::get('pedidoencamino/{pedido}', 'PedidoController@enCamino')->name('pedidoencamino');
     /**Route::get('producto', ['middleware' => 'role:admin',
     'uses' => 'ProductoController@index'])->name('producto.index');;*/
 });
 
 Route::resource('factura', 'FacturaController');
 Route::resource('tipodegasto', 'TipodegastoController');
-Route::resource('retroalimentacion', 'RetroalimentacionController');
 Route::resource('detallefactura', "DetalleFacturaController");
-Route::resource('pedido', "PedidoController");
 route::get('cancelarpedido/{pedido}', 'PedidoController@cancelar')->name('cancelarpedido');
 Route::resource('inventario', "InventarioController");
 Route::resource('compra', "CompraController");

@@ -36,7 +36,7 @@
         <thead>
             <tr>
                 <th><b> Producto </b></th>
-                <th><b> Cant/Gr  </b></th>
+                <th><b> Gr/Cant  </b></th>
                 <th><b> Valor  </b></th>
             </tr>
         </thead>
@@ -73,7 +73,7 @@
    <p>Página web </p>
    <p>polloselpaisita.com </p>
    <p>email </p>
-   <p>polloselpaisita@gamin.com </p>
+   <p>polloselpaisita@gmail.com </p>
    <p>Gracias por su compra!</p>
    <p>Vuelva pronto</p>
 

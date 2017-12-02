@@ -120,5 +120,89 @@ body {
       .navbar .nav-collapse .navbar-form { margin: 0; }
       .nav-collapse>li { float: none; }
   }
+  body{
+    background: #ecf0f1;
+}
+ 
+#container-main{
+    margin:0px auto;
+    width:95%;
+    min-width:320px;
+    max-width:960px;
+}
+ 
+#container-main h1{
+    font-size: 40px;
+    text-shadow:4px 4px 5px #16a085;
+}
+ 
+.accordion-container {
+    width: 100%;
+    margin: 0 0 0px;
+    clear:both;
+}
+ 
+.accordion-titulo {
+    position: relative;
+    display: block;
+    padding: 0px;
+    font-size: 14px;
+    font-weight: 300;
+    background: #ffffff;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+}
+.accordion-titulo.open {
+    background: rgb(253, 253, 253);
+    color: rgb(0, 0, 0);
+}
+.accordion-titulo:hover {
+    background: #ffffff;
+    cursor: pointer; 
+}
+ 
+.accordion-titulo span.toggle-icon:before {
+    content:"+";
+}
+ 
+.accordion-titulo.open span.toggle-icon:before {
+    content:"-";
+}
+ 
+.accordion-titulo span.toggle-icon {
+    position: absolute;
+    top: -15px;
+    right: 20px;
+    font-size: 36px;
+    font-weight: bold;
+}
+ 
+.accordion-content {
+    display: none;
+    padding: 0;
+    margin: 0;
+    overflow: auto;
+}
+ 
+.accordion-content p{
+    margin:0;
+}
+ 
+.accordion-content img {
+    display: block;
+    float: left;
+    margin: 0 0px 0px 0;
+    width: 50%;
+    height: auto;
+}
+ 
+ 
+@media (max-width: 767px) {
+    .accordion-content {
+        padding: 0px 0;
+    }
+}
+
+
 
   

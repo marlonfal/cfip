@@ -18,9 +18,26 @@ class InfoController extends Controller
     public function inicio()
     {
         $productos = Producto::orderBy('cantidad', 'ASC')->take(5)->get();
-        $pedidos = Pedido::orderBy('created_at', 'DESC')->where('estado', '=', 'Pendiente')->take(5)->get();
+        $pedidospendientes = Pedido::orderBy('fecha_entrega', 'DESC')->with('detalles')->where('estado', '=', 'Pendiente')->take(6)->get();
+        foreach($pedidospendientes as $pedido){
+            foreach($pedido->detalles as $pd){
+                $producto = Producto::where('id', '=', $pd->id_tipo_producto)->first();
+                $pd->id_tipo_producto = $producto->nombre_producto;
+                $pd->cantidaddisponible = $producto->cantidad;
+            }
+        }
+
+        $pedidosencamino = Pedido::orderBy('fecha_entrega', 'DESC')->with('detalles')->where('estado', '=', 'En camino')->take(6)->get();
+        foreach($pedidosencamino as $pedido){
+            foreach($pedido->detalles as $pd){
+                $producto = Producto::where('id', '=', $pd->id_tipo_producto)->first();
+                $pd->id_tipo_producto = $producto->nombre_producto;
+                $pd->cantidaddisponible = $producto->cantidad;
+            }
+        }
+
         $facturas = Factura::orderBy('created_at', 'DESC')->take(5)->get();
-        return view('inicio', compact('facturas', 'pedidos', 'productos'));
+        return view('inicio', compact('facturas', 'pedidospendientes', 'productos', 'pedidosencamino'));
     }
 
     public function configuracion()

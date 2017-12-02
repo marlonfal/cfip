@@ -11,7 +11,7 @@
                 {!! Form::open(['route' => 'producto.store', 'enctype' => 'multipart/form-data']) !!}
                 @include('_error')
                 <div class="panel-body">
-                    
+                @include('_mensaje')
                         <div class="form-group">
                             {!! Form::label('nombre_producto', 'Nombre del producto') !!}
                             {!! Form::text('nombre_producto', null, ['class' => 'form-control', 'required' => 'required']) !!}
@@ -35,10 +35,7 @@
                         <div class="form-group">
                             {!! Form::label('imagen', 'Imagen') !!}
                             <input type="file" name="imagen" Required>
-                        </div>
-                        
-                        
-                    
+                        </div> 
                 </div>
                 <div class="panel-footer">
                     <div class="form-group">

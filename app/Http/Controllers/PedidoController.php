@@ -122,4 +122,14 @@ class PedidoController extends Controller
         $pedido->save();
         return redirect()->route('pedido.show', $pedido)->with('info', 'Se canceló el pedido');
     }
+
+    public function enCamino(Pedido $pedido){
+        $pedido->estado = 'En camino';
+
+        $pedido->save();
+        //return redirect()->action('InfoController@inicio');
+        return redirect()->route('inicio')->with('infopedidopendiente', 'Se despachó el pedido');
+    }
+
+
 }

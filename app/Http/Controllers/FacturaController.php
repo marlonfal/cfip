@@ -77,7 +77,7 @@ class FacturaController extends Controller
                 $producto->save();
             
         }
-
+        
         return redirect()->route('factura.show', $factura)->with('info', 'Se guardó la factura');
     }
 
@@ -138,7 +138,7 @@ class FacturaController extends Controller
         $height = 300;
         $nit = InfoGeneral::first()->nit;
         $detalles = DetalleFactura::orderBy('id_detalle', 'ASC')->with('producto')->where('id_factura', '=', $factura->id)->get();
-        $height += sizeOf($detalles)*24;
+        $height += sizeOf($detalles)*50;
         $pdf = PDF::loadView('pdf.factura', ['detalles' => $detalles, 'factura' => $factura, 'height' => $height, 'nit' => $nit]);
         $numero = $factura->id;
         return $pdf->stream();

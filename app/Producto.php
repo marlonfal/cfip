@@ -15,6 +15,10 @@ class Producto extends Model
     {
         return $this->belongsToMany('App\Factura');
     }
+    public function detallepedido()
+    {
+        return $this->belongsToMany('App\DetallePedido', 'id_tipo_producto');
+    }
 
     /**
      * scope para buscar un producto por su nombre

@@ -36,7 +36,7 @@
     
         <div class="container animatedParent">
             <center> 
-                <a class="btn btn-yellow btn-lg animated bounceInLeft">
+                <a class="btn btn-yellow btn-lg animated bounceInLeft" href="{{ route('pedido.create')}}">
                 <b>HACER PEDIDO</b></a>
             </center>
         </div>

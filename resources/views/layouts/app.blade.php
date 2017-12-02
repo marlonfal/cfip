@@ -44,9 +44,8 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Registrar <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li><a href="{{ route('factura.create') }}">Venta</a></li>
-                    <li><a href="{{ route('compra.create') }}">Compra </a></li>
                     <li role="separator" class="divider"></li>
-                    
+                    <li><a href="{{ route('compra.create') }}">Compra a proveedor</a></li>
                     <li><a href="{{ route('gasto.create') }}">Gasto </a></li>
                 </ul>
                 </li>

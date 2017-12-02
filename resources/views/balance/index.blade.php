@@ -50,6 +50,7 @@
             </div>
         @endif
         </div>
+        <!--
         <div class="panel-footer">
             <div class="row">
                 <center class="col-md-offset-3">
@@ -65,6 +66,7 @@
                 </center>
             </div>
         </div>
+        -->
         <div style="margin: 0; padding: 0; " class="bg-primary">
             <br>
             <h3 style="margin: 0; padding: 0; padding-top: 11;" class="bg-primary" align="center">Últimas 5 compras</h3>

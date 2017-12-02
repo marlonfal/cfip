@@ -43,7 +43,7 @@ function addProducto(){
         '<input type="number" disabled required id="pesodetalle'+a+'" min="0" name="pesodetalle[]" onchange="updatePrecios('+a+')" style="width: 90px;" class="form-control"/>'+
         '</td>'+
         '<td width="60" align="center">'+
-        '<input type="number" disabled required id="cantidaddetalle'+a+'" min="0" name="cantidaddetalle[]" style="width: 90px;" class="form-control"/>'+
+        '<input type="number" disabled required id="cantidaddetalle'+a+'" onchange="cantidadPositiva('+a+')" min="0" name="cantidaddetalle[]" style="width: 90px;" class="form-control"/>'+
         '</td>'+
         '<td align="center">'+
         '<input type="number" id="preciodetalle'+a+'" readonly="readonly" name="preciodetalle[]" placeholder="0" style="width: 90px;" class="form-control"/>'+
@@ -84,6 +84,17 @@ function nombreProducto(id){
     });
 }
 /**
+ * función que verifica que la cantidad ingresada es positiva, si es negativa, la vuelve positiva
+ * @param {*} id 
+ */
+function cantidadPositiva(id){
+    var cantidad = $('#cantidaddetalle' + id).val();
+    if(cantidad < 0){
+        cantidad *= -1;
+        $('#cantidaddetalle' + id).val(cantidad);
+    }
+}
+/**
  * función para actualizar los precios de los detalles de la factua
  * @param {*} id fila a actualizar
  */
@@ -93,6 +104,10 @@ function updatePrecios(id){
         console.log(response);
         var precioporgramo = response[0].precio_por_gramo;
         var peso = $('#pesodetalle' + id).val();
+        if(peso < 0){
+            peso *= -1;
+            $('#pesodetalle' + id).val(peso);
+        }
         var precio = precioporgramo * peso;
         document.getElementById('preciodetalle'+id).value = precio;
         calcularTotal();
@@ -492,3 +507,23 @@ function confirmargasto(){
         });
     }
 }
+
+
+$(function(){
+    $(".accordion-titulo").click(function(e){
+             
+          e.preventDefault();
+      
+          var contenido=$(this).next(".accordion-content");
+  
+          if(contenido.css("display")=="none"){ //open        
+            contenido.slideDown(250);         
+            $(this).addClass("open");
+          }
+          else{ //close       
+            contenido.slideUp(250);
+            $(this).removeClass("open");  
+          }
+  
+        });
+  });

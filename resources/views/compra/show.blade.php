@@ -28,7 +28,7 @@
                                     {{ $compra->fecha }}
                                 </td>
                             </tr>
-                            <tr class="bg-warning" align="center">
+                            <tr class="bg-primary" align="center">
                                 <td width="60"><b> Número </b></td>
                                 <td colspan="2"><b>Producto </b></td>
                                 <td width="60"><b> Peso </b></td>

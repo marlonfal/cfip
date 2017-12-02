@@ -22,6 +22,6 @@ class Pedido extends Model
 
     public function detalles()
     {
-        return $this->hasMany('App\DetallePedido');
+        return $this->hasMany('App\DetallePedido', 'id_pedido');
     }
 }
