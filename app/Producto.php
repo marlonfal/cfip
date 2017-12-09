@@ -25,18 +25,18 @@ class Producto extends Model
      */
     public function scopeNombre($query, $nombre){
         if(trim($nombre) != ""){
-            $query->where('nombre_producto', 'LIKE', "%$nombre%");
+            $query->where('nombre', 'LIKE', "%$nombre%");
         }
     }
 
     protected $table = 'productos';
-    protected $fillable =['nombre_producto','precio_por_gramo', 'imagen', 'cantidad', 'gramos'];
+    protected $fillable =['nombre','precioventagramo', 'imagen', 'cantidad', 'gramos', 'activo', 'preciocompragramo'];
 
     /**
      * función que devuelve todos los productos
      */
     public static function productos(){
-        return Producto::all();
+        return Producto::where('activo', '=', 1)->get();
     }
 
     /**

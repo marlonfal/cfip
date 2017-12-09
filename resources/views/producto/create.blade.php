@@ -13,38 +13,51 @@
                 <div class="panel-body">
                 @include('_mensaje')
                         <div class="form-group">
-                            {!! Form::label('nombre_producto', 'Nombre del producto') !!}
-                            {!! Form::text('nombre_producto', null, ['class' => 'form-control', 'required' => 'required']) !!}
+                            {!! Form::label('nombre', 'Nombre del producto') !!}
+                            {!! Form::text('nombre', null, ['class' => 'form-control', 'required' => 'required']) !!}
                         </div>
 
                         <div class="form-group">
-                            {!! Form::label('precio_por_gramo', 'Precio por kilo') !!}
-                            {!! Form::number('precio_por_gramo', null, ['class' => 'form-control', 'required' => 'required', 'min' => '0']) !!}
+                            {!! Form::label('precioventagramo', 'Precio de venta por kilo') !!}
+                            {!! Form::number('precioventagramo', null, ['class' => 'form-control', 'required' => 'required', 'min' => '0']) !!}
+                        </div>
+
+                        <div class="form-group">
+                            {!! Form::label('preciocompragramo', 'Precio de compra por kilo') !!}
+                            {!! Form::number('preciocompragramo', null, ['class' => 'form-control', 'required' => 'required', 'min' => '0']) !!}
                         </div>
 
                         <div class="form-group">
                             {!! Form::label('cantidad', 'Cantidad disponible') !!}
                             {!! Form::number('cantidad', null, ['class' => 'form-control', 'required' => 'required', 'min' => '0']) !!}
                         </div>
+                        
 
                         <div class="form-group">
                             {!! Form::label('gramos', 'Gramos disponibles') !!}
                             {!! Form::number('gramos', null, ['class' => 'form-control', 'required' => 'required', 'min' => '0']) !!}
                         </div>
-
+                        <div class="form-group">
+                            {!! Form::label('activo', 'Se vende actualmente: ') !!}
+                            <br>
+                            {!! Form::label('si', 'Sí') !!}
+                            {!! Form::radio('activo', '1', ['selected' => 'selected']) !!}
+                            &nbsp;
+                            {!! Form::label('no', 'No') !!}
+                            {!! Form::radio('activo', '0') !!}
+                        </div>
                         <div class="form-group">
                             {!! Form::label('imagen', 'Imagen') !!}
-                            <input type="file" name="imagen" Required>
+                            <input type="file" name="imagen" required>
                         </div> 
-                </div>
-                <div class="panel-footer">
-                    <div class="form-group">
+                    </div>
+                    <div class="panel-footer">
+                        <div class="form-group">
                                 <a href="{{url()->previous()}}" class="btn btn-default pull-left"><b>Volver</b></a>
                                 {!! Form::submit('Guardar', ['class' => 'btn btn-primary pull-right']) !!}
                         </div>
-                        <span>&nbsp; </span>
-                        
-                </div>
+                        <span>&nbsp; </span> 
+                    </div>
                 {!! Form::close() !!}
             </div>
         </div>

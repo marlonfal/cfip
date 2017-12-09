@@ -53,7 +53,7 @@
                                 <tr align="center">
                                     <td width="60">{{ $detalle->id_detalle }}</td>
                                     <td colspan="2">
-                                        <label>{{ $detalle->producto->nombre_producto }} </label> 
+                                        <label>{{ $detalle->producto->nombre }} </label> 
                                     </td>
                                     <td width="60"><b> {{ $detalle->peso_gramo }} </b></td>
                                     <td width="60"><b> {{ $detalle->cantidad }} </b></td>

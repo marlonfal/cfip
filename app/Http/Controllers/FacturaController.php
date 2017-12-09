@@ -78,7 +78,7 @@ class FacturaController extends Controller
             
         }
         
-        return redirect()->route('factura.show', $factura)->with('info', 'Se guardó la factura');
+        return redirect()->route('factura.show', $factura)->with('info', 'Se guardó la venta');
     }
 
     /**
@@ -119,7 +119,7 @@ class FacturaController extends Controller
         $factura->vendedor = $request->vendedor; 
 
         $factura->save();
-        return redirect()->route('factura.show', $factura)->with('info', 'Se actualizó la información de la factura');
+        return redirect()->route('factura.show', $factura)->with('info', 'Se actualizó la información de la venta');
     }
 
     /**

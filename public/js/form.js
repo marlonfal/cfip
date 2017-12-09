@@ -29,7 +29,7 @@ function addProducto(){
         var options = '<option value="">Seleccione</option>';
         tr.id = 'detalle'+a;
         for(i = 0; i< response.length; i++){
-            options += '<option value="'+response[i].id+'">'+response[i].nombre_producto+'</option>' ;
+            options += '<option value="'+response[i].id+'">'+response[i].nombre+'</option>' ;
         }
 
         cantidad++;
@@ -80,7 +80,7 @@ function calcularTotal(){
  */
 function nombreProducto(id){
     $.get("producto/"+idproducto+"", function(response){
-        return response[0].nombre_producto;
+        return response[0].nombre;
     });
 }
 /**
@@ -102,7 +102,7 @@ function updatePrecios(id){
     idproducto = document.getElementById('select'+ id).value;
     $.get("producto/"+idproducto+"", function(response){
         console.log(response);
-        var precioporgramo = response[0].precio_por_gramo;
+        var precioporgramo = response[0].precioventagramo;
         var peso = $('#pesodetalle' + id).val();
         if(peso < 0){
             peso *= -1;
@@ -212,7 +212,7 @@ function addProductoPedido(){
         var options = '<option value="" selected>Seleccione</option>';
         tr.id = 'detalle'+a;
         for(i = 0; i< response.length; i++){
-            options += '<option value="'+response[i].id+'">'+response[i].nombre_producto+'</option>' ;
+            options += '<option value="'+response[i].id+'">'+response[i].nombre+'</option>' ;
         }
 
         cantidad++;
@@ -310,7 +310,7 @@ function addProductoCompra(){
         var options = '<option value="">Seleccione</option>';
         tr.id = 'detalle'+a;
         for(i = 0; i< response.length; i++){
-            options += '<option value="'+response[i].id+'">'+response[i].nombre_producto+'</option>' ;
+            options += '<option value="'+response[i].id+'">'+response[i].nombre+'</option>' ;
         }
 
         cantidad++;
@@ -488,7 +488,7 @@ function confirmargasto(){
     }
     if(r == 0){
         $.confirm({
-            type: 'orange',
+            type: 'green',
             animation: 'zoom',
             icon: 'fa fa-question-circle-o',        
             title: 'Confirmar el gasto',

@@ -52,7 +52,7 @@
                         @foreach($detalles as $detalle)
                         <tr>
                             <td> {{ $detalle->id_detalle}} </td>
-                            <td> {{ $detalle->producto->nombre_producto }} </td>
+                            <td> {{ $detalle->producto->nombre }} </td>
                             <td> {{ $detalle->cantidad }} </td>
                             <td> $ {{ $detalle->precio }} </td>
                         </tr>

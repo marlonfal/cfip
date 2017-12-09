@@ -15,11 +15,13 @@ class CreateProductosTable extends Migration
     {
         Schema::create('productos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombre_producto');
-            $table->double('precio_por_gramo');
+            $table->string('nombre');
+            $table->double('precioventagramo');
+            $table->double('preciocompragramo');
             $table->integer('cantidad');
             $table->double('gramos');
             $table->string('imagen');
+            $table->boolean('activo');
             $table->timestamps();
         });
     }

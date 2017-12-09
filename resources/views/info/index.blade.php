@@ -23,7 +23,7 @@
                     <center>
                         <img class="img-responsive" src="{{asset(Storage::url($producto->imagen))}}">
                         <div class="nombreproducto">
-                            <h3 class="nombreproducto">{{ $producto->nombre_producto }}</h3>
+                            <h3 class="nombreproducto">{{ $producto->nombre }}</h3>
                         </div>
                     </center>
                 </div>

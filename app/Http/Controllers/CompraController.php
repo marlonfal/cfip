@@ -59,6 +59,7 @@ class CompraController extends Controller
             $detalleCompra->save();
 
             $producto = Producto::where('id', '=', $request->select[$i])->first();
+            $producto->preciocompragramo = $request->preciodetalle[$i] / $request->pesodetalle[$i];
             $producto->cantidad += $request->cantidaddetalle[$i];
             $producto->gramos += $request->preciodetalle[$i];
             $producto->save();

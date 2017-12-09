@@ -19,11 +19,15 @@
                             </tr>
                             <tr>
                                 <td>Nombre </td>
-                                <td>{{$producto->nombre_producto}}</td>
+                                <td>{{$producto->nombre}}</td>
                             </tr>
                             <tr>
-                                <td>Precio por kilo:</td>
-                                <td>{{ $producto->precio_por_gramo * 1000 }}</td>
+                                <td>Precio de venta por kilo:</td>
+                                <td>{{ $producto->precioventagramo * 1000 }}</td>
+                            </tr>
+                            <tr>
+                                <td>Precio de compra por kilo:</td>
+                                <td>{{ $producto->preciocompragramo * 1000}}</td>
                             </tr>
                             <tr>
                                 <td>Cantidad disponible:</td>
@@ -32,6 +36,16 @@
                             <tr>
                                 <td>Gramos disponibles:</td>
                                 <td>{{ $producto->gramos }}</td>
+                            </tr>
+                            <tr>
+                                <td>Se vende actualmente:</td>
+                                <td>
+                                    @if ($producto->activo == 1)
+                                        Sí
+                                    @else
+                                        No 
+                                    @endif
+                                </td>
                             </tr>
                             <tr>
                                 <td colspan="2">

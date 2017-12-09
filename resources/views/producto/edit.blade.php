@@ -13,13 +13,16 @@
                     {!! Form::open(['route' => ['producto.update', $producto], 'method' => 'PATCH', 'enctype' => 'multipart/form-data']) !!}
 
                         <div class="form-group">
-                            {!! Form::label('nombre_producto', 'Nombre del producto') !!}
-                            {!! Form::text('nombre_producto', $producto->nombre_producto, ['class' => 'form-control']) !!}
+                            {!! Form::label('nombre', 'Nombre del producto') !!}
+                            {!! Form::text('nombre', $producto->nombre, ['class' => 'form-control']) !!}
                         </div>
-
                         <div class="form-group">
-                            {!! Form::label('precio_por_gramo', 'Precio por kilo') !!}
-                            {!! Form::number('precio_por_gramo', $producto->precio_por_gramo * 1000, ['class' => 'form-control']) !!}
+                            {!! Form::label('precioventagramo', 'Precio de venta por kilo') !!}
+                            {!! Form::number('precioventagramo', $producto->precioventagramo * 1000, ['class' => 'form-control']) !!}
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('preciocompragramo', 'Precio de compra por kilo') !!}
+                            {!! Form::number('preciocompragramo', $producto->preciocompragramo * 1000, ['class' => 'form-control']) !!}
                         </div>
                         <div class="form-group">
                             {!! Form::label('cantidad', 'Cantidad') !!}
@@ -28,6 +31,23 @@
                         <div class="form-group">
                             {!! Form::label('gramos', 'Gramos') !!}
                             {!! Form::number('gramos', $producto->gramos, ['class' => 'form-control', 'required' => 'required', 'min' => '0']) !!}
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('activo', 'Se vende actualmente: ') !!}
+                            <br>
+                            @if ($producto->activo == 1)
+                            {!! Form::label('si', 'Sí') !!}
+                            {!! Form::radio('activo', '1', true) !!}
+                            &nbsp;
+                            {!! Form::label('no', 'No') !!}
+                            {!! Form::radio('activo', '0') !!}
+                            @else
+                            {!! Form::label('si', 'Sí') !!}
+                            {!! Form::radio('activo', '1') !!}
+                            &nbsp;
+                            {!! Form::label('no', 'No') !!}
+                            {!! Form::radio('activo', '0', true) !!}
+                            @endif
                         </div>
                         <div>
                             {!! Form::label('imagen', 'Imagen') !!}

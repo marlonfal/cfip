@@ -12,59 +12,73 @@ class ProductosTableSeeder extends Seeder
     public function run()
     {
         DB::table('productos')->insert([
-            'nombre_producto' => 'Pernil',
-            'precio_por_gramo' => 6.28,
+            'nombre' => 'Pernil',
+            'precioventagramo' => 6.28,
+            'preciocompragramo' => 400,
             'imagen' => 'muslo.jpg',
             'cantidad' => 20,
             'gramos' => 20000,
+            'activo' => 1,
         ]);
              
         DB::table('productos')->insert([
-            'nombre_producto' => 'Alas',
-            'precio_por_gramo' => 5,
+            'nombre' => 'Alas',
+            'precioventagramo' => 5,
+            'preciocompragramo' => 400,
             'imagen' => 'ala.jpg',
             'cantidad' => 18,
             'gramos' => 18000,
+            'activo' => 1,
         ]);
 
         DB::table('productos')->insert([
-            'nombre_producto' => 'Pechuga',
-            'precio_por_gramo' => 10,
+            'nombre' => 'Pechuga',
+            'precioventagramo' => 10,
+            'preciocompragramo' => 400,
             'imagen' => 'pechuga.jpg',
             'cantidad' => 13,
             'gramos' => 12567,
+            'activo' => 1,
         ]);
 
         DB::table('productos')->insert([
-            'nombre_producto' => 'Pollo Entero',
-            'precio_por_gramo' => 8,
+            'nombre' => 'Pollo Entero',
+            'precioventagramo' => 8,
+            'preciocompragramo' => 400,
             'imagen' => "polloentero.png",
             'cantidad' => 17,
             'gramos' => 12456,
+            'activo' => 1,
         ]);
 
         DB::table('productos')->insert([
-            'nombre_producto' => 'Visceras',
-            'precio_por_gramo' => 5,
+            'nombre' => 'Visceras',
+            'precioventagramo' => 5,
+            'preciocompragramo' => 400,
             'imagen' => 'visceras.jpg',
             'cantidad' => 20,
             'gramos' => 20000,
+            'activo' => 1,
         ]);
 
         DB::table('productos')->insert([
-            'nombre_producto' => 'Corazones',
-            'precio_por_gramo' => 6,
+            'nombre' => 'Corazones',
+            'precioventagramo' => 6,
+            'preciocompragramo' => 400,
             'imagen' => 'corazones.jpg',
             'cantidad' => 18,
             'gramos' => 34890,
+            'activo' => 1,
         ]);
 
         DB::table('productos')->insert([
-            'nombre_producto' => 'Rabadilla',
-            'precio_por_gramo' => 6,
+            'nombre' => 'Rabadilla',
+            'precioventagramo' => 6,
+            'preciocompragramo' => 400,
             'imagen' => 'rabadilla.jpg',
             'cantidad' => 4,
             'gramos' => 5000,
+            'activo' => 1,
         ]);
     }
 }

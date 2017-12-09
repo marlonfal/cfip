@@ -62,7 +62,7 @@
                         @foreach($detalles as $detalle)
                         <tr align="center">
                             <td><b> {{ $detalle->id_detalle }} </b></td>
-                            <td colspan="2"><b> {{ $detalle->producto->nombre_producto}} </b></td>
+                            <td colspan="2"><b> {{ $detalle->producto->nombre}} </b></td>
                             <td width="60"><b> {{ $detalle->cantidad }} </b></td>
                         </tr>
                         @endforeach

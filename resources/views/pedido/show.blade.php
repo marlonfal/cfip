@@ -77,7 +77,7 @@
                             <tr align="center">
                                 <td>{{ $detalle->id_detalle }}</td>
                                 <td>
-                                    <label>{{ $detalle->producto->nombre_producto }} </label> 
+                                    <label>{{ $detalle->producto->nombre }} </label> 
                                 </td>
                                 <td><b> {{ $detalle->cantidad }} </b></td>
                             </tr>

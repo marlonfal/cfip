@@ -19,7 +19,8 @@ class BalanceController extends Controller
             $compras = Compra::whereBetween('fecha', array($request->fechainicio, $request->fechafinal))->sum('total');
             $gastos = Gasto::whereBetween('fecha', array($request->fechainicio, $request->fechafinal))->sum('total');
         }
+        $tgastos = Gasto::orderBy('total', 'DESC')->get();
 
-        return view('balance.index', compact('ventas', 'compras', 'gastos', 'lcompras'));
+        return view('balance.index', compact('ventas', 'compras', 'gastos', 'lcompras', 'tgastos'));
     }
 }

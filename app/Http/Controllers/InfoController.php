@@ -17,12 +17,12 @@ class InfoController extends Controller
     }
     public function inicio()
     {
-        $productos = Producto::orderBy('cantidad', 'ASC')->take(5)->get();
+        $productos = Producto::orderBy('cantidad', 'ASC')->where('activo', '=', 1)->take(5)->get();
         $pedidospendientes = Pedido::orderBy('fecha_entrega', 'DESC')->with('detalles')->where('estado', '=', 'Pendiente')->take(6)->get();
         foreach($pedidospendientes as $pedido){
             foreach($pedido->detalles as $pd){
                 $producto = Producto::where('id', '=', $pd->id_tipo_producto)->first();
-                $pd->id_tipo_producto = $producto->nombre_producto;
+                $pd->id_tipo_producto = $producto->nombre;
                 $pd->cantidaddisponible = $producto->cantidad;
             }
         }
@@ -31,7 +31,7 @@ class InfoController extends Controller
         foreach($pedidosencamino as $pedido){
             foreach($pedido->detalles as $pd){
                 $producto = Producto::where('id', '=', $pd->id_tipo_producto)->first();
-                $pd->id_tipo_producto = $producto->nombre_producto;
+                $pd->id_tipo_producto = $producto->nombre;
                 $pd->cantidaddisponible = $producto->cantidad;
             }
         }
@@ -40,14 +40,8 @@ class InfoController extends Controller
         return view('inicio', compact('facturas', 'pedidospendientes', 'productos', 'pedidosencamino'));
     }
 
-    public function configuracion()
-    {
-        return view('info.configuracion');
+    public function manual(){
+        return view('manual');
     }
-
-    public function contraseña(){
-        return view('auth.passwords.reset');
-    }
-
     
 }

@@ -8,6 +8,7 @@
             <h2>
                 <b>Listado de Productos</b>
                 <a href="{{route('producto.create')}}" class="btn btn-success pull-right"><b>Nuevo </b> (+)</a>
+                <a href="{{ route('productoslist') }}" target="_blank" class="btn btn-default" title="Imprime un listado con la lista de productos"> <i class="fa fa-print fa-2x" aria-hidden="true"></i></a>
             <h2>
         </div>
         <div class="panel-body"> 
@@ -34,13 +35,15 @@
                     <tbody>
                         @foreach($productos as $producto)
                         @if($producto->cantidad <= 5)
-                            <tr style="background-color: #FF6347;">
+                            <tr class="menos5productos">
+                        @elseif($producto->cantidad <= 10)
+                            <tr class="menos10productos">
                         @else
                             <tr>
                         @endif
                                 <td>{{ $producto->id }}</td>
-                                <td>{{ $producto->nombre_producto }}</td>
-                                <td>{{ $producto->precio_por_gramo *1000 }}</td>
+                                <td><b> {{ $producto->nombre }}</b></td>
+                                <td>{{ $producto->precioventagramo *1000 }}</td>
                                 <td>{{ $producto->cantidad }}</td>
                                 <td>{{ $producto->gramos }}</td>
                                 <td width="50">

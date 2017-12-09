@@ -44,7 +44,7 @@
         @foreach($detalles as $detalle)
             <tr>
                 <td>
-                    <label>{{ $detalle->producto->nombre_producto }}</label>
+                    <label>{{ $detalle->producto->nombre }}</label>
                 </td>
                 <td>{{ $detalle->peso_gramo }} /  {{ $detalle->cantidad }}</td>
                 <td>${{ $detalle->precio }}</td>

@@ -17,9 +17,11 @@ Route::get('compra/productosc', 'ProductoController@getProductos')->name('produc
 Route::get('factura/productos', 'ProductoController@getProductos')->name('productos');
 Route::get('factura/producto/{id}', 'ProductoController@getProducto');
 Route::get('/imprimirfactura/{factura}', 'FacturaController@print')->name('imprimirfactura');
+Route::get('/productoslist', 'ProductoController@printlist')->name('productoslist');
 
 Route::get('/', 'InfoController@index');
 Route::get('/inicio', 'InfoController@inicio')->name('inicio');
+Route::get('/manual', 'InfoController@manual')->name('manual');
 Route::get('/configuracion', 'InfoController@configuracion');
 Route::group(['middleware' => 'auth'], function(){
     Route::resource('producto', 'ProductoController');

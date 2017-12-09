@@ -78,21 +78,23 @@
                     </h3>
                 </div>
                 <div class="panel-body" style="padding: 0;">
-                    <table class="table table-bordered" style="margin: 0px;">
+                    <table class="table table-bordered table-hover" style="margin: 0px;">
                             <thead>
                                 <th>Nombre</th>
-                                <th>Cantidad disponible (u)</th>
+                                <th>Unidades disponibles</th>
                                 <th class="hidden-xs">Opciones</th>
                             </thead>
                             <tbody>
                                 @foreach($productos as $producto)
                                 @if($producto->cantidad <= 5)
-                                    <tr style="background-color: yellow;">
+                                    <tr class="menos5productos">
+                                @elseif($producto->cantidad <= 10)
+                                    <tr class="menos10productos">
                                 @else
                                     <tr>
                                 @endif
 
-                                        <td><b> {{ $producto->nombre_producto }} </b></td>
+                                        <td><b> {{ $producto->nombre }} </b></td>
                                         <td>{{ $producto->cantidad }}</td>
                                         <td align="center" style="padding: 0;">
                                             <a href="{{ route('producto.show', $producto->id) }}" class="btn btn-success">

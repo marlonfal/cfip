@@ -52,23 +52,32 @@
             </ul>
             <ul class="nav navbar-nav">
                 <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ver <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a href="{{ route('factura.index') }}">Ventas</a></li>
-                    <li><a href="{{ route('pedido.index') }}">Pedidos </a></li>
-                    <li><a href="{{ route('compra.index') }}">Compras </a></li>
-                    <li><a href="{{ route('gasto.index')}}">Gastos </a></li>
-                    <li><a href="{{ route('producto.index') }}">Inventario </a></li>
-                    <li><a href="{{ route('producto.index') }}">Productos</a></li>
-                    @role('admin')
-                    <li role="separator" class="divider"></li>
-                    <li><a href="{{ route('balance') }}">Balance</a></li>
-                    <li><a href="{{ route('retroalimentacion.index') }}">Retroalimentaciones</a></li>
-                    <li><a href="{{ url('admin/users') }}"> Usuarios </a></li>
-                    <li><a href="{{ route('infogeneral.show', 1) }}">Información general</a></li>
-                    @endrole
-                </ul>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ver <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ route('factura.index') }}">Ventas</a></li>
+                        <li><a href="{{ route('pedido.index') }}">Pedidos </a></li>
+                        <li><a href="{{ route('compra.index') }}">Compras </a></li>
+                        <li><a href="{{ route('gasto.index')}}">Gastos </a></li>
+                        <li><a href="{{ route('producto.index') }}">Inventario </a></li>
+                        <li><a href="{{ route('producto.index') }}">Productos</a></li>
+                        @role('admin')
+                        <li role="separator" class="divider"></li>
+                        <li><a href="{{ route('retroalimentacion.index') }}">Retroalimentaciones</a></li>
+                        <li><a href="{{ url('admin/users') }}"> Usuarios </a></li>
+                        <li><a href="{{ route('infogeneral.show', 1) }}">Información general</a></li>
+                        @endrole
+                    </ul>
                 </li>
+                @role('admin')
+                <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Balances <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ route('factura.index') }}">General</a></li>
+                        <li><a href="{{ route('pedido.index') }}">Por productos </a></li>
+                        <li><a href="{{ route('compra.index') }}">Por producto </a></li>
+                    </ul>
+                </li>
+                @endrole
                 <li>
                    <a> {{ \Carbon\Carbon::now()->subHours(5)  }} </a>
                 </li>
@@ -107,6 +116,9 @@
                         </li>
                         <!--<li><a href="{{ url('')}}">Cambiar contraseña</a></li>-->
                     </ul>
+                </li>
+                <li style="padding: 0px; margin: 0px">
+                    <a href="{{route('manual')}}" style="padding: 10px; margin: 0px"><i class="fa fa-question-circle-o fa-2x"></i></a>
                 </li>
             </ul>
             </div><!-- /.navbar-collapse -->

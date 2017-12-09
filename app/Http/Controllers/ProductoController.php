@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Producto;
+use App\Compra;
 use Illuminate\Http\Request;
+use PDF;
 
 class ProductoController extends Controller
 {
@@ -14,7 +16,7 @@ class ProductoController extends Controller
      */
     public function index(Request $request)
     {
-        $productos = Producto::nombre($request->get('nombre'))->orderBy('id', 'DESC')->paginate(10);
+        $productos = Producto::nombre($request->get('nombre'))->orderBy('activo', 'DESC')->orderBy('cantidad', 'ASC')->paginate(10);
         return view('producto.index', compact('productos'));
     }
 
@@ -51,27 +53,27 @@ class ProductoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        $this->validate($request, [
-            'imagen' => 'image'
-        ]);
-        if(Producto::where('nombre_producto', '=', $request->nombre_producto)->count() > 0){
-            $producto = Producto::where('nombre_producto', '=', $request->nombre_producto)->get();
-
+    {   
+        
+        if(Producto::where('nombre', '=', $request->nombre)->count() > 0){
+            $producto = Producto::where('nombre', '=', $request->nombre)->get();
             return redirect()->route('producto.create')->with('info', 'Ya existe un producto con ese nombre!');
         }else{
+            $this->validate($request, [
+                'imagen' => 'image'
+            ]);
             $producto = new Producto();
             $producto->imagen = $request->file('imagen')->store('public');
-            $producto->nombre_producto = $request->nombre_producto;
-            $producto->precio_por_gramo = $request->precio_por_gramo / 1000;
+            $producto->nombre = $request->nombre;
+            $producto->precioventagramo = $request->precioventagramo / 1000;
             $producto->cantidad = $request->cantidad;
             $producto->gramos = $request->gramos;
-
+            $producto->preciocompragramo = $request->preciocompragramo / 1000;
+            $producto->activo = $request->activo;
             $producto->save();
-            return redirect()->route('producto.show', $producto)->with('info', 'Se creó del producto');
+            return redirect()->route('producto.show', $producto)->with('info', 'Se creó el producto');
         }
     }
-
     /**
      * Display the specified resource.
      *
@@ -110,10 +112,12 @@ class ProductoController extends Controller
             $producto->imagen = $request->file('imagen')->store('public');
         }
         
-        $producto->nombre_producto = $request->nombre_producto;
-        $producto->precio_por_gramo = ($request->precio_por_gramo / 1000);
+        $producto->nombre = $request->nombre;
+        $producto->precioventagramo = ($request->precioventagramo / 1000);
         $producto->cantidad = $request->cantidad;
         $producto->gramos = $request->gramos;
+        $producto->preciocompragramo = $request->preciocompragramo / 1000;
+        $producto->activo = $request->activo;
 
         $producto->save();
         return redirect()->route('producto.show', $producto)->with('info', 'Se actualizó la información del producto');
@@ -129,5 +133,11 @@ class ProductoController extends Controller
     {
         $producto->delete();
         return redirect()->route('producto.index')->with('info', 'Fue eliminado exitosamente');
+    }
+
+    public function printlist(){
+        $productos = Producto::orderBy('activo', 'DESC')->orderBy('cantidad', 'ASC')->get();
+        $pdf = PDF::loadView('pdf.productoslist', ['productos' => $productos]);
+        return $pdf->stream();
     }
 }
