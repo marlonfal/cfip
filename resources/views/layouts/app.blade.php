@@ -72,7 +72,7 @@
                 <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Balances <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ route('factura.index') }}">General</a></li>
+                        <li><a href="{{ route('balance') }}">General</a></li>
                         <li><a href="{{ route('pedido.index') }}">Por productos </a></li>
                         <li><a href="{{ route('compra.index') }}">Por producto </a></li>
                     </ul>
