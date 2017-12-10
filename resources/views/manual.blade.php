@@ -3,7 +3,10 @@
 	<div class="col-md-10 col-md-offset-1">
 		<div class="panel panel-primary">
 			<div class="panel-heading">
-				<h1>Manual de usuario</h1>
+				<h1>Manual de usuario
+					<a href="{{ asset('/pdf/Manual_Usuario.pdf') }}" class="btn btn-default pull-right" title="Ver en PDF" target="_blank">
+					<i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></a>
+				</h1>
 			</div>
 			<table class="table table-bordered" style="margin: 0px;">
 				<tbody>

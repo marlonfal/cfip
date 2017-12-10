@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Pedido;
+use App\Factura;
 use App\Producto;
+use App\InfoGeneral;
 use App\DetallePedido;
 use Illuminate\Http\Request;
+use Auth;
 
 class PedidoController extends Controller
 {
@@ -14,9 +17,17 @@ class PedidoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $pedidos = Pedido::orderBy('id', 'DESC')->paginate(10);
+        $pedidos = Pedido::estado($request->get('estado'))->orderBy('fecha_entrega', 'DESC')->paginate(10);
+        foreach($pedidos as $pedido){
+            foreach($pedido->detalles as $pd){
+                $producto = Producto::where('id', '=', $pd->id_tipo_producto)->first();
+                $pd->id_tipo_producto = $producto->nombre;
+                $pd->cantidaddisponible = $producto->cantidad;
+            }
+        }
+        
         return view('pedido.index', compact('pedidos'));
     }
 
@@ -43,6 +54,8 @@ class PedidoController extends Controller
         $pedido->fecha_entrega = $request->fecha_entrega;
         $pedido->hora_entrega = $request->hora_entrega;
         $pedido->nombre = $request->nombre;
+        $pedido->telefono = $request->telefono;
+        $pedido->id_factura = 0;
         $pedido->direccion = $request->direccion;
 
         $pedido->save();
@@ -95,12 +108,13 @@ class PedidoController extends Controller
      */
     public function update(Request $request, Pedido $pedido)
     {
+        
         $pedido->estado = $request->estado;
         $pedido->fecha_entrega = $request->fecha_entrega;
         $pedido->hora_entrega = $request->hora_entrega;
         $pedido->nombre = $request->nombre;
         $pedido->direccion = $request->direccion;
-
+        
         $pedido->save();
         return redirect()->route('pedido.show', $pedido)->with('info', 'Se actualizó el pedido');
     }
@@ -113,7 +127,7 @@ class PedidoController extends Controller
      */
     public function destroy(Pedido $pedido)
     {
-        //
+        
     }
 
     public function cancelar(Pedido $pedido){
@@ -127,8 +141,20 @@ class PedidoController extends Controller
         $pedido->estado = 'En camino';
 
         $pedido->save();
-        //return redirect()->action('InfoController@inicio');
         return redirect()->route('inicio')->with('infopedidopendiente', 'Se despachó el pedido');
+    }
+
+    public function entregado(Pedido $pedido){
+        $pedido->estado = 'Entregado';
+        $pedido->save();
+
+        return redirect()->route('inicio')->with('infopedidoentregado', 'Se entregó el pedido');
+    }
+
+    public function factura(Pedido $pedido){
+        $infogeneral = InfoGeneral::first();
+        $detalles = DetallePedido::orderBy('id_detalle', 'ASC')->where('id_pedido', '=', $pedido->id)->with('producto')->get();
+        return view('pedido.factura', compact('detalles', 'pedido', 'infogeneral'));
     }
 
 

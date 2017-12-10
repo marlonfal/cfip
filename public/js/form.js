@@ -37,7 +37,7 @@ function addProducto(){
         
         tr.setAttribute('class', 'form-inline');
         tr.innerHTML = '<td width="60" align="center">'+a
-        +'</td> <td colspan="1"><select required id="select'+a+'" name="select[]" onchange="changeSelect('+a+')" placeholder="Seleccione" class="form-control">'
+        +'</td> <td colspan="1"><select required style="width: 100%;" id="select'+a+'" name="select[]" onchange="changeSelect('+a+')" placeholder="Seleccione" class="form-control">'
         + options + '</select> </td>'+
         '<td width="60">'+
         '<input type="number" disabled required id="pesodetalle'+a+'" min="0" name="pesodetalle[]" onchange="updatePrecios('+a+')" style="width: 90px;" class="form-control"/>'+
@@ -46,7 +46,7 @@ function addProducto(){
         '<input type="number" disabled required id="cantidaddetalle'+a+'" onchange="cantidadPositiva('+a+')" min="0" name="cantidaddetalle[]" style="width: 90px;" class="form-control"/>'+
         '</td>'+
         '<td align="center">'+
-        '<input type="number" id="preciodetalle'+a+'" readonly="readonly" name="preciodetalle[]" placeholder="0" style="width: 90px;" class="form-control"/>'+
+        '<input type="number" style="width: 100%;" id="preciodetalle'+a+'" readonly="readonly" name="preciodetalle[]" placeholder="0" style="width: 90px;" class="form-control"/>'+
         '</td>'+
         '<td><a id="btn-borrar' + a + '" class="btn btn-danger" onclick="deleteProducto(' + a + ')"> <i class="fa fa-minus fa-3" aria-hidden="true"></a></td>';
         document.getElementById('productosfactura').appendChild(tr);document.getElementById('productosfactura').appendChild(tr);
@@ -109,7 +109,7 @@ function updatePrecios(id){
             $('#pesodetalle' + id).val(peso);
         }
         var precio = precioporgramo * peso;
-        document.getElementById('preciodetalle'+id).value = precio;
+        document.getElementById('preciodetalle'+id).value = precio.toFixed(0);
         calcularTotal();
     });
 }
@@ -220,7 +220,7 @@ function addProductoPedido(){
 
         tr.setAttribute('class', 'form-inline');
         tr.innerHTML = '<td width="60" align="center">'+a
-        +'</td> <td colspan="1"><select id="select'+a+'" required="required" name="select[]" onchange="changeSelectPedido('+a+')" placeholder="Seleccione" class="form-control">'
+        +'</td> <td colspan="1"><select id="select'+a+'" required="required" name="select[]" onchange="changeSelectPedido('+a+')" style="width: 100%;" placeholder="Seleccione" class="form-control">'
         + options + '</select> </td>'+
         '<td width="60">'+
         '<input type="number" min="1" required disabled id="cantidaddetalle'+a+'" name="cantidad[]" placeholder="0" style="width: 90px;"class="form-control"/>'+

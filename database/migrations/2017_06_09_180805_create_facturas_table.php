@@ -21,6 +21,7 @@ class CreateFacturasTable extends Migration
             $table->integer('subtotal');
             $table->integer('iva');
             $table->integer('total');
+            $table->integer('id_pedido');
             $table->timestamps();
         });
     }

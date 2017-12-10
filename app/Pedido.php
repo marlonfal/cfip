@@ -9,11 +9,13 @@ class Pedido extends Model
 
     protected $table = 'pedido';
     protected $fillable =  ['id',
+                            'direccion',
+                            'telefono',
                             'hora_entrega', 
                             'fecha_entrega',
                             'estado',
                             'nombre',
-                            'detalles'];
+                            'id_factura'];
                             
     public function producto()
     {
@@ -23,5 +25,13 @@ class Pedido extends Model
     public function detalles()
     {
         return $this->hasMany('App\DetallePedido', 'id_pedido');
+    }
+
+    public function scopeEstado($query, $estado){
+        $estados = array('Pendiente' => 'Pendiente', 'En camino' => 'En camino', 'Entregado' => 'Entregado', 'Cancelado' => 'Cancelado');
+
+        if($estados != "" && isset($estados[$estado])){
+            $query->where('estado', '=', $estado);
+        }
     }
 }

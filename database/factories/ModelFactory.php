@@ -41,7 +41,8 @@ $factory->define(App\Factura::class, function (Faker\Generator $faker) {
         'comprador' => $faker->name,
         'subtotal' => $faker->numberBetween(1000, 80000),
         'iva' => $faker->numberBetween(1000, 20000),
-        'total' => $faker->numberBetween(1000, 100000),      
+        'total' => $faker->numberBetween(1000, 100000),
+        'id_pedido' => 0,      
     ];
 });
 
@@ -85,8 +86,10 @@ $factory->define(App\Pedido::class, function (Faker\Generator $faker) {
     return [
         'fecha_entrega' => $faker->dateTimeBetween($startDate = '-1 years', $endDate = 'now', $timezone = date_default_timezone_get()),
         'Hora_entrega' => '12:08',
+        'telefono' => $faker->phoneNumber,
         'nombre' => $faker->name,
         'direccion' => $faker->name,
-        'estado' => $faker->randomElement($array = array ('En camino','Pendiente','Entregado')),  
+        'estado' => $faker->randomElement($array = array ('En camino','Pendiente','Entregado')),
+        'id_factura' => 0,
     ];
 });

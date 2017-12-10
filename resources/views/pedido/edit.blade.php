@@ -60,10 +60,11 @@
                             <td><b> Cantidad </b></td>
                         </tr>
                         @foreach($detalles as $detalle)
+                        {!! Form::hidden('cantidaddetalles', $loop->count, ['class' => 'form-control', 'hidden']) !!}
                         <tr align="center">
-                            <td><b> {{ $detalle->id_detalle }} </b></td>
+                            <td><b> {{ $detalle->id_detalle }} {!! Form::hidden('iddetalle'.$loop->iteration, $detalle->id, ['class' => 'form-control', 'hidden']) !!}</b></td>
                             <td colspan="2"><b> {{ $detalle->producto->nombre}} </b></td>
-                            <td width="60"><b> {{ $detalle->cantidad }} </b></td>
+                            <td width="60"><b>   {!! Form::text('cantidaddetalle'.$loop->iteration, $detalle->cantidad, ['class' => 'form-control']) !!}  </b></td>
                         </tr>
                         @endforeach
                     </tbody>

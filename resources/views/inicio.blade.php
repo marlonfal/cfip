@@ -15,7 +15,7 @@
 						</a>
 					</h3>
 					@if(Session::has('infopedidopendiente'))
-					<div class="animatedParent">
+					<div class="animatedParent animateOnce">
 						<div class="alert alert-info animated bounceInRight" style="padding: 5px; margin: 0;" align="center">
 							<button type="button" class="close" data-dismiss="alert">
 								<span>&times;</span>
@@ -33,17 +33,17 @@
 								<td colspan="5">
 									<div class="accordion-container">
 										<b class="accordion-titulo">
-											<b> {{ $pedido->nombre . ' | ' . $pedido->fecha_entrega . ' - ' . $pedido->hora_entrega }}</b>
+											{{ $pedido->nombre . ' | ' . $pedido->fecha_entrega . ' - ' . $pedido->hora_entrega . ' | ' . $pedido->telefono}}
 											<span class="toggle-icon"></span>
 										</b>
 										<div class="accordion-content">
 											<div id="pedido{{$loop->iteration}}" style="padding: 0;">
-												<table class="table table-bordered" style="margin: 0px;">
+												<table class="table table-bordered" style="margin: 0px; text-align: center;">
 													<thead>
 														<tr>
 															<th>Producto</th>
-															<th>Cantidad</th>
-															<th>Cantidad disponible</th>
+															<th>Unidades pedido</th>
+															<th>Unidades disponibles</th>
 														</tr>
 													</thead>
 													<tbody>
@@ -58,15 +58,22 @@
 												</table>
 											</div>
 											<span></span>
-											<a href="{{ route('pedidoencamino', $pedido->id) }}" class="btn btn-success pull-right">
+											<a href="{{ route('pedidoencamino', $pedido->id) }}" class="btn btn-primary pull-right">
 												Enviar
 												<i class="fa fa-motorcycle"></i>
 											</a>
 											<span class="pull-right">&nbsp;</span>
-											<a href="{{ route('pedido.edit', $pedido->id) }}" class="btn btn-warning pull-right">
-												Editar
-												<i class="fa fa-pencil-square-o"></i>
+											@if($pedido->id_factura == 0)
+											<a href="{{ route('pedido/factura/', $pedido->id) }}" class="btn btn-success pull-right">
+												Facturar
+												<i class="fa fa-pencil"></i>
 											</a>
+											@else
+											<a target="_blank" href="{{ route('imprimirfactura', $pedido->id_factura) }}" class="btn btn-success pull-right">
+												Ver factura
+												<i class="fa fa-eye"></i>
+											</a>
+											@endif
 										</div>
 									</div>
 								</td>
@@ -139,13 +146,13 @@
 							<i class="fa fa-eye"></i>
 						</a>
 					</h3>
-					@if(Session::has('infopedidoencamino'))
-					<div class="animatedParent">
+					@if(Session::has('infopedidoentregado'))
+					<div class="animatedParent animateOnce">
 						<div class="alert alert-info animated bounceInRight" style="padding: 5px; margin: 0;" align="center">
 							<button type="button" class="close" data-dismiss="alert">
 								<span>&times;</span>
 							</button>
-							<b> {{Session::get('infopedido')}} </b>
+							<b> {{Session::get('infopedidoentregado')}} </b>
 						</div>
 					</div>
 					@endif
@@ -158,9 +165,9 @@
 								<td colspan="5">
 									<div class="accordion-container">
 										<b class="accordion-titulo">
-											<b> {{ $pedido->nombre . ' | ' . $pedido->fecha_entrega . ' - ' . $pedido->hora_entrega }}</b>
-											<span class="toggle-icon"></span>
-										</b>
+											{{ $pedido->nombre . ' | ' . $pedido->fecha_entrega . ' - ' . $pedido->hora_entrega }}
+											<span class="toggle-icon"></span></b>
+										
 										<div class="accordion-content">
 											<div id="pedido{{$loop->iteration}}" style="padding: 0;">
 												<table class="table table-bordered" style="margin: 0px;">
@@ -183,16 +190,23 @@
 												</table>
 											</div>
 											<span></span>
-											<a href="{{ route('pedidoencamino', $pedido->id) }}" class="btn btn-success pull-right">
+											<a href="{{ route('pedidoentregado', $pedido->id) }}" class="btn btn-primary pull-right">
 												Entregado
 												<i class="fa fa-check-square-o" aria-hidden="true"></i>
 												</i>
 											</a>
 											<span class="pull-right">&nbsp;</span>
-											<a href="{{ route('pedido.edit', $pedido->id) }}" class="btn btn-warning pull-right">
-												Editar
-												<i class="fa fa-pencil-square-o"></i>
+											@if($pedido->id_factura == 0)
+											<a href="{{ route('pedido/factura/', $pedido->id) }}" class="btn btn-success pull-right">
+												Facturar
+												<i class="fa fa-pencil"></i>
 											</a>
+											@else
+											<a target="_blank" href="{{ route('imprimirfactura', $pedido->id_factura) }}" class="btn btn-success pull-right">
+												Ver factura
+												<i class="fa fa-eye"></i>
+											</a>
+											@endif
 										</div>
 									</div>
 								</td>

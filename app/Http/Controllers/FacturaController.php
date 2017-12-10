@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Factura;
 use App\DetalleFactura;
 use App\Producto;
+use App\Pedido;
 use Illuminate\Http\Request;
 use PDF;
 use App\InfoGeneral;
@@ -51,7 +52,14 @@ class FacturaController extends Controller
         $factura->subtotal = $request->subtotal;
         $factura->iva = $request->ivacompra;
         $factura->total = $request->total;
+        $factura->id_pedido = $request->id_pedido;
         $factura->save();
+
+        if($request->id_pedido != 0){
+            $pedido = Pedido::where('id', '=', $request->id_pedido)->first();
+            $pedido->id_factura = $factura->id;
+            $pedido->save();
+        }
    
         for($i = 0; $i < $request->cantidaddetalles; $i++){
                 //Select es el producto
@@ -75,7 +83,6 @@ class FacturaController extends Controller
                     $producto->gramos = 0;
                 }
                 $producto->save();
-            
         }
         
         return redirect()->route('factura.show', $factura)->with('info', 'Se guardó la venta');
@@ -142,5 +149,14 @@ class FacturaController extends Controller
         $pdf = PDF::loadView('pdf.factura', ['detalles' => $detalles, 'factura' => $factura, 'height' => $height, 'nit' => $nit]);
         $numero = $factura->id;
         return $pdf->stream();
+    }
+    public function download(Factura $factura){
+        $height = 300;
+        $nit = InfoGeneral::first()->nit;
+        $detalles = DetalleFactura::orderBy('id_detalle', 'ASC')->with('producto')->where('id_factura', '=', $factura->id)->get();
+        $height += sizeOf($detalles)*50;
+        $pdf = PDF::loadView('pdf.factura', ['detalles' => $detalles, 'factura' => $factura, 'height' => $height, 'nit' => $nit]);
+        $numero = $factura->id;
+        return $pdf->download('factura.pdf');
     }
 }

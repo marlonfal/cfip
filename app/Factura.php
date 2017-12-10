@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Factura extends Model
 {
-    protected $fillable = ['comprador', 'total', 'fecha'];
+    protected $fillable = ['comprador', 'total', 'fecha', 'id_pedido', 'vendedor', 'subtotal', 'iva'];
 
     public function scopeId($query, $id){
         if(trim($id) != ""){
