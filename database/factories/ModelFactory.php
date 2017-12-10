@@ -42,7 +42,8 @@ $factory->define(App\Factura::class, function (Faker\Generator $faker) {
         'subtotal' => $faker->numberBetween(1000, 80000),
         'iva' => $faker->numberBetween(1000, 20000),
         'total' => $faker->numberBetween(1000, 100000),
-        'id_pedido' => 0,      
+        'id_pedido' => 0,
+        'estado' => 'Valida',     
     ];
 });
 

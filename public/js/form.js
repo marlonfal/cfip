@@ -141,7 +141,6 @@ function confirmarventa(){
     var nombre = document.getElementById('comprador').value;
     var fecha = document.getElementById('fecha').value;
     if(!nombre || !fecha){
-        console.log(1);
         r = 1;
         $.alert({
             icon: 'fa fa-warning',
@@ -152,7 +151,6 @@ function confirmarventa(){
 
     }
     if(r == 0){
-        
         for(i = 1; i <= a; i++){
             if($('#detalle' + i).length){
                 console.log(2);
@@ -173,14 +171,16 @@ function confirmarventa(){
     }
     if(r == 0){
         $.confirm({
-            type: 'green',
+            type: 'orange',
             animation: 'zoom',
+            columnClass: 'col-md-6 col-md-offset-3',
             icon: 'fa fa-question-circle-o',        
             title: 'Confirmar la venta',
-            content: '¿Está seguro de guardar la venta? NO podrá modificarla después',
+            content: '¿Está seguro de guardar la venta? NO podrá modificarla después.',
             buttons: {
                 Cancelar: {
                     btnClass: 'btn-danger',
+                    icon: 'fa fa-question-circle-o',  
                 },
                 Confirmar: {
                     btnClass: 'btn-success',
@@ -194,12 +194,6 @@ function confirmarventa(){
     r = 0;
 }
 
-function imprimir(id){
-    console.log(id);
-    $.get("imprimirfactura/"+id, function(response){
-        console.log(response);
-    });       
-}
 /*
  * PEDIDO - PEDIDO - PEDIDO - PEDIDO - PEDIDO - PEDIDO - PEDIDO - PEDIDO - PEDIDO - PEDIDO - 
 */
@@ -283,7 +277,8 @@ function confirmarpedido(){
             animation: 'zoom',
             icon: 'fa fa-question-circle-o',        
             title: 'Confirmar el pedido',
-            content: '¿Estás seguro de hacer el pedido?',
+            columnClass: 'col-md-6 col-md-offset-3',
+            content: '¿Estás seguro de hacer el pedido? NO podrás modificarlo después.',
             buttons: {
                 Cancelar: {
                     btnClass: 'btn-danger',
@@ -384,7 +379,8 @@ function confirmarcompra(){
     }
     if(r == 0){
         $.confirm({
-            type: 'green',
+            type: 'orange',
+            columnClass: 'col-md-6 col-md-offset-3',
             animation: 'zoom',
             icon: 'fa fa-question-circle-o',        
             title: 'Confirmar la compra',
@@ -488,7 +484,7 @@ function confirmargasto(){
     }
     if(r == 0){
         $.confirm({
-            type: 'green',
+            type: 'orange',
             animation: 'zoom',
             icon: 'fa fa-question-circle-o',        
             title: 'Confirmar el gasto',
@@ -526,4 +522,29 @@ $(function(){
           }
   
         });
-  });
+});
+
+function confirmarfnv(){
+
+    $.confirm({
+        type: 'red',
+        animation: 'zoom',
+        columnClass: 'col-md-6 col-md-offset-3',
+        draggable: true,
+        icon: 'fa fa-question-circle-o',        
+        title: 'Confirme que la venta NO es válida',
+        content: '¿Está seguro que la venta no es válida? NO podrá deshacer esta acción',
+        buttons: {
+            Cancelar: {
+                btnClass: 'btn-danger',
+            },
+            Confirmar: {
+                btnClass: 'btn-success',
+                action: function(){
+                    document.facturanovalida.submit();
+                } 
+            },
+        }
+    });
+    
+}

@@ -21,6 +21,7 @@ Route::get('factura/productos', 'ProductoController@getProductos')->name('produc
 Route::get('factura/producto/{id}', 'ProductoController@getProducto');
 Route::get('/imprimirfactura/{factura}', 'FacturaController@print')->name('imprimirfactura');
 Route::get('/descargarfactura/{factura}', 'FacturaController@download')->name('descargarfactura');
+Route::get('/facturanovalida/{factura}', 'FacturaController@novalida')->name('facturanovalida');
 Route::get('/productoslist', 'ProductoController@printlist')->name('productoslist');
 
 Route::get('/', 'InfoController@index');

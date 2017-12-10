@@ -35,7 +35,7 @@
                                 <td>{{ $factura->fecha }}</td>
                                 <td>{{ $factura->comprador }}</td>
                                 <td>{{ $factura->total }}</td>
-                                <td width="50" align="center" colspan="3">
+                                <td width="50" align="center" colspan="2">
                                     <a href="{{ route('factura.show', $factura->id) }}" class="btn btn-success">Ver</a>
                                 </td>
                             </tr>

@@ -21,7 +21,7 @@ class FacturaController extends Controller
     public function index(Request $request)
     {
         
-        $facturas = Factura::Id($request->get('id'))->comprador($request->get('comprador'))->orderBy('id', 'DESC')->paginate(15);
+        $facturas = Factura::Id($request->get('id'))->comprador($request->get('comprador'))->orderBy('id', 'DESC')->where('estado', '=', 'valida')->paginate(15);
         return view('factura.index', compact('facturas'));
     }
 
@@ -44,7 +44,6 @@ class FacturaController extends Controller
      */
     public function store(Request $request)
     {
-
         $factura = new Factura();
         $factura->fecha = $request->fecha;
         $factura->vendedor = $request->vendedor;
@@ -53,6 +52,7 @@ class FacturaController extends Controller
         $factura->iva = $request->ivacompra;
         $factura->total = $request->total;
         $factura->id_pedido = $request->id_pedido;
+        $factura->estado = 'Valida';
         $factura->save();
 
         if($request->id_pedido != 0){
@@ -141,6 +141,13 @@ class FacturaController extends Controller
         return redirect()->route('factura.index')->with('info', 'Fue eliminado exitosamente');
     }
 
+    public function novalida(Factura $factura){
+        $factura->estado = 'No valida';
+        $factura->save();
+
+        return redirect()->route('factura.index')->with('info', 'Se cambió el estado de la venta a "No válida"');
+    }
+
     public function print(Factura $factura){
         $height = 300;
         $nit = InfoGeneral::first()->nit;
@@ -150,6 +157,7 @@ class FacturaController extends Controller
         $numero = $factura->id;
         return $pdf->stream();
     }
+
     public function download(Factura $factura){
         $height = 300;
         $nit = InfoGeneral::first()->nit;
