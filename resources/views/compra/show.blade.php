@@ -6,7 +6,16 @@
         <div class="panel panel-primary">
             <div class="panel-heading">
                 @include('_mensaje')
-                <h1 align="center">Detalles de la compra #{{ $compra->id }}
+                <table width="100%">
+					<tr>
+						<td colspan="2">
+							<img src="{{ asset('img/logo.png') }}" class="img-responsive pull-right" alt="" height="100" width="100" style="padding-top: 0px; margin: 0px;">
+						</td>
+						<td>
+							<h1 align="left" class="pull-letf" style="padding-left: 0px; margin-left: 25px;">Detalles de la compra {{$compra->id}} </h1>
+						</td>
+					</tr>
+				</table>
                 </h1>
             </div>
             <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token" />
@@ -28,6 +37,9 @@
                                     {{ $compra->fecha }}
                                 </td>
                             </tr>
+                            <tr class="bg-success">
+								<td colspan="6" align="center"><b> Productos comprados </b></td>
+							</tr>
                             <tr class="bg-primary" align="center">
                                 <td width="60"><b> Número </b></td>
                                 <td colspan="2"><b>Producto </b></td>
@@ -47,7 +59,9 @@
                                     <td><b>$ {{ $detalle->precio }} </b></td>
                                 </tr>
                             @endforeach
-                            
+                            <tr class="bg-primary">
+								<td colspan="6" align="center"></td>
+							</tr>
                             <tr>
                                 <td colspan="5">
                                     <p align="right"><b> Total </b></p>
@@ -61,7 +75,8 @@
                 </div>
             </div>
             <div class="panel-footer">
-                <a href="{{ route('compra.index') }}" class="btn btn-default pull-left"><b> Volver a la lista </b></a>
+                <a href="{{ route('compra.index') }}" class="btn btn-default pull-left"><b> Ver todas
+                <i class="fa fa-eye"></i> </b></a>
                 <a href="{{ route('compra.create') }}" class="btn btn-success btn-md pull-right"> 
                     Nueva 
                     <i class="fa fa-plus-square-o" aria-hidden="true"></i>

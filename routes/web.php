@@ -20,9 +20,11 @@ Route::get('compra/productosc', 'ProductoController@getProductos')->name('produc
 Route::get('factura/productos', 'ProductoController@getProductos')->name('productos');
 Route::get('factura/producto/{id}', 'ProductoController@getProducto');
 Route::get('/imprimirfactura/{factura}', 'FacturaController@print')->name('imprimirfactura');
-Route::get('/descargarfactura/{factura}', 'FacturaController@download')->name('descargarfactura');
+Route::get('imprimirbalanceporproductostabla', 'BalanceController@printtable')->name('imprimirbalanceporproductostabla');
+Route::get('/facturanovalida/{factura}', 'FacturaController@novalida')->name('facturanovalida');
 Route::get('/facturanovalida/{factura}', 'FacturaController@novalida')->name('facturanovalida');
 Route::get('/productoslist', 'ProductoController@printlist')->name('productoslist');
+Route::get('/imprimirfactura/{factura}', 'FacturaController@print')->name('imprimirfactura');
 
 Route::get('/', 'InfoController@index');
 Route::get('/inicio', 'InfoController@inicio')->name('inicio');

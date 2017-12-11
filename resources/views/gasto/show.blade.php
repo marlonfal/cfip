@@ -6,13 +6,21 @@
         <div class="panel panel-primary">
             <div class="panel-heading">
                 @include('_mensaje')
-                <h1 align="center">Detalles del gasto #{{ $gasto->id }}
-                </h1>
+                <table width="100%">
+					<tr>
+						<td colspan="2">
+							<img src="{{ asset('img/logo.png') }}" class="img-responsive pull-right" alt="" height="100" width="100" style="padding-top: 0px; margin: 0px;">
+						</td>
+						<td>
+							<h1 align="left" class="pull-letf" style="padding-left: 0px; margin-left: 25px;">Detalles del gasto #{{ $gasto->id }} </h1>
+						</td>
+					</tr>
+				</table>
             </div>
             <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token" />
-            <div class="panel-body">
+            <div class="panel-body" style="padding: 0px;">
                 <div class="table-responsive">
-                    <table class="table table-bordered">
+                    <table class="table table-bordered" style="margin: 0px;">
                         <tbody>
                             <tr>
                                 <td colspan="3">
@@ -20,8 +28,8 @@
                                     {{ $gasto->tipodegasto->nombre_tipo_gasto }}
                                 </td>
                                 <td colspan="3">
-                                    {!! Form::label('descripcion', 'Descripción: ') !!}                       
-                                    {{ $gasto->descripcion }}
+                                    {!! Form::label('fecha', 'Fecha: ') !!}
+                                    {{ $gasto->fecha }}
                                 </td>
                             </tr>
                             <tr>
@@ -30,13 +38,13 @@
                                     {{$gasto->usuario}}
                                 </td>
                                 <td colspan="3">
-                                    {!! Form::label('fecha', 'Fecha: ') !!}
-                                    {{ $gasto->fecha }}
+                                    {!! Form::label('descripcion', 'Descripción: ') !!}                       
+                                    {{ $gasto->descripcion }}
                                 </td>
                             </tr>
                             <tr>
                             </tr>
-                            <tr class="bg-warning" align="center">
+                            <tr class="bg-primary" align="center">
                                 <td width="60"><b> Número </b></td>
                                 <td colspan="3"><b>Producto </b></td>
                                 <td><b> Cantidad </b></td>
@@ -52,6 +60,9 @@
                                     <td width="60"><b> {{ $detalle->precio }} </b></td>
                                 </tr>
                             @endforeach
+                            <tr class="bg-primary">
+								<td colspan="6" align="center"><b></b></td>
+							</tr>
                             <tr>
                                 <td colspan="5">
                                     <p align="right"><b> Total </b></p>

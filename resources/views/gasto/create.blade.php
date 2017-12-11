@@ -5,7 +5,16 @@
     <div class="col-md-10 col-xs-12 col-sm-12 col-lg-8 col-md-offset-1 col-lg-offset-2">
         <div class="panel panel-primary animated bounceInUp">
             <div class="panel-heading">
-                <h1 align="center">Registrar gasto</h1>
+                <table width="100%">
+					<tr>
+						<td colspan="2">
+							<img src="{{ asset('img/logo.png') }}" class="img-responsive pull-right" alt="" height="100" width="100" style="padding-top: 0px; margin: 0px;">
+						</td>
+						<td>
+							<h1 align="left" class="pull-letf" style="padding-left: 0px; margin-left: 30px;">Registrar gasto</h1>
+						</td>
+					</tr>
+				</table>
             </div>
             @include('_error')
             {!! Form::open(['route' => 'gasto.store', 'name' => 'creargasto']) !!}
@@ -38,7 +47,7 @@
                             </tr>
                             <tr>   
                             </tr>
-                            <tr class="bg-warning" align="center">
+                            <tr class="bg-primary" align="center">
                                 <td colspan="2"><b> Producto </b></td>
                                 <td ><b> Cantidad </b></td>
                                 <td width="90"><b> Precio </b></td>

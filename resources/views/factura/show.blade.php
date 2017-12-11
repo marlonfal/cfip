@@ -4,25 +4,26 @@
 		<div class="panel panel-primary">
 			<div class="panel-heading">
 				@include('_mensaje')
-				<h1 align="center">Detalles de la venta #{{ $factura->id }}
-					<a href="{{ route('imprimirfactura', $factura->id) }}" target="_blank" class="btn btn-default pull-right">
-						<i class="fa fa-print fa-2x" aria-hidden="true"></i>
-					</a>
+					<table width="100%">
+						<tr>
+							<td colspan="2">
+								<img src="{{ asset('img/logo.png') }}" class="img-responsive pull-right" alt="" height="100" width="100" style="padding-top: 0px; margin: 0px;">
+							</td>
+							<td>
+								<h1 align="left" class="pull-letf" style="padding-left: 0px; margin-left: 0px;">Detalles de la venta #{{ $factura->id }}
+								<a href="{{ route('imprimirfactura', $factura->id) }}" target="_blank" class="btn btn-default pull-right">
+									<i class="fa fa-print fa-2x" aria-hidden="true"></i>
+								</a></h1>
+							</td>
+						</tr>
+					</table>
+					
 				</h1>
 			</div>
 			<input type="hidden" name="_token" value="{{ csrf_token() }}" id="token" />
 			<div class="panel-body" style="padding: 0;">
 				<div class="table-responsive">
 					<table class="table table-bordered" style="margin: 0;">
-						<thead>
-							<th colspan="6">
-								<div align="center">
-									<img src="{{ asset('img/logo.png') }}" class="img-responsive" alt="" height="100" width="100">
-								</div>
-								<p align="center">Pollo 100% campesino</p>
-								<p align="center">Nit 12312312312</p>
-							</th>
-						</thead>
 						<tbody>
 							<tr>
 								<td colspan="2" width="100">
@@ -37,6 +38,9 @@
 							</tr>
 							<tr>
 							</tr>
+							<tr class="bg-success">
+								<td colspan="6" align="center"><b> Productos vendidos </b></td>
+							</tr>
 							<tr class="bg-primary" align="center">
 								<td width="60">
 									<b> Número </b>
@@ -44,11 +48,11 @@
 								<td colspan="2">
 									<b>Producto </b>
 								</td>
-								<td width="60">
-									<b> Peso </b>
+								<td width="80">
+									<b> Peso (Gr) </b>
 								</td>
 								<td width="60">
-									<b> Cantidad </b>
+									<b> Unidades</b>
 								</td>
 								<td>
 									<b> Precio </b>
@@ -71,11 +75,11 @@
 								</td>
 							</tr>
 							@endforeach
-							<tr>
+							<tr class="bg-success">
 								<td colspan="6"></td>
 							</tr>
 							<tr>
-								<td colspan="4">
+								<td colspan="4" align="center">
 									<b> Subtotal + IVA: </b>
 									<b>$ {{ $factura->subtotal }} + $ {{ $factura->iva }} </b>
 								</td>
@@ -105,7 +109,7 @@
                     {!! Form::open(['route' => ['facturanovalida', $factura->id], 'name' => 'facturanovalida', 'method'=>'GET']) !!}
                         <span class="pull-right">&nbsp;</span>
                         <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token" />
-                        <input type="button" onclick="confirmarfnv()" value="Venta no valida" class="btn btn-danger pull-right">
+                        <input type="button" onclick="confirmarfnv()" value="Venta no válida" class="btn btn-danger pull-right">
                     {!! Form::close() !!}
 				@endrole
 				<span class="pull-right"> &nbsp; </span>

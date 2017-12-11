@@ -40,12 +40,10 @@ function addProducto(){
         +'</td> <td colspan="1"><select required style="width: 100%;" id="select'+a+'" name="select[]" onchange="changeSelect('+a+')" placeholder="Seleccione" class="form-control">'
         + options + '</select> </td>'+
         '<td width="60">'+
-        '<input type="number" disabled required id="pesodetalle'+a+'" min="0" name="pesodetalle[]" onchange="updatePrecios('+a+')" style="width: 90px;" class="form-control"/>'+
-        '</td>'+
-        '<td width="60" align="center">'+
         '<input type="number" disabled required id="cantidaddetalle'+a+'" onchange="cantidadPositiva('+a+')" min="0" name="cantidaddetalle[]" style="width: 90px;" class="form-control"/>'+
-        '</td>'+
-        '<td align="center">'+
+        '</td><td>'+
+        '<input type="number" disabled required id="pesodetalle'+a+'" min="0" name="pesodetalle[]" onchange="updatePrecios('+a+')" style="width: 90px;" class="form-control"/>'+
+        '</td><td>'+
         '<input type="number" style="width: 100%;" id="preciodetalle'+a+'" readonly="readonly" name="preciodetalle[]" placeholder="0" style="width: 90px;" class="form-control"/>'+
         '</td>'+
         '<td><a id="btn-borrar' + a + '" class="btn btn-danger" onclick="deleteProducto(' + a + ')"> <i class="fa fa-minus fa-3" aria-hidden="true"></a></td>';
@@ -312,23 +310,36 @@ function addProductoCompra(){
         document.getElementById('cantidaddetalles').value = cantidad;
         
         tr.setAttribute('class', 'form-inline');
-        tr.innerHTML = '<td width="60" align="center">'+a
-        +'</td> <td colspan="1"><select required id="select'+a+'" onchange="changeSelectCompra('+a+')" name="select[]" placeholder="Seleccione" class="form-control">'
+        tr.innerHTML = '<td align="center">'+a
+        +'</td> <td colspan="1"><select style="width: 100%;" required id="select'+a+'" onchange="changeSelectCompra('+a+')" name="select[]" placeholder="Seleccione" class="form-control">'
         + options + '</select> </td>'+
-        '<td width="60">'+
-        '<input type="number" disabled required id="pesodetalle'+a+'" min="0" name="pesodetalle[]"  style="width: 90px;" class="form-control"/>'+
+        '<td  align="center">'+
+        '<input type="number" style="width: 100%;" disabled required id="cantidaddetalle'+a+'" onchange="cantidadPositiva('+a+')" min="0" name="cantidaddetalle[]" style="width: 90px;" class="form-control"/>'+
         '</td>'+
-        '<td width="60" align="center">'+
-        '<input type="number" disabled required id="cantidaddetalle'+a+'" min="0" name="cantidaddetalle[]" style="width: 90px;" class="form-control"/>'+
+        '<td>'+
+        '<input type="number" style="width: 100%;" disabled required onchange="pesoPositivoc('+a+')" id="pesodetalle'+a+'" min="0" name="pesodetalle[]"  style="width: 90px;" class="form-control"/>'+
         '</td>'+
         '<td align="center">'+
-        '<input type="number" disabled id="preciodetalle'+a+'" onchange="calcularTotalCompra()" name="preciodetalle[]" placeholder="0" style="width: 90px;" class="form-control"/>'+
+        '<input type="number" style="width: 100%;" onchange="precioPositivoc('+a+'); calcularTotalCompra();" disabled id="preciodetalle'+a+'" name="preciodetalle[]" placeholder="0" style="width: 90px;" class="form-control"/>'+
         '</td>'+
         '<td><a id="btn-borrar' + a + '" class="btn btn-danger" onclick="deleteProducto(' + a + ')"> <i class="fa fa-minus fa-3" aria-hidden="true"></a></td>';
         document.getElementById('productoscompra').appendChild(tr);document.getElementById('productoscompra').appendChild(tr);
     })
 }
-
+function precioPositivoc(id){
+    var precio = $('#preciodetalle' + id).val();
+    if(precio < 0){
+        precio *= -1;
+        $('#preciodetalle' + id).val(precio);
+    }
+}
+function pesoPositivoc(id){
+    var precio = $('#pesodetalle' + id).val();
+    if(precio < 0){
+        precio *= -1;
+        $('#pesodetalle' + id).val(precio);
+    }
+}
 function calcularTotalCompra(){
     total = 0;
     for(i = 1; i <= a; i++){
@@ -424,15 +435,30 @@ function addProductoGasto(){
 
     tr.setAttribute('class', 'form-inline');
     tr.innerHTML = ''
-    +'<td colspan="2"><input type="text" required id="producto'+a+'" name="producto[]" class="form-control"/></td>'+
+    +'<td colspan="2"><input type="text" style="width: 100%;" required id="producto'+a+'" name="producto[]" class="form-control"/></td>'+
     '<td>'+
-    '<input type="number" min="1" required id="cantidad'+a+'" name="cantidad[]" class="form-control"/>'+
+    '<input type="number" min="1" style="width: 100%;" required onchange="cantidadPositiva('+a+')" id="cantidaddetalle'+a+'" name="cantidad[]" class="form-control"/>'+
     '</td>'+
     '<td>'+
-    '<input type="number" min="1"  required id="precio'+a+'" onchange="calcularTotalG()" name="precio[]" class="form-control"/>'+
+    '<input type="number" min="1" style="width: 100%;" required onchange="precioPositivo('+a+'); calcularTotalG();" id="precio'+a+'" name="precio[]" class="form-control"/>'+
     '</td>'+
     '<td><a id="btn-borrar' + a + '" class="btn btn-danger" onclick="deleteProductoG(' + a + ')"><i class="fa fa-minus"></i></a></td>';
     document.getElementById('productosgasto').appendChild(tr);document.getElementById('productosgasto').appendChild(tr); 
+}
+
+function cantidadPositiva(id){
+    var cantidad = $('#cantidaddetalle' + id).val();
+    if(cantidad < 0){
+        cantidad *= -1;
+        $('#cantidaddetalle' + id).val(cantidad);
+    }
+}
+function precioPositivo(id){
+    var precio = $('#precio' + id).val();
+    if(precio < 0){
+        precio *= -1;
+        $('#precio' + id).val(precio);
+    }
 }
 
 function deleteProductoG(id) {
@@ -469,7 +495,7 @@ function confirmargasto(){
             if($('#detalle' + i).length){
                 r = 0;
                 var producto = document.getElementById('producto' + i).value;
-                var cantidad = document.getElementById('cantidad' + i).value;
+                var cantidad = document.getElementById('cantidaddetalle' + i).value;
                 var precio = document.getElementById('precio' + i).value;
                 if(!producto || !cantidad || !precio){
                     r = 1;

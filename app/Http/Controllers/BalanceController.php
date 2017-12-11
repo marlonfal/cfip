@@ -5,11 +5,15 @@ use App\Factura;
 use App\Gasto;
 use App\Producto;
 use App\Compra;
+use PDF;
 use App\DetalleFactura;
 use Illuminate\Http\Request;
 
 class BalanceController extends Controller
 {
+    /**
+     * 
+     */
     public function index(Request $request){
         $lcompras = Compra::orderBy('fecha', 'DESC')->with('detalles')->take(5)->get();
 
@@ -32,11 +36,16 @@ class BalanceController extends Controller
 
         return view('balance.index', compact('ventas', 'compras', 'gastos', 'lcompras', 'tgastos'));
     }
-
+    /**
+     * 
+     */
     public function porproductos(Request $request){
         $lcompras = Compra::orderBy('fecha', 'DESC')->with('detalles')->take(5)->get();
         $productos = Producto::orderBy('id', 'ASC')->get();
         $mt = 0;
+        $ganancia = 0;
+        $fechai = $request->fechainicio;
+        $fechaf = $request->fechafinal;
         foreach($lcompras as $lcompra){
             foreach($lcompra->detalles as $cd){
                 $producto = Producto::where('id', '=', $cd->id_tipo_producto)->first();
@@ -63,10 +72,44 @@ class BalanceController extends Controller
                 }
             }
             foreach($productos as $producto){
-                $producto->totalcomprado = $producto->gramosvendidos * $producto->preciocompragramo;
+                $producto->totalcomprado = (int)($producto->gramosvendidos * $producto->preciocompragramo);
+                $ganancia += (int)($producto->totalvendido - $producto->totalcomprado);
             }
         }
 
-        return view('balance.producto', compact('lcompras', 'productos', 'mt'));
+        return view('balance.producto', compact('lcompras', 'productos', 'mt', 'ganancia', 'fechai', 'fechaf'));
+    }
+
+    public function printtable(Request $request){
+        $productos = Producto::orderBy('id', 'ASC')->get();
+        $ganancia = 0;
+
+        $fechai = $request->fechai;
+        $fechaf = $request->fechaf;
+        foreach($productos as $producto){
+            $producto->totalvendido = 0;
+            $producto->cantidadventas = 0;
+            $producto->totalcomprado = 0;
+            $producto->gramosvendidos = 0;
+        }
+
+        $ventas = Factura::whereBetween('fecha', array($request->fechai, $request->fechaf))->get();
+
+        foreach($ventas as $venta){
+            $detalles = DetalleFactura::where('id_factura', '=', $venta->id)->get();
+            foreach($detalles as $detalle){
+                $p = $productos->where('id', $detalle->id_tipo_producto)->first();
+                $p->totalvendido += $detalle->precio;
+                $p->cantidadventas += $detalle->cantidad;
+                $p->gramosvendidos += $detalle->peso_gramo;
+            }
+        }
+        foreach($productos as $producto){
+            $producto->totalcomprado = $producto->gramosvendidos * $producto->preciocompragramo;
+            $ganancia += $producto->totalvendido - $producto->totalcomprado;
+        }
+
+        $pdf = PDF::loadView('pdf.balancetabla', ['productos' => $productos, 'ganancia' => $ganancia, 'fechai' => $fechai, 'fechaf' => $fechaf]);
+        return $pdf->stream('balancetabla.pdf');
     }
 }

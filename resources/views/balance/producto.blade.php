@@ -22,40 +22,124 @@
 					{!! Form::label('', '&nbsp;') !!}
 					<br> {!! Form::submit('Buscar', ['class' => 'btn btn-default']) !!}
 				</div>
-                
+
 			</div>
 			{!! Form::close() !!}
 		</div>
 		<div class="panel-body" style="padding: 0px;">
-			<table class="table table-bordered centertext" style="margin: 0px;">
-            @if($mt == 0)
-                <br>
-            @endif
-            @if($mt == 1)
-                <thead>
-                    <tr>
-                        <th class="centertext">Producto</th>
-                        <th class="centertext">Unidades vendidas</th>
-                        <th class="centertext">Gramos vendidos</th>
-                        <th class="centertext">Vendidos en</th>
-                        <th class="centertext">Comprados en</th>
-                        <th class="centertext">Diferencia</th>
-                    </tr>
-                </thead>
-                <tbody >
-                    @foreach($productos as $producto)
-                    <tr>
-                        <td>{{ $producto->nombre }}</td>
-                        <td>{{ $producto->cantidadventas }}</td>
-                        <td>{{ $producto->gramosvendidos }}</td>
-                        <td>$ {{ $producto->totalvendido }}</td>
-                        <td>$ {{ $producto->totalcomprado }}</td>
-                        <td>$ {{ $producto->totalvendido - $producto->totalcomprado}}</td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
-            @endif
+			<div class="table-resposive">
+				<table class="table table-bordered centertext" style="margin: 0px;">
+					@if($mt == 0)
+					<br> @endif @if($mt == 1)
+					<thead>
+						<tr>
+							<th class="centertext">Producto</th>
+							<th class="centertext">Unidades vendidas</th>
+							<th class="centertext">Gramos vendidos</th>
+							<th class="centertext">Vendidos en</th>
+							<th class="centertext">Comprados en</th>
+							<th class="centertext">Diferencia</th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach($productos as $producto)
+						<tr>
+							<td>{{ $producto->nombre }}</td>
+							<td>{{ $producto->cantidadventas }}</td>
+							<td>{{ $producto->gramosvendidos }}</td>
+							<td>$ {{ $producto->totalvendido }}</td>
+							<td>$ {{ $producto->totalcomprado }}</td>
+							<td>$ {{ $producto->totalvendido - $producto->totalcomprado}}</td>
+						</tr>
+						@endforeach
+						<tr>
+							<td>
+								{!! Form::open(['route' => 'imprimirbalanceporproductostabla', 'method' => 'GET', 'target' => '_blank']) !!} 
+									{{ Form::hidden('fechai', $fechai) }}
+									{{ Form::hidden('fechaf', $fechaf) }}
+									<button type="submit" class="btn btn-default">Imprimir tabla <i class="fa fa-print"></i></button>
+								{!! Form::close() !!}
+							</td>
+							<td colspan="4" align="right">
+								<b>Total:</b>
+							</td>
+
+							<td>$ {{ $ganancia }}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			@endif
+			@if($mt == 1)
+			<div class="table-responsive" align="center" style="height: 700px;">
+				<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+				<script type="text/javascript">
+					google.charts.load("current", {packages:['corechart']});
+						google.charts.setOnLoadCallback(drawChart);
+						function drawChart() {
+						var data = google.visualization.arrayToDataTable([
+							["Producto", "Ganancia", { role: "style" } ],
+							@foreach($productos as $producto)
+								["{{ $producto->nombre }}",{{ $producto->totalvendido - $producto->totalcomprado }}, '#'+(Math.random()*0xFFFFFF<<0).toString(16)],
+							@endforeach
+						]);
+
+						var view = new google.visualization.DataView(data);
+						view.setColumns([0, 1,
+										{ calc: "stringify",
+											sourceColumn: 1,
+											type: "string",
+											role: "annotation" },
+										2]);
+
+						var options = {
+							title: "Ganancias por producto",
+							width: 800,
+							height: 300,
+							bar: {groupWidth: "95%"},
+							legend: { position: "none" },
+						};
+						var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+						chart.draw(view, options);
+					}
+				</script>
+				<div id="columnchart_values" style="width: 900px; height: 300px;"></div>
+
+				<div class="table-responsive" align="center" style="height: 400px;">
+					<script type="text/javascript">
+						google.charts.load("current", {packages:['corechart']});
+						google.charts.setOnLoadCallback(drawChart);
+						function drawChart() {
+						var data = google.visualization.arrayToDataTable([
+							["Producto", "Cantidad ventas", { role: "style" } ],
+							@foreach($productos as $producto)
+								["{{ $producto->nombre }}",{{ $producto->cantidadventas }}, '#'+(Math.random()*0xFFFFFF<<0).toString(16)],
+							@endforeach
+						]);
+
+						var view = new google.visualization.DataView(data);
+						view.setColumns([0, 1,
+										{ calc: "stringify",
+											sourceColumn: 1,
+											type: "string",
+											role: "annotation" },
+										2]);
+
+						var options = {
+							title: "Unidades vendidas",
+							width: 800,
+							height: 300,
+							bar: {groupWidth: "95%"},
+							legend: { position: "none" },
+						};
+						var chart = new google.visualization.ColumnChart(document.getElementById("columnchart"));
+						chart.draw(view, options);
+					}
+					</script>
+					<div id="columnchart" style="width: 900px; height: 300px;"></div>
+				</div>
+			</div>
+			@endif
 		</div>
 
 		<!-- 

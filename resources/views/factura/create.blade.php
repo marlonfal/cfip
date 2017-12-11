@@ -6,7 +6,16 @@
         <div class="panel panel-primary animated bounceInUp">
             <input type="text" name="iva" id="iva" value="{{ $infogeneral->iva }}"  hidden/>
             <div class="panel-heading">
-                <h1 align="center">Registrar venta</h1>
+                <table width="100%">
+					<tr>
+						<td colspan="2">
+							<img src="{{ asset('img/logo.png') }}" class="img-responsive pull-right" alt="" height="100" width="100" style="padding-top: 0px; margin: 0px;">
+						</td>
+						<td>
+							<h1 align="left" class="pull-letf" style="padding-left: 0px; margin-left: 32px;">Registrar venta </h1>
+						</td>
+					</tr>
+				</table>
             </div>
             @include('_error')
             {!! Form::open(['route' => 'factura.store', 'name' => 'guardarventa']) !!}
@@ -15,16 +24,6 @@
             <div class="panel-body" style="padding: 0;">
                 <div class="table-responsive">
                     <table class="table table-bordered" style="margin: 0;">
-                        <thead>
-                            <th colspan="6"> 
-                                <div align="center">
-                                <img src="{{ asset('img/logo.png') }}" class="img-responsive" alt="" height="100" width="100" >
-                                </div>
-
-                                <p align="center">Pollo 100% campesino</p>
-                                <p align="center">NIT {{ $infogeneral->nit }}</p>
-                            </th>
-                        </thead>
                         <tbody id="productosfactura">                
                             <tr>
                                 <td colspan="2">
@@ -45,8 +44,8 @@
                             <tr class="bg-primary" align="center">
                                 <td width="60"><b> Número </b></td>
                                 <td><b> Producto </b></td>
+                                <td><b> Unidades </b></td>
                                 <td><b> Peso (Gr) </b></td>
-                                <td><b> Cantidad </b></td>
                                 <td><b> Precio </b></td>
                                 <td colspan="1"></td>
                             </tr>
@@ -59,13 +58,13 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="2" align="right"><b>Subtotal: </b>
+                                <td colspan="2" align="center"><b>Subtotal: </b>
                                     <input type="number" readonly="readonly" id="subtotal" name="subtotal" class="form-control pull-left" placeholder="0" />
                                 </td>
-                                <td colspan="2" align="right"><b>Iva: </b>
+                                <td colspan="2" align="center"><b>Iva: </b>
                                     <input type="number" readonly="readonly" id="ivacompra" name="ivacompra" class="form-control pull-left" placeholder="0" />
                                 </td>
-                                <td colspan="4" align="right"><b>Total: </b>
+                                <td colspan="4" align="center"><b>Total: </b>
                                     <input type="number" readonly="readonly" id="total" name="total" class="form-control pull-left" placeholder="0" />
                                 </td>
                             </tr>

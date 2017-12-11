@@ -2,10 +2,19 @@
 @section('title', 'Registrar compra')
 @section('content')
 <div class="container animatedParent">
-    <div class="col-md-10 col-md-offset-1">
+    <div class="col-md-8 col-md-offset-2">
         <div class="panel panel-primary animated bounceInUp">
             <div class="panel-heading">
-                <h1 align="center">Registrar compra a proveedor</h1>
+                <table width="100%">
+					<tr>
+						<td colspan="2">
+							<img src="{{ asset('img/logo.png') }}" class="img-responsive pull-right" alt="" height="100" width="100" style="padding-top: 0px; margin: 0px;">
+						</td>
+						<td>
+							<h1 align="left" class="pull-letf" style="padding-left: 0px; margin-left: 25px;">Registrar compra a proveedor </h1>
+						</td>
+					</tr>
+				</table>
             </div>
             @include('_error')
             {!! Form::open(['route' => 'compra.store', 'name' => 'guardarcompra']) !!}
@@ -33,8 +42,8 @@
                             <tr class="bg-primary" align="center">
                                 <td width="60"><b> Número </b></td>
                                 <td><b> Producto </b></td>
+                                <td><b> Unidades </b></td>
                                 <td><b> Peso (Gr) </b></td>
-                                <td><b> Cantidad </b></td>
                                 <td><b> Precio </b></td>
                                 <td colspan="1"></td>
                             </tr>
