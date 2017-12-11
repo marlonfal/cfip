@@ -16,6 +16,6 @@ class Compra extends Model
 
     public function detalles()
     {
-        return $this->hasMany('App\DetalleCompra');
+        return $this->hasMany('App\DetalleCompra', 'id_compra');
     }
 }

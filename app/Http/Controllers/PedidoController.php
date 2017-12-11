@@ -151,6 +151,13 @@ class PedidoController extends Controller
         return redirect()->route('inicio')->with('infopedidoentregado', 'Se entregó el pedido');
     }
 
+    public function noentregado(Pedido $pedido){
+        $pedido->estado = 'Pendiente';
+        $pedido->save();
+
+        return redirect()->route('inicio')->with('infopedidoentregado', 'Se cambió el estado del pedido');
+    }
+
     public function factura(Pedido $pedido){
         $infogeneral = InfoGeneral::first();
         $detalles = DetallePedido::orderBy('id_detalle', 'ASC')->where('id_pedido', '=', $pedido->id)->with('producto')->get();

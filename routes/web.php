@@ -35,6 +35,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('pedidoencamino/{pedido}', 'PedidoController@enCamino')->name('pedidoencamino');
     route::get('cancelarpedido/{pedido}', 'PedidoController@cancelar')->name('cancelarpedido');
     route::get('pedidoentregado/{pedido}', 'PedidoController@entregado')->name('pedidoentregado');
+    route::get('pedidonoentregado/{pedido}', 'PedidoController@noentregado')->name('pedidonoentregado');
     route::get('pedido/factura/{pedido}', 'PedidoController@factura')->name('pedido/factura/');
     /**Route::get('producto', ['middleware' => 'role:admin',
     'uses' => 'ProductoController@index'])->name('producto.index');;*/
@@ -48,6 +49,7 @@ Route::resource('compra', "CompraController");
 Route::resource('gasto', "GastoController");
 Route::resource('infogeneral', "InfoGeneralController");
 Route::get('balance', "BalanceController@index")->name('balance');
+Route::get('balanceporproductos', "BalanceController@porproductos")->name('balanceporproductos');
 Auth::routes();
 
 route::get('cambiar', 'InfoController@contraseña');

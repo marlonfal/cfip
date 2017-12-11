@@ -121,7 +121,7 @@ body {
       .nav-collapse>li { float: none; }
   }
   body{
-    background: #ecf0f1;
+    background: #f9f9f9;
 }
  
 #container-main{
@@ -129,13 +129,17 @@ body {
     width:95%;
     min-width:320px;
     max-width:960px;
+    background-color: #ffffff;
 }
  
 #container-main h1{
     font-size: 40px;
-    text-shadow:4px 4px 5px #16a085;
 }
- 
+
+.pd {
+    padding: 7px !important;
+    background-color: white !important;
+} 
 .accordion-container {
     width: 100%;
     margin: 0 0 0px;
@@ -171,9 +175,9 @@ body {
  
 .accordion-titulo span.toggle-icon {
     position: absolute;
-    top: -15px;
-    right: 20px;
-    font-size: 36px;
+    top: -5px;
+    right: 3px;
+    font-size: 30px;
     font-weight: bold;
 }
  
@@ -211,6 +215,9 @@ body {
     background-color: yellow;
 }
 
+.centertext {
+    text-align: center !important;
+}
 
 
   

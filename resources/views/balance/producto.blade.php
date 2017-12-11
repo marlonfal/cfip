@@ -3,7 +3,7 @@
 <div class="container animatedParent">
 	<div class="panel panel-primary">
 		<div class="panel-heading">
-			{!! Form::open(['route' => 'balance', 'method' => 'GET','role' => 'search']) !!}
+			{!! Form::open(['route' => 'balanceporproductos', 'method' => 'GET','role' => 'search']) !!}
 			<div class="row" align="center">
 				<div class="form-group col-md-3">
 					<h1>Balance
@@ -22,58 +22,40 @@
 					{!! Form::label('', '&nbsp;') !!}
 					<br> {!! Form::submit('Buscar', ['class' => 'btn btn-default']) !!}
 				</div>
+                
 			</div>
 			{!! Form::close() !!}
 		</div>
-		<div class="panel-body" style="padding-left: 50px; padding-right: 50px;">
-			@if($ventas != 0)
-			<div class="row">
-				<div class="col-md-3" style="padding: 5px;">
-					<div class="panel panel-primary animated bounceInDown">
-						<div class="panel-heading">
-							<h3 align="center">Ventas
-							</h3>
-						</div>
-						<div class="panel-body" style="padding: 0;">
-							<h1 align="center"> $ {{ $ventas }} </h1>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-3" style="padding: 5px;">
-					<div class="panel panel-primary animated bounceInDown">
-						<div class="panel-heading">
-							<h3 align="center">Compras
-							</h3>
-						</div>
-						<div class="panel-body" style="padding: 0;">
-							<h1 align="center"> $ {{ $compras }} </h1>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-3" style="padding: 5px;">
-					<div class="panel panel-primary animated bounceInDown">
-						<div class="panel-heading">
-							<h3 align="center">Gastos
-							</h3>
-						</div>
-						<div class="panel-body" style="padding: 0;">
-							<h1 align="center"> $ {{ $gastos }} </h1>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-3" style="padding: 5px;">
-					<div class="panel panel-primary animated bounceInDown">
-						<div class="panel-heading">
-							<h3 align="center">Ganancias
-							</h3>
-						</div>
-						<div class="panel-body" style="padding: 0;">
-							<h1 align="center"> $ {{ $ventas - $compras -$gastos}} </h1>
-						</div>
-					</div>
-				</div>
-			</div>
-			@endif
+		<div class="panel-body" style="padding: 0px;">
+			<table class="table table-bordered centertext" style="margin: 0px;">
+            @if($mt == 0)
+                <br>
+            @endif
+            @if($mt == 1)
+                <thead>
+                    <tr>
+                        <th class="centertext">Producto</th>
+                        <th class="centertext">Unidades vendidas</th>
+                        <th class="centertext">Gramos vendidos</th>
+                        <th class="centertext">Vendidos en</th>
+                        <th class="centertext">Comprados en</th>
+                        <th class="centertext">Diferencia</th>
+                    </tr>
+                </thead>
+                <tbody >
+                    @foreach($productos as $producto)
+                    <tr>
+                        <td>{{ $producto->nombre }}</td>
+                        <td>{{ $producto->cantidadventas }}</td>
+                        <td>{{ $producto->gramosvendidos }}</td>
+                        <td>$ {{ $producto->totalvendido }}</td>
+                        <td>$ {{ $producto->totalcomprado }}</td>
+                        <td>$ {{ $producto->totalvendido - $producto->totalcomprado}}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+            @endif
 		</div>
 
 		<!-- 

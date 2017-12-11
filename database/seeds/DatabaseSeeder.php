@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
 
         DB::table('users')->insert([
             'name' => 'Marlon Adarme',
-            'email' => 'admin@test.com',
+            'email' => 'test@test.com',
             'password' => bcrypt('del1al9'),
         ]);
 
@@ -35,7 +35,7 @@ class DatabaseSeeder extends Seeder
 
         DB::table('users')->insert([
             'name' => 'Sebastián Moncada',
-            'email' => 'test@test.com',
+            'email' => 'cliente@test.com',
             'password' => bcrypt('del1al9'),
         ]);
 
@@ -52,6 +52,13 @@ class DatabaseSeeder extends Seeder
             'display_name' => 'Vendedor',
             'description' => 'Vendedor',
         ]);
+        
+        DB::table('roles')->insert([
+            'id' => 3,
+            'name' => 'cliente',
+            'display_name' => 'Cliente',
+            'description' => 'Cliente',
+        ]);
 
         DB::table('role_user')->insert([
             'user_id' => 1,
@@ -65,7 +72,7 @@ class DatabaseSeeder extends Seeder
 
         DB::table('role_user')->insert([
             'user_id' => 3,
-            'role_id' => 1,
+            'role_id' => 3,
         ]);
 
         DB::table('info_generals')->insert([

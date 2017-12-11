@@ -87,7 +87,7 @@ $factory->define(App\Pedido::class, function (Faker\Generator $faker) {
     return [
         'fecha_entrega' => $faker->dateTimeBetween($startDate = '-1 years', $endDate = 'now', $timezone = date_default_timezone_get()),
         'Hora_entrega' => '12:08',
-        'telefono' => $faker->phoneNumber,
+        'telefono' => $faker->tollFreePhoneNumber,
         'nombre' => $faker->name,
         'direccion' => $faker->name,
         'estado' => $faker->randomElement($array = array ('En camino','Pendiente','Entregado')),

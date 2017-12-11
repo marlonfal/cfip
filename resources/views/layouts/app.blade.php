@@ -42,7 +42,8 @@
 
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav">
+					@role(['admin', 'vendedor'])<ul class="nav navbar-nav">
+						
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Registrar
 								<span class="caret"></span>
@@ -109,7 +110,7 @@
 									<a href="{{ route('balance') }}">General</a>
 								</li>
 								<li>
-									<a href="{{ route('pedido.index') }}">Por productos </a>
+									<a href="{{ route('balanceporproductos') }}">Por productos </a>
 								</li>
 								<li>
 									<a href="{{ route('compra.index') }}">Por producto </a>
@@ -148,29 +149,31 @@
 								</li>
 							</ul>
 						</li>
-						@endrole
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }}
-								<span class="caret"></span>
-							</a>
-							<ul class="dropdown-menu">
-								<li>
-									<a href="{{ route('logout') }}" onclick="event.preventDefault();
+						@endrole @endrole
+						<ul class="nav navbar-nav navbar-right">
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }}
+									<span class="caret"></span>
+								</a>
+								<ul class="dropdown-menu">
+									<li>
+										<a href="{{ route('logout') }}" onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">
-										Salir
-									</a>
-									<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-										<input type="hidden" name="_token" value="{{ csrf_token() }}"> {{ csrf_field() }}
-									</form>
-								</li>
-								<!--<li><a href="{{ url('')}}">Cambiar contraseña</a></li>-->
-							</ul>
-						</li>
-						<li style="padding: 0px; margin: 0px">
-							<a href="{{route('manual')}}" style="padding: 10px; margin: 0px">
-								<i class="fa fa-question-circle-o fa-2x"></i>
-							</a>
-						</li>
+											Salir
+										</a>
+										<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+											<input type="hidden" name="_token" value="{{ csrf_token() }}"> {{ csrf_field() }}
+										</form>
+									</li>
+									<!--<li><a href="{{ url('')}}">Cambiar contraseña</a></li>-->
+								</ul>
+							</li>
+							<li style="padding: 0px; margin: 0px">
+								<a href="{{route('manual')}}" style="padding: 10px; margin: 0px">
+									<i class="fa fa-question-circle-o fa-2x"></i>
+								</a>
+							</li>
+						</ul>
 					</ul>
 				</div>
 				<!-- /.navbar-collapse -->

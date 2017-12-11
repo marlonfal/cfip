@@ -21,7 +21,7 @@ class FacturaController extends Controller
     public function index(Request $request)
     {
         
-        $facturas = Factura::Id($request->get('id'))->comprador($request->get('comprador'))->orderBy('id', 'DESC')->where('estado', '=', 'valida')->paginate(15);
+        $facturas = Factura::Id($request->get('id'))->comprador($request->get('comprador'))->orderBy('id', 'DESC')->where('estado', '=', 'valida')->paginate(10);
         return view('factura.index', compact('facturas'));
     }
 
@@ -142,6 +142,18 @@ class FacturaController extends Controller
     }
 
     public function novalida(Factura $factura){
+
+        $cantidaddetalles = DetalleFactura::where('id_factura', '=', $factura->id)->count();
+        
+        for($i = 1; $i <= $cantidaddetalles; $i++){
+            $detalle = DetalleFactura::where('id_factura', '=', $factura->id)->where('id_detalle', '=', $i)->first();
+            $producto = Producto::where('id', '=', $detalle->id_tipo_producto)->first();
+            $producto->cantidad += $detalle->cantidad;
+            $producto->gramos += $detalle->peso_gramo;
+
+            $producto->save();
+        }
+
         $factura->estado = 'No valida';
         $factura->save();
 
