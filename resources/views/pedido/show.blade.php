@@ -1,5 +1,5 @@
 @extends('layouts.app') @section('title', 'Detalles pedido') @section('content')
-<div class="container animatedParent">
+<div class="container animatedParent animatedOnce">
 	<div class="col-md-8 col-md-offset-2">
 		<div class="panel panel-primary">
 			<div class="panel-heading">

@@ -2,13 +2,19 @@
 @section('title', 'Gastos')
 @section('content') 
 <div class="container animatedParent">
-    <div class="panel panel-primary animated bounceInUp">
+    <div class="panel panel-primary animated bounceInUp animatedOnce">
         <div class="panel-heading">
             @include('_mensaje')
             <h1>Listado de gastos</h1>
         </div>
         <div class="panel-body">
-        
+            {!! Form::open(['route' => 'gasto.index', 'method' => 'GET', 'class' => 'navbar-form navbar-left pull-right', 'role' => 'search']) !!}
+                <div class="form-group">
+                    {!! Form::label('busquedaportipo', 'Filtrar por tipo: ') !!}
+                    {!! Form::select('tipo',$tiposdegasto, null, ['class' => 'form-control'] ) !!}
+                </div>
+                {!! Form::submit('Filtrar', ['class' => 'btn btn-primary']) !!}
+            {!! Form::close() !!}
             <h3>Hay {{ $gastos->total() }} gastos</h3>
             <div class="table-responsive">
                 <table class="table table-bordered table-hover">
@@ -37,7 +43,7 @@
                     </tbody>
                 </table>
             </div>
-            {!! $gastos->render() !!}
+            {!! $gastos->appends(Request::only(['tipo']))->render() !!}
         </div>
     </div>
 </div>

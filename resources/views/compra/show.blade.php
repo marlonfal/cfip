@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', 'Detalles compra #'. $compra->id)
 @section('content')
-<div class="container animatedParent">
+<div class="container animatedParent animatedOnce">
     <div class="col-md-8 col-md-offset-2">
         <div class="panel panel-primary">
             <div class="panel-heading">
@@ -81,10 +81,19 @@
                     Nueva 
                     <i class="fa fa-plus-square-o" aria-hidden="true"></i>
                 </a> 
-                <span class="pull-right"> &nbsp; </span>    
+                <span class="pull-right"> &nbsp; </span> 
+                @role('admin')
+                    {!! Form::open(['route' => ['compranovalida', $compra->id], 'name' => 'compranovalida', 'method'=>'GET']) !!}
+                    <span class="pull-right">&nbsp;</span>
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token" />
+                    <input type="button" onclick="confirmarcnv()" value="Compra no válida" class="btn btn-danger pull-right"> 
+                    {!! Form::close() !!}
+                @endrole   
                 <p>&nbsp;</p>
             </div>
         </div>
     </div>
 </div>
+@endsection @section('scripts')
+<script src="{{ asset('js/form.js') }}"></script>
 @endsection

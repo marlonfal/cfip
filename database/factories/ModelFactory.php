@@ -70,7 +70,8 @@ $factory->define(App\Gasto::class, function (Faker\Generator $faker) {
         'id_tipo_gasto' => $faker->randomElement(tipodegasto::pluck('id')->toArray()),
         'usuario' => $faker->name,
         'descripcion' => $faker->realText($maxNbChars = 20),
-        'total' => $faker->numberBetween(1000, 100000),  
+        'total' => $faker->numberBetween(1000, 100000),
+        'estado' => 'valido', 
     ];
 });
 
@@ -79,7 +80,8 @@ $factory->define(App\Compra::class, function (Faker\Generator $faker) {
         'fecha' => $faker->dateTimeBetween($startDate = '-2 years', $endDate = 'now', $timezone = date_default_timezone_get()),
         'proveedor' => $faker->name,
         'usuario' => $faker->name,
-        'total' => $faker->numberBetween(1000, 300000),  
+        'total' => $faker->numberBetween(1000, 300000),
+        'estado' => 'valida', 
     ];
 });
 

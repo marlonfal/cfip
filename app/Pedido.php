@@ -34,4 +34,10 @@ class Pedido extends Model
             $query->where('estado', '=', $estado);
         }
     }
+
+    public function scopeNombre($query, $nombre){
+        if(trim($nombre) != ""){
+            $query->where('nombre', 'LIKE', "%$nombre%");
+        }
+    }
 }

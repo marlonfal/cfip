@@ -43,7 +43,7 @@
                         @endif
                                 <td>{{ $producto->id }}</td>
                                 <td><b> {{ $producto->nombre }}</b></td>
-                                <td>{{ $producto->precioventakilo *1000 }}</td>
+                                <td>{{ $producto->precioventakilo}}</td>
                                 <td>{{ $producto->cantidad }}</td>
                                 <td>{{ $producto->gramos }}</td>
                                 <td width="50">

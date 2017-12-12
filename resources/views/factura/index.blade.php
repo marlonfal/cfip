@@ -1,18 +1,19 @@
 ﻿@extends('layouts.app')
 @section('title', 'Ventas')
 @section ('content')
-<div class="container animatedParent animatedOnce">
-    <div class="panel panel-primary animated bounceInUp">
+<div class="container animatedParent">
+    <div class="panel panel-primary animated bounceInUp animatedOnce">
         <div class="panel-heading">
             @include('_mensaje')
             <h1>Listado de ventas
-                <a href="{{ route('factura.create') }}" class="btn btn-success btn-lg pull-right"><b>Nueva (+)</b></a>
+                <a href="{{ route('factura.create') }}" class="btn btn-success pull-right"><b>Nueva
+                    <i class="fa fa-plus-square-o"></i>
+                </b></a>
             </h1>
         </div>
         <div class="panel-body">
             {!! Form::open(['route' => 'factura.index', 'method' => 'GET', 'class' => 'navbar-form navbar-left pull-right', 'role' => 'search']) !!}
                     <div class="form-group">
-                        {!! Form::label('buscar', 'Buscar: ') !!}
                         {!! Form::text('comprador', null, ['class' => 'form-control', 'title' => 'Escriba el nombre del comprador', 'placeholder' => 'Nombre de comprador'] ) !!}
                         {!! Form::text('id', null, ['class' => 'form-control', 'title' => 'Escriba el número de factura', 'placeholder' => 'Número de venta'] ) !!}
                     </div>

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', 'Ventas')
 @section ('content')
-<div class="container animatedParent">
+<div class="container animatedParent animatedOnce">
     <div class="panel panel-primary animated bounceInUp">
         <div class="panel-heading">
             @include('_mensaje')
@@ -10,14 +10,12 @@
             </h1>
         </div>
         <div class="panel-body">
-            <!--{!! Form::open(['route' => 'compra.index', 'method' => 'GET', 'class' => 'navbar-form navbar-left pull-right', 'role' => 'search']) !!}
+            {!! Form::open(['route' => 'compra.index', 'method' => 'GET', 'class' => 'navbar-form navbar-left pull-right', 'role' => 'search']) !!}
                     <div class="form-group">
-                        {!! Form::label('buscar', 'Buscar: ') !!}
-                        {!! Form::text('comprador', null, ['class' => 'form-control', 'title' => 'Escriba el nombre del comprador', 'placeholder' => 'Nombre de comprador'] ) !!}
-                        {!! Form::text('id', null, ['class' => 'form-control', 'title' => 'Escriba el número de factura', 'placeholder' => 'Número de factura'] ) !!}
+                        {!! Form::text('proveedor', null, ['class' => 'form-control', 'title' => 'Escriba el nombre del comprador', 'placeholder' => 'Nombre de proveedor'] ) !!}
                     </div>
                 {!! Form::submit('Buscar', ['class' => 'btn btn-primary']) !!}
-            {!! Form::close() !!}-->
+            {!! Form::close() !!}
             <h3>Hay {{ $compras->total() }} compras</h3>
             <div class="table-responsive">
                 <table class="table table-bordered table-hover">
@@ -46,7 +44,7 @@
                     </tbody>
                 </table>
             </div>
-            {!! $compras->render() !!}
+            {!! $compras->appends(Request::only(['proveedor']))->render() !!}
         </div>
     </div>
 </div>

@@ -18,7 +18,7 @@
                             <th>Id</th>
                             <th>Tipo del gasto</th>
                             <th>Descripción</th>
-                            <th colspan="3">Opciones</th>
+                            <th colspan="2">Opciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -32,13 +32,6 @@
                                 </td>
                                 <td width="50">
                                     <a href="{{route('tipodegasto.edit', $tipodegasto->id)}}" class="btn btn-warning pull-right">Editar</a>
-                                </td>
-                                <td width="50">
-                                    {!! Form::model($tipodegasto, ['route' => ['tipodegasto.update',
-                                    $tipodegasto->id], 'method' => 'DELETE']) !!}
-                                    {!! Form::submit('Eliminar', ['class' => 'btn btn-danger pull-right'])
-                                    !!}
-                                    {!! Form::close() !!}
                                 </td>
                             </tr>
                         @endforeach

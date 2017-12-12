@@ -18,4 +18,10 @@ class Compra extends Model
     {
         return $this->hasMany('App\DetalleCompra', 'id_compra');
     }
+
+    public function scopeProveedor($query, $proveedor){
+        if(trim($proveedor) != ""){
+            $query->where('proveedor', 'LIKE', "%$proveedor%");
+        }
+    }
 }

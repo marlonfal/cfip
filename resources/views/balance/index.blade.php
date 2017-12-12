@@ -6,6 +6,7 @@
 			{!! Form::open(['route' => 'balance', 'method' => 'GET','role' => 'search']) !!}
 			<div class="row" align="center">
 				<div class="form-group col-md-5">
+
 					<h1>Estado de resultados
 						<i class="fa fa-area-chart" aria-hidden="true"></i>
 					</h1>
@@ -26,7 +27,7 @@
 			{!! Form::close() !!}
 		</div>
 		<div class="panel-body" style="padding-left: 50px; padding-right: 50px;">
-			@if($ventas != 0)
+			<br> @include('_mensaje') @if($ventas != 0)
 			<div class="row">
 				<div class="col-md-3" style="padding: 5px;">
 					<div class="panel panel-primary animated bounceInDown">
@@ -72,6 +73,80 @@
 						</div>
 					</div>
 				</div>
+			</div>
+			<table class="table table-bordered table-hover">
+				<thead>
+					<tr>
+						<th>Mes</th>
+						<th>Total ventas</th>
+						<th>Total compras</th>
+						<th>Total gastos</th>
+						<th>Ganancia</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach($meses as $mes) @if($mes->ganancia != 0 && $mes->ventas != 0)
+					<tr class="centertext">
+						<td>{{ $mes->nombre }}
+						</td>
+						<td>$ {{ $mes->ventas }}
+						</td>
+						<td>$ {{ $mes->compras }}
+						</td>
+						<td>$ {{ $mes->gastos }}
+						</td>
+						<td>$ {{ $mes->ganancia }}
+						</td>
+					</tr>
+					@endif @endforeach
+					<tr>
+						<td> 
+						{!! Form::open(['route' => 'imprimirestadoderesultados', 'method' => 'GET', 'target' => '_blank']) !!} 
+						{{ Form::hidden('fechainicio',
+						$fechai) }} {{ Form::hidden('fechafinal', $fechaf) }}
+						<button type="submit" class="btn btn-default">Imprimir tabla
+							<i class="fa fa-print"></i>
+						</button>
+						{!! Form::close() !!}
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div style="width: 100% !important">
+				<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+				<script type="text/javascript">
+					google.charts.load('current', {'packages':['bar']});
+						google.charts.setOnLoadCallback(drawChart);
+
+						function drawChart() {
+							var data = google.visualization.arrayToDataTable([
+							['Mes', 'Ventas', 'Compras', 'Gastos', 'Beneficio'],
+							@foreach($meses as $mes)
+								@if($mes->ganancia != 0 && $mes->ventas != 0)
+									['{{$mes->nombre}}', {{$mes->ventas}}, {{$mes->compras}}, {{$mes->gastos}}, {{$mes->ganancia}}],
+								@endif
+							@endforeach
+							
+							]);
+
+							var options = {
+							chart: {
+								title: 'Gráfico de estado de resultados',
+							}
+							};
+
+							var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+							chart.draw(data, google.charts.Bar.convertOptions(options));
+						}
+				</script>
+				</head>
+
+				<body>
+					<div id="columnchart_material" style="width: 100%; height: 500px;"></div>
+				</body>
+
+
 			</div>
 			@endif
 		</div>

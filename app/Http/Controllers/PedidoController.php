@@ -19,7 +19,7 @@ class PedidoController extends Controller
      */
     public function index(Request $request)
     {
-        $pedidos = Pedido::estado($request->get('estado'))->orderBy('fecha_entrega', 'DESC')->paginate(10);
+        $pedidos = Pedido::estado($request->get('estado'))->nombre($request->get('nombre'))->orderBy('fecha_entrega', 'DESC')->paginate(10);
         foreach($pedidos as $pedido){
             foreach($pedido->detalles as $pd){
                 $producto = Producto::where('id', '=', $pd->id_tipo_producto)->first();

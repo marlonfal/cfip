@@ -53,25 +53,25 @@ function addProducto() {
 
 function addProductoObsequio() {
     a++;
-    
+
     var tr = document.createElement('tr');
     tr.id = 'obsequios';
     tr.setAttribute('class', 'form-inline');
     tr.innerHTML =
         '<td colspan="6">' +
-        '<label>La compra ha sobrepasado los $ 80.000 <span>¿Desea obsequiar un paquete de corazones?</span></label>'+
-        '&nbsp; &nbsp;&nbsp;<label>Sí</label><input name="obsequiar" type="radio" id="obsequiar" onclick="handleClick(1)" value="1">'+
-        '<label>No</label><input type="radio" name="obsequiar" id="obsequiar" checked="checked" onclick="handleClick(0)" value="0">'+
-        '</td>' 
+        '<label>La compra ha sobrepasado los $ 80.000 <span>¿Desea obsequiar un paquete de corazones?</span></label>' +
+        '&nbsp; &nbsp;&nbsp;<label>Sí</label><input name="obsequiar" type="radio" id="obsequiar" onclick="handleClick(1)" value="1">' +
+        '<label>No</label><input type="radio" name="obsequiar" id="obsequiar" checked="checked" onclick="handleClick(0)" value="0">' +
+        '</td>'
     document.getElementById('productosfactura').appendChild(tr); document.getElementById('productosfactura').appendChild(tr);
 }
 
-function handleClick(x){
+function handleClick(x) {
     console.log(x);
-    if(x == 1){
+    if (x == 1) {
         document.getElementById('obsequio').value = '1';
     }
-    if(x == 0){
+    if (x == 0) {
         document.getElementById('obsequio').value = '0';
     }
     console.log(document.getElementById('obsequio').value);
@@ -94,7 +94,7 @@ function calcularTotal() {
     document.getElementById('ivacompra').value = ivacompra.toFixed(0);
     document.getElementById('total').value = (ivacompra + subtotal).toFixed(0);
     if ((ivacompra + subtotal).toFixed(0) > 80000) {
-        if(!$('#obsequios').length){
+        if (!$('#obsequios').length) {
             addProductoObsequio();
         }
     }
@@ -594,6 +594,56 @@ function confirmarfnv() {
                 btnClass: 'btn-success',
                 action: function () {
                     document.facturanovalida.submit();
+                }
+            },
+        }
+    });
+
+}
+
+function confirmargnv() {
+
+    $.confirm({
+        type: 'red',
+        animation: 'zoom',
+        columnClass: 'col-md-6 col-md-offset-3',
+        draggable: true,
+        icon: 'fa fa-question-circle-o',
+        title: 'Confirme que el gasto NO es válido',
+        content: '¿Está seguro que el gasto se guardó con errores? NO podrá deshacer esta acción',
+        buttons: {
+            Cancelar: {
+                btnClass: 'btn-danger',
+            },
+            Confirmar: {
+                btnClass: 'btn-success',
+                action: function () {
+                    document.gastonovalido.submit();
+                }
+            },
+        }
+    });
+
+}
+
+function confirmarcnv() {
+
+    $.confirm({
+        type: 'red',
+        animation: 'zoom',
+        columnClass: 'col-md-6 col-md-offset-3',
+        draggable: true,
+        icon: 'fa fa-question-circle-o',
+        title: 'Confirme que el compra NO es válida',
+        content: '¿Está seguro que la compra se guardó con errores? NO podrá deshacer esta acción',
+        buttons: {
+            Cancelar: {
+                btnClass: 'btn-danger',
+            },
+            Confirmar: {
+                btnClass: 'btn-success',
+                action: function () {
+                    document.compranovalida.submit();
                 }
             },
         }

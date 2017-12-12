@@ -13,4 +13,10 @@ class Gasto extends Model
     {
         return $this->belongsTo('App\tipodegasto', 'id_tipo_gasto');
     }
+
+    public function scopeTipodegastos($query, $tipo){
+        if($tipo != "" && $tipo > 0){
+            $query->where('id_tipo_gasto', '=', $tipo);
+        }
+    }
 }

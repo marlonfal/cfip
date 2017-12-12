@@ -7,6 +7,7 @@ use App\Factura;
 use App\Pedido;
 use App\Producto;
 use Auth;
+use Carbon\Carbon;
 
 
 class InfoController extends Controller
@@ -19,6 +20,10 @@ class InfoController extends Controller
     public function inicio()
     {
         $productos = Producto::orderBy('cantidad', 'ASC')->where('activo', '=', 1)->take(5)->get();
+        $cantidadpedidospendientes = Pedido::where('estado', '=', 'Pendiente')->count();
+        $cantidadpedidospendienteshoy = Pedido::where('fecha_entrega', '=', Carbon::now()->toDateString())->count();
+        $cantidadpedidosencamino = Pedido::where('estado', '=', 'En camino')->count();
+
         $pedidospendientes = Pedido::orderBy('fecha_entrega', 'DESC')->with('detalles')->where('estado', '=', 'Pendiente')->take(6)->get();
         foreach($pedidospendientes as $pedido){
             foreach($pedido->detalles as $pd){
@@ -46,7 +51,8 @@ class InfoController extends Controller
         }
 
         $facturas = Factura::orderBy('created_at', 'DESC')->take(5)->get();
-        return view('inicio', compact('facturas', 'pedidospendientes', 'productos', 'pedidosencamino', 'pedidoscliente'));
+        return view('inicio', compact('facturas', 'pedidospendientes', 'productos', 'pedidosencamino', 'pedidoscliente',
+                                'cantidadpedidospendientes', 'cantidadpedidospendienteshoy', 'cantidadpedidosencamino'));
     }
 
     public function manual(){

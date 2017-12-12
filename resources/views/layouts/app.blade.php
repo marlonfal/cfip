@@ -24,7 +24,7 @@
 <body>
 	<div id="app">
 		<div class="container-fluid navbar-default yellow">
-			<div class="container">
+			<div class="container" >
 				<!-- Brand and toggle get grouped for better mobile display -->
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
@@ -34,7 +34,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<img src="{{ asset('img/logo.png') }}" class="pull-left" height="50" width="50">
+					<img src="{{ asset('img/logo.png') }}" alt="logo" class="pull-left" height="50" width="50">
 					<a class="navbar-brand" href="{{ url('/inicio') }}">
 						<b> {{ config('app.name', 'Laravel') }} </b>
 					</a>
@@ -59,6 +59,10 @@
 								<li>
 									<a href="{{ route('gasto.create') }}">Gasto </a>
 								</li>
+								<li role="separator" class="divider"></li>
+								<li>
+									<a href="{{ route('gasto.create') }}">Pedido </a>
+								</li>
 							</ul>
 						</li>
 					</ul>
@@ -81,9 +85,6 @@
 									<a href="{{ route('gasto.index')}}">Gastos </a>
 								</li>
 								<li>
-									<a href="{{ route('producto.index') }}">Inventario </a>
-								</li>
-								<li>
 									<a href="{{ route('producto.index') }}">Productos</a>
 								</li>
 								@role('admin')
@@ -97,6 +98,9 @@
 								<li>
 									<a href="{{ route('infogeneral.show', 1) }}">Información general</a>
 								</li>
+								<li>
+									<a href="{{ route('tipodegasto.index') }}">Tipos de gastos</a>
+								</li>
 								@endrole
 							</ul>
 						</li>
@@ -107,7 +111,7 @@
 							</a>
 							<ul class="dropdown-menu">
 								<li>
-									<a href="{{ route('balance') }}">General</a>
+									<a href="{{ route('balance') }}">Estado de resultados</a>
 								</li>
 								<li>
 									<a href="{{ route('balanceporproductos') }}">Por productos </a>

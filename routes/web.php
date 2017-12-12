@@ -21,7 +21,9 @@ Route::get('factura/productos', 'ProductoController@getProductos')->name('produc
 Route::get('factura/producto/{id}', 'ProductoController@getProducto');
 Route::get('/imprimirfactura/{factura}', 'FacturaController@print')->name('imprimirfactura');
 Route::get('imprimirbalanceporproductostabla', 'BalanceController@printtable')->name('imprimirbalanceporproductostabla');
-Route::get('/facturanovalida/{factura}', 'FacturaController@novalida')->name('facturanovalida');
+Route::get('imprimirestadoderesultados', 'BalanceController@printestadoderesultado')->name('imprimirestadoderesultados');
+Route::get('/gastonovalido/{gasto}', 'GastoController@novalido')->name('gastonovalido');
+Route::get('/compranovalida/{compra}', 'CompraController@novalida')->name('compranovalida');
 Route::get('/facturanovalida/{factura}', 'FacturaController@novalida')->name('facturanovalida');
 Route::get('/productoslist', 'ProductoController@printlist')->name('productoslist');
 Route::get('/imprimirfactura/{factura}', 'FacturaController@print')->name('imprimirfactura');

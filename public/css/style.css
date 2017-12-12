@@ -3,7 +3,12 @@ body {
   overflow-x:hidden;
   background-color: #ffffff;
   background-image: url("food.png");
+
   /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+}
+
+.centro {
+    text-align: center;
 }
 
 #header {
@@ -120,9 +125,7 @@ body {
       .navbar .nav-collapse .navbar-form { margin: 0; }
       .nav-collapse>li { float: none; }
   }
-  body{
-    background: #f9f9f9;
-}
+
  
 #container-main{
     margin:0px auto;

@@ -14,9 +14,9 @@ class CompraController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $compras = Compra::orderBy('id', 'ASC')->paginate(15);
+        $compras = Compra::proveedor($request->get('proveedor'))->orderBy('id', 'DESC')->where('estado', '=', 'valida')->paginate(10);
         return view('compra.index', compact('compras'));
     }
 
@@ -117,5 +117,24 @@ class CompraController extends Controller
     {
         $compra->delete();
         return redirect()->route('compra.index')->with('info', 'Se eliminó la venta');
+    }
+
+    public function novalida(Compra $compra){
+
+        $cantidaddetalles = DetalleCompra::where('id_compra', '=', $compra->id)->count();
+        
+        for($i = 1; $i <= $cantidaddetalles; $i++){
+            $detalle = DetalleCompra::where('id_compra', '=', $compra->id)->where('id_detalle', '=', $i)->first();
+            $producto = Producto::where('id', '=', $detalle->id_tipo_producto)->first();
+            $producto->cantidad -= $detalle->cantidad;
+            $producto->gramos -= $detalle->peso_kilo;
+
+            $producto->save();
+        }
+
+        $compra->estado = 'no valida';
+        $compra->save();
+
+        return redirect()->route('compra.index')->with('info', 'Se cambió el estado de la compra a "No válida"');
     }
 }

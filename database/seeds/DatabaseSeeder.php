@@ -82,5 +82,57 @@ class DatabaseSeeder extends Seeder
             'correo' => 'pollospaisa@gmail.com',
             'nit' => '12314566-2'
         ]);
+        
+
+        //Meses
+
+        DB::table('meses')->insert([
+            'id' => 1,
+            'nombre' => 'Enero'
+        ]);
+        DB::table('meses')->insert([
+            'id' => 2,
+            'nombre' => 'Febrero'
+        ]);
+        DB::table('meses')->insert([
+            'id' => 3,
+            'nombre' => 'Marzo'
+        ]);
+        DB::table('meses')->insert([
+            'id' => 4,
+            'nombre' => 'Abril'
+        ]);
+        DB::table('meses')->insert([
+            'id' => 5,
+            'nombre' => 'Mayo'
+        ]);
+        DB::table('meses')->insert([
+            'id' => 6,
+            'nombre' => 'Junio'
+        ]);
+        DB::table('meses')->insert([
+            'id' => 7,
+            'nombre' => 'Julio'
+        ]);
+        DB::table('meses')->insert([
+            'id' => 8,
+            'nombre' => 'Agosto'
+        ]);
+        DB::table('meses')->insert([
+            'id' => 9,
+            'nombre' => 'Septiembre'
+        ]);
+        DB::table('meses')->insert([
+            'id' => 10,
+            'nombre' => 'Octubre'
+        ]);
+        DB::table('meses')->insert([
+            'id' => 11,
+            'nombre' => 'Noviembre'
+        ]);
+        DB::table('meses')->insert([
+            'id' => 12,
+            'nombre' => 'Diciembre'
+        ]);
     }
 }

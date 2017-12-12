@@ -5,16 +5,19 @@
 		@role(['admin', 'vendedor'])
 		<div class="col-md-6" style="padding: 5px;">
 			<div class="panel panel-primary animated bounceInDown">
-				<div class="panel-heading" style="margin: 0;">
-					<h3>
-						<b>Pedidos pendientes
+				<div class="panel-heading" style="margin: 0;;">
+					<h3 style="padding: 0px; margin: 6px;">
+						<b>Pedidos pendientes 
 							<i class="fa fa-clock-o" aria-hidden="true"></i>
+							
 						</b>
 						<span class="pull-right">&nbsp;</span>
 						<a href=" {{route('pedido.index')}} " class="btn btn-default pull-right">Ver todos
 							<i class="fa fa-eye"></i>
 						</a>
 					</h3>
+					<p style="margin: 0px;"> &nbsp;&nbsp;Totales: <span class="badge">{{$cantidadpedidospendientes}}</span>
+							Para hoy: <span class="badge">{{$cantidadpedidospendienteshoy}}</span></p>
 					@if(Session::has('infopedidopendiente'))
 					<div class="animatedParent animateOnce">
 						<div class="alert alert-info animated bounceInRight" style="padding: 5px; margin: 0;" align="center">
@@ -164,7 +167,7 @@
 			<div class="panel panel-primary animated bounceInDown">
 				<div class="panel-heading" style="margin: 0;">
 					<h3>
-						<b>Pedidos en camino
+						<b>Pedidos en camino <span class="badge">{{$cantidadpedidosencamino}}</span>
 							<i class="fa fa-motorcycle" aria-hidden="true"></i>
 						</b>
 						<span class="pull-right">&nbsp;</span>

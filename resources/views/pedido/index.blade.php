@@ -1,5 +1,5 @@
 @extends('layouts.app') @section('title', 'Pedidos') @section('content')
-<div class="container animatedParent">
+<div class="container animatedParent animatedOnce">
 	<div class="panel panel-primary animated bounceInUp">
 		<div class="panel-heading">
 			@include('_mensaje')
@@ -8,11 +8,11 @@
 		{!! Form::open(['route' => 'pedido.index', 'method' => 'GET', 'class' => 'navbar-form navbar-left pull-right',
 		'role' => 'search']) !!}
 		<div class="form-group">
-			{!! Form::label('busquedaporestado', 'Filtrar por estado: ') !!}
+			{!! Form::text('nombre', null, ['class' => 'form-control', 'title' => 'Escriba el nombre del comprador', 'placeholder' => 'Buscar por nombre'] ) !!}
             {!! Form::select('estado', ['' => 'Ver todos', 'Pendiente' =>
 			'Pendiente', 'En camino' => 'En camino', 'Entregado' => 'Entregado', 'Cancelado' => 'Cancelado'], null, ['class' => 'form-control'] ) !!}
 		</div>
-		{!! Form::submit('Filtrar', ['class' => 'btn btn-primary']) !!} {!! Form::close() !!}
+		{!! Form::submit('Buscar', ['class' => 'btn btn-primary']) !!} {!! Form::close() !!}
 		<div class="panel-body">
 			<h3>Hay {{ $pedidos->total() }} pedidos</h3>
 			<table class="table table-bordered" style="margin: 0px;">
@@ -103,7 +103,7 @@
 					@endforeach
 				</tbody>
 			</table>
-			{!! $pedidos->appends(Request::only(['estado']))->render() !!}
+			{!! $pedidos->appends(Request::only(['estado', 'nombre']))->render() !!}
 		</div>
 	</div>
 </div>

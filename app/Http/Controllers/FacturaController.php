@@ -61,11 +61,11 @@ class FacturaController extends Controller
             $pedido->id_factura = $factura->id;
             $pedido->save();
         }
-        $contador = 0;
-        for($i = 0; $i < $request->cantidaddetalles; $i++){
+        $contador = 1;
+        for($i = 1; $i < $request->cantidaddetalles; $i++){
                 //Select es el producto
                 $detalleFactura = new DetalleFactura();
-                $detalleFactura->id_detalle = $i +1;
+                $detalleFactura->id_detalle = $i;
                 $detalleFactura->peso_kilo = $request->pesodetalle[$i];
                 $detalleFactura->precio = $request->preciodetalle[$i];
                 $detalleFactura->cantidad = $request->cantidaddetalle[$i];
@@ -102,7 +102,7 @@ class FacturaController extends Controller
                 $contador++;
 
                 $producto->cantidad -= 1;
-                $producto->gramos -= 500;
+                $producto->gramos -= 0.5;
                 if($producto->cantidad < 0){
                     $producto->cantidad = 0;
                 }
@@ -182,7 +182,7 @@ class FacturaController extends Controller
             $producto->save();
         }
 
-        $factura->estado = 'No valida';
+        $factura->estado = 'no valida';
         $factura->save();
 
         return redirect()->route('factura.index')->with('info', 'Se cambió el estado de la venta a "No válida"');

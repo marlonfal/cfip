@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', 'Registrar gasto')
 @section('content')
-<div class="container animatedParent">
+<div class="container animatedParent animatedOnce">
     <div class="col-md-10 col-xs-12 col-sm-12 col-lg-8 col-md-offset-1 col-lg-offset-2">
         <div class="panel panel-primary animated bounceInUp">
             <div class="panel-heading">

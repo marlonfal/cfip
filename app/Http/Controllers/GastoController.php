@@ -14,11 +14,12 @@ class GastoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-
-        $gastos = Gasto::orderBy('id', 'DESC')->with('tipodegasto')->paginate(10);
-        return view('gasto.index', compact('gastos'));
+        $tiposdegasto = tipodegasto::pluck('nombre_tipo_gasto', 'id');
+        $gastos = Gasto::tipodegastos($request->get('tipo'))->orderBy('id', 'DESC')->with('tipodegasto')->where('estado', '=', 'valido')->paginate(10);
+        $tiposdegasto->prepend('Sin filtro');
+        return view('gasto.index', compact('gastos', 'tiposdegasto'));
     }
 
     /**
@@ -46,6 +47,7 @@ class GastoController extends Controller
         $gasto->usuario = $request->usuario;
         $gasto->total = $request->total;
         $gasto->id_tipo_gasto = $request->id_tipo_gasto;
+        $gasto->estado = 'valido';
 
         $gasto->save();
 
@@ -116,5 +118,14 @@ class GastoController extends Controller
     {
         $gasto->delete();
         return redirect()->route('gasto.show', $gasto)->with('info', 'Se actualizó el gasto');
+    }
+
+    public function novalido(Gasto $gasto){
+
+        $gasto->estado = 'no valido';
+
+        $gasto->save();
+
+        return redirect()->route('gasto.index')->with('info', 'Se cambió el estado del gasto a "No válido"');
     }
 }

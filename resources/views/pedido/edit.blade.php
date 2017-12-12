@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', 'Editar pedido')
 @section('content')
-<div class="container animatedParent">
+<div class="container animatedParent animatedOnce">
     <div class="col-md-6 col-md-offset-3">
         <div class="panel panel-primary animated bounceInUp">
             <div class="panel-heading">

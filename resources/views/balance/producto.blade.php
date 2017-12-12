@@ -27,6 +27,7 @@
 			{!! Form::close() !!}
 		</div>
 		<div class="panel-body" style="padding: 0px;">
+		@include('_mensaje')
 			<div class="table-resposive">
 				<table class="table table-bordered centertext" style="margin: 0px;">
 					@if($mt == 0)
@@ -35,7 +36,7 @@
 						<tr>
 							<th class="centertext">Producto</th>
 							<th class="centertext">Unidades vendidas</th>
-							<th class="centertext">Gramos vendidos</th>
+							<th class="centertext">Kilos vendidos</th>
 							<th class="centertext">Vendidos en</th>
 							<th class="centertext">Comprados en</th>
 							<th class="centertext">Diferencia</th>

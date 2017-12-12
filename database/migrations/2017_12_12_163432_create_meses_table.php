@@ -1,9 +1,10 @@
 <?php
 
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class InventarioMigration extends Migration
+class CreateMesesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +13,9 @@ class InventarioMigration extends Migration
      */
     public function up()
     {
-        Schema::create('inventario', function (Blueprint $table) {
+        Schema::create('meses', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('cantidad_disponible');
-            $table->integer('id_producto')->unsigned();
-            $table->foreign('id_producto')->references('id')->on('productos');
+            $table->string('nombre');
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ class InventarioMigration extends Migration
      */
     public function down()
     {
-        Schema::drop('inventario');
+        Schema::dropIfExists('meses');
     }
 }

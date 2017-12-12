@@ -32,9 +32,7 @@
 
                     <span class="pull-right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 
-                    {!! Form::model($tipodegasto, ['route' => ['tipodegasto.update', $tipodegasto->id], 'method' => 'DELETE']) !!}
-                    {!! Form::submit('Eliminar', ['class' => 'btn btn-danger pull-right']) !!}
-                    {!! Form::close() !!}          
+                             
                 </div>
             </div>
         </div>

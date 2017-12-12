@@ -19,6 +19,7 @@ class CreateComprasTable extends Migration
             $table->string('proveedor');
             $table->string('usuario');
             $table->integer('total');
+            $table->string('estado');
             $table->timestamps();
         });
     }
