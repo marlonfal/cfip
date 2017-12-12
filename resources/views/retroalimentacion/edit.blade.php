@@ -6,7 +6,7 @@
         <div class="col-md-6 col-md-offset-3">
             <div class="panel panel-primary animated bounceInUp">
                 <div class="panel-heading">
-                    <h1 align="center">Enviar retroalimentacion</h1>
+                    <h1 align="center">Editar retroalimentación</h1>
                 </div>
                 @include('_error')
                 <div class="panel-body">

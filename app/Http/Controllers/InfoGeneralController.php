@@ -45,6 +45,7 @@ class InfoGeneralController extends Controller
         $infogeneral->nit = $request->nit;
         $infogeneral->correo = $request->correo;
         $infogeneral->telefono = $request->telefono;
+        $infogeneral->descuentos = $request->descuentos;
 
         $infogeneral->save();
 

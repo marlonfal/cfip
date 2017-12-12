@@ -80,7 +80,8 @@ class DatabaseSeeder extends Seeder
             'iva' => 19,
             'telefono' => '(2) 268 26 68',
             'correo' => 'pollospaisa@gmail.com',
-            'nit' => '12314566-2'
+            'nit' => '12314566-2',
+            'descuentos' => 0,
         ]);
         
 

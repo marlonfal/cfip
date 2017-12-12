@@ -28,6 +28,23 @@
                             {!! Form::label('telefono', 'Teléfono') !!}
                             {!! Form::text('telefono', $infogeneral->telefono, ['class' => 'form-control']) !!}
                         </div>
+                        <div class="form-group">
+                            {!! Form::label('descuentos', '¿Hay descuentos?') !!}
+                            <br>
+                            @if ($infogeneral->descuentos == 1)
+                            {!! Form::label('si', 'Sí') !!}
+                            {!! Form::radio('descuentos', '1', true) !!}
+                            &nbsp;
+                            {!! Form::label('no', 'No') !!}
+                            {!! Form::radio('descuentos', '0') !!}
+                            @else
+                            {!! Form::label('si', 'Sí') !!}
+                            {!! Form::radio('descuentos', '1') !!}
+                            &nbsp;
+                            {!! Form::label('no', 'No') !!}
+                            {!! Form::radio('descuentos', '0', true) !!}
+                            @endif
+                        </div>
                         
                         
                         <div class="form-group">

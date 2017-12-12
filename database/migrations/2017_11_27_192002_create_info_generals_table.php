@@ -19,6 +19,7 @@ class CreateInfoGeneralsTable extends Migration
             $table->string('telefono');
             $table->string('correo');
             $table->string('nit');
+            $table->boolean('descuentos');
             $table->timestamps();
         });
     }

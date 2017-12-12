@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Factura;
 use App\Pedido;
 use App\Producto;
+use App\InfoGeneral;
 use Auth;
 use Carbon\Carbon;
 
@@ -14,8 +15,9 @@ class InfoController extends Controller
 {
     public function index()
     {   
+        $infogeneral = InfoGeneral::first();
         $productos = Producto::orderBy('id', 'ASC')->get();
-        return view('info.index', compact('productos'));
+        return view('info.index', compact('productos', 'infogeneral'));
     }
     public function inicio()
     {

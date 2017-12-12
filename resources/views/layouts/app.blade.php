@@ -61,7 +61,7 @@
 								</li>
 								<li role="separator" class="divider"></li>
 								<li>
-									<a href="{{ route('gasto.create') }}">Pedido </a>
+									<a href="{{ route('pedido.create') }}">Pedido </a>
 								</li>
 							</ul>
 						</li>
@@ -142,9 +142,6 @@
 								</li>
 								<li role="separator" class="divider"></li>
 								<li> &nbsp; Cambiar</li>
-								<li>
-									<a href="{{ route('infogeneral.edit', 1) }}">IVA</a>
-								</li>
 								<li>
 									<a href="{{ route('infogeneral.edit', 1) }}">Información general</a>
 								</li>

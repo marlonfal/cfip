@@ -29,6 +29,16 @@
                                 <td>Teléfono: </td>
                                 <td>{{$infogeneral->telefono}}</td>
                             </tr>
+                            <tr>
+                                <td>¿Hay descuentos?: </td>
+                                <td>
+                                    @if ($infogeneral->descuentos == 1)
+                                        Sí
+                                    @else
+                                        No 
+                                    @endif
+                                </td>
+                            </tr>
                             
                         </tbody>
                     </table>

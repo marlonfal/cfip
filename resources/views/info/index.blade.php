@@ -7,16 +7,20 @@
 	</div>
 </div>
 <br>
+
 <div class="container">
 	<!-- PRODUCTOS -->
-
 	<br>
 	<div class="animatedParent" id="productos">
+		@if($infogeneral->descuentos == 1)
+			<img class="discount-label" src="{{ asset('/img/tag.png')}}" alt="descuentos" />
+		@endif
 		<div class="seccion animated bounceInUp">
-			<p>
-				<b>PRODUCTOS</b>
-				<p>
+			<b>PRODUCTOS
+			</b>
+
 		</div>
+
 		<br>
 		<div class="row animated bounceInUp">
 			@foreach($productos as $producto)
@@ -34,10 +38,10 @@
 
 	</div>
 
-	<div class="container animatedParent" align="center">
-		<a class="centro btn btn-yellow btn-lg animated bounceInLeft" href="{{ route('pedido.create')}}">
+	<div class="animatedParent" align="center">
+		<a class="centro btn btn-yellow btn-lg animated bounceInUp" href="{{ route('pedido.create')}}">
 			<b>HACER PEDIDO</b>
-		</a>
+		</a><img src=" {{asset('/img/EnvioGratis.png')}} " class="animated bounceInUp" heigth="120" width="120" alt="enviogratis" />
 	</div>
 	<!-- SOBRE NOSOTROS -->
 	<br>
@@ -115,7 +119,7 @@
 						</td>
 						<td>
 							<h4>
-								<b> 123123123 </b>
+								<b> {{ $infogeneral->telefono }} </b>
 							</h4>
 						</td>
 					</tr>
@@ -139,7 +143,7 @@
 						</td>
 						<td>
 							<h4>
-								<b> 8 a.m. - 6 p.m. </b>
+								<b> Lunes a sábado 8 a.m. - 7 p.m. </b>
 							</h4>
 						</td>
 					</tr>

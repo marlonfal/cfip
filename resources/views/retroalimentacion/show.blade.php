@@ -6,7 +6,7 @@
 				<div class="panel-heading">
 					@include('_mensaje')
 					<h1 align="center">
-						<b>Retroalimentación</b>
+						<b>Realimentación</b>
 					</h1>
 				</div>
 

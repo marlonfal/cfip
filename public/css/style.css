@@ -205,10 +205,11 @@ body {
  
  
 @media (max-width: 767px) {
-    .accordion-content {
+   .accordion-content {
         padding: 0px 0;
     }
 }
+
 
 .menos5productos {
     background-color: #d23934;
@@ -222,5 +223,133 @@ body {
     text-align: center !important;
 }
 
-
-  
+.discount-label {
+    padding:8px; 
+    margin-top:60px;
+    margin-left:60px;
+    position: fixed;
+    margin-top: 0;
+    width:23%;
+    z-index: 1000;
+    text-align: center;
+   -webkit-border-radius:0 4px 0 4px;
+   -moz-border-radius:0 4px 0 4px;
+   border-radius:0 4px 4px 0;
+   right: -19px;
+   bottom: 10px;
+   font-size: 18px;
+   line-height: 1.3333333;
+   border-radius: 6px;
+   color: #fff;
+   }
+#productos {
+    position: relative;
+}
+   
+   .discount-label:after { 
+   
+       right: 100%; 
+       border: solid transparent; content: " "; 
+       height: 0; 
+       width: 0; 
+       position: fixed;
+       border-color: rgba(136, 183, 213, 0);
+        
+       border-width: 20px; 
+       top: 50%; 
+       margin-top: -20px;} 
+   
+       .discount-label:before {
+     content: '';
+     z-index: 2;
+     position: fixed;
+     top: 42%;
+     right: 100%;
+     width: 7px;
+     height: 7px;
+     opacity: .95;
+     background: #ffffff;
+     border-radius: 7px;
+     -webkit-box-shadow: inset .5px 0 rgba(0, 0, 0, 0.6);
+     box-shadow: inset .5px 0 rgba(0, 0, 0, 0.6);
+   
+   }
+   
+   
+       .discount-label span {
+         color:#ffffff;
+     font-size:20px;
+   text-align:center;
+     font-family:"Raleway",Helvetica;
+   
+   }
+   
+   
+   .red{ 
+   background-color:#E80707; 
+   }
+   
+   .red:after{ 
+   border-right-color: #E80707;
+     
+   }
+   .green{ 
+    background-color:#16B516; 
+    }
+    
+    .green:after{ 
+    border-right-color: #16B516;
+    }
+    .discount-label2 {
+        padding:8px; 
+        margin-top:60px;
+        margin-left:60px;
+        position: absolute;
+        margin-top: 0;
+        width:200px;
+        z-index: 1000;
+       -webkit-border-radius:0 4px 0 4px;
+       -moz-border-radius:0 4px 0 4px;
+       border-radius:0 4px 4px 0;
+       transform: rotate(45deg);
+       -ms-transform: rotate(45deg);
+       right: -15px;
+       top: 700px;
+       font-size: 18px;
+       line-height: 1.3333333;
+       border-radius: 6px;
+       color: #fff;
+       background-color: #3097D1;
+       border-color: #3097D1;
+    
+       
+       }
+       
+       .discount-label2:after { 
+       
+           right: 100%; 
+           border: solid transparent; content: " "; 
+           height: 0; 
+           width: 0; 
+           position: fixed;
+           border-color: rgba(136, 183, 213, 0);
+            
+           border-width: 20px; 
+           top: 50%; 
+           margin-top: -20px;} 
+       
+           .discount-label:before {
+         content: '';
+         z-index: 2;
+         position: fixed;
+         top: 42%;
+         right: 100%;
+         width: 7px;
+         height: 7px;
+         opacity: .95;
+         background: #ffffff;
+         border-radius: 7px;
+         -webkit-box-shadow: inset .5px 0 rgba(0, 0, 0, 0.6);
+         box-shadow: inset .5px 0 rgba(0, 0, 0, 0.6);
+       
+       }
