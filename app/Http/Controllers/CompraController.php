@@ -50,7 +50,7 @@ class CompraController extends Controller
 
             $detalleCompra = new DetalleCompra();
             $detalleCompra->id_detalle = $i +1;
-            $detalleCompra->peso_gramo = $request->pesodetalle[$i];
+            $detalleCompra->peso_kilo = $request->pesodetalle[$i];
             $detalleCompra->precio = $request->preciodetalle[$i];
             $detalleCompra->cantidad = $request->cantidaddetalle[$i];
             $detalleCompra->id_compra = $compra->id;
@@ -59,9 +59,9 @@ class CompraController extends Controller
             $detalleCompra->save();
 
             $producto = Producto::where('id', '=', $request->select[$i])->first();
-            $producto->preciocompragramo = $request->preciodetalle[$i] / $request->pesodetalle[$i];
+            $producto->preciocomprakilo = $request->preciodetalle[$i] / $request->pesodetalle[$i];
             $producto->cantidad += $request->cantidaddetalle[$i];
-            $producto->gramos += $request->preciodetalle[$i];
+            $producto->gramos += $request->pesodetalle[$i];
             $producto->save();
         }
 

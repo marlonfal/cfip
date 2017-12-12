@@ -4,21 +4,20 @@
 		<div class="panel panel-primary">
 			<div class="panel-heading">
 				@include('_mensaje')
-				<h1 align="center">Detalles del pedido #{{ $pedido->id }}
-				</h1>
+				<table width="100%">
+					<tr>
+						<td colspan="2">
+							<img src="{{ asset('img/logo.png') }}" class="img-responsive pull-right" alt="" height="100" width="100" style="padding-top: 0px; margin: 0px;">
+						</td>
+						<td>
+							<h1 align="left" class="pull-letf" style="padding-left: 0px; margin-left: 32px;">Detalles del pedido #{{ $pedido->id }} </h1>
+						</td>
+					</tr>
+				</table>
 			</div>
 			<input type="hidden" name="_token" value="{{ csrf_token() }}" id="token" />
 			<div class="panel-body" style="padding: 0px;">
 				<table class="table table-bordered" style="margin: 0px;">
-					<thead>
-						<th colspan="6">
-							<div align="center">
-								<img src="{{ asset('img/logo.png') }}" class="img-responsive" alt="" height="100" width="100">
-							</div>
-							<p align="center">Pollo 100% campesino</p>
-							<p align="center">Nit 12312312312</p>
-						</th>
-					</thead>
 					<tbody>
 						<tr>
 							@if($pedido->estado == 'Pendiente')
@@ -90,15 +89,22 @@
 			</div>
 			@if($pedido->estado != 'Cancelado')
 			<div class="panel-footer">
-				@role('admin')
+				@role('cliente')
+				<a href="{{ route('inicio') }}" class="btn btn-default pull-left">
+					<b> Ir a inicio </b>
+				</a>
+				@endrole
+				@role(['admin', 'vendedor'])
 				<a href="{{ route('pedido.index') }}" class="btn btn-default pull-left">
 					<b> Volver a la lista </b>
 				</a>
 				@endrole @if($pedido->id_factura == 0)
-				<a href="{{ route('cancelarpedido', $pedido->id) }}" class="btn btn-danger pull-right">
-					Cancelar pedido
-					<i class="fa fa-times" aria-hidden="true"></i>
-				</a>
+					@if(Auth::user()->name == $pedido->nombre)
+						<a href="{{ route('cancelarpedido', $pedido->id) }}" class="btn btn-danger pull-right">
+							Cancelar pedido
+							<i class="fa fa-times" aria-hidden="true"></i>
+						</a>
+					@endif
 				@else
 
 

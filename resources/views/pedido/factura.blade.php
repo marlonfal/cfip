@@ -65,7 +65,7 @@
                             <tr class="bg-primary" align="center">
                                 <td width="60"><b> Número </b></td>
                                 <td><b> Producto </b></td>
-                                <td><b> Peso (Gr) </b></td>
+                                <td><b> Kilos </b></td>
                                 <td><b> Cantidad </b></td>
                                 <td><b> Precio </b></td>
                                 <td colspan="1"></td>

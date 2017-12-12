@@ -38,7 +38,7 @@ class DetalleFacturaController extends Controller
     {
         $detalleFactura = new DetalleFactura();
         $detalleFactura->id_detalle = $request->id_detalle;
-        $detalleFactura->peso_gramo = $request->peso_gramo;
+        $detalleFactura->peso_kilo = $request->peso_kilo;
         $detalleFactura->precio = $request->precio;
         $detalleFactura->cantidad = $request->cantidad;
         $detalleFactura->id_factura = $request->id_factura;

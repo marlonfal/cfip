@@ -19,7 +19,7 @@ class ProductoTest extends TestCase
         $cdp1 = new Request();
         $cdp1->imagen = 'pechuga.jpg';
         $cdp1->nombre = 'Pechuga';
-        $cdp1->precioventagramo = 1876;
+        $cdp1->precioventakilo = 1876;
         $cdp1->cantidad = 10;
         $cdp1->gramos = 10000;
         $cdp1->activo = 1;
@@ -31,7 +31,7 @@ class ProductoTest extends TestCase
         $cdp2 = new Request();
         $cdp2->imagen = 'pernil.jpg';
         $cdp2->nombre = 'Pernil';
-        $cdp2->precioventagramo = 1298;
+        $cdp2->precioventakilo = 1298;
         $cdp2->cantidad = 10;
         $cdp2->gramos = 10000;
         $cdp2->activo = 1;
@@ -42,7 +42,7 @@ class ProductoTest extends TestCase
         $cdp3 = new Request();
         $cdp3->imagen = 'Visceras.jpg';
         $cdp3->nombre = 'Vísceras';
-        $cdp3->precioventagramo = -3;
+        $cdp3->precioventakilo = -3;
         $cdp3->cantidad = 10;
         $cdp3->gramos = 10000;
         $cdp3->activo = 1;
@@ -53,7 +53,7 @@ class ProductoTest extends TestCase
         $cdp4 = new Request();
         $cdp4->imagen = 'Alas.jpg';
         $cdp4->nombre = 'Alas';
-        $cdp4->precioventagramo = 1121;
+        $cdp4->precioventakilo = 1121;
         $cdp4->cantidad = -2;
         $cdp4->gramos = 2000;
         $cdp4->activo = 1;
@@ -64,7 +64,7 @@ class ProductoTest extends TestCase
         $cdp5 = new Request();
         $cdp5->imagen = 'Pollo entero.jpg';
         $cdp5->nombre = 'Pollo entero';
-        $cdp5->precioventagramo = 3331;
+        $cdp5->precioventakilo = 3331;
         $cdp5->cantidad = 20;
         $cdp5->gramos = -8;
         $cdp5->activo = 1;

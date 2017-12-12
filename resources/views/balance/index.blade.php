@@ -5,8 +5,8 @@
 		<div class="panel-heading">
 			{!! Form::open(['route' => 'balance', 'method' => 'GET','role' => 'search']) !!}
 			<div class="row" align="center">
-				<div class="form-group col-md-3">
-					<h1>Balance
+				<div class="form-group col-md-5">
+					<h1>Estado de resultados
 						<i class="fa fa-area-chart" aria-hidden="true"></i>
 					</h1>
 				</div>
@@ -147,7 +147,7 @@
 												<tr>
 													<td>{{ $cd->id_tipo_producto }}</td>
 													<td>{{ $cd->cantidad }}</td>
-													<td>{{ $cd->peso_gramo }}</td>
+													<td>{{ $cd->peso_kilo }}</td>
 													<td>{{ $cd->precio }}</td>
 												</tr>
 												@endforeach

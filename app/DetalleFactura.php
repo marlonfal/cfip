@@ -17,7 +17,7 @@ class DetalleFactura extends Model
 
     protected $table = 'detalle_factura';
     protected $fillable = [ 'id_detalle',
-                            'peso_gramo', 
+                            'peso_kilo', 
                             'precio', 
                             'cantidad', 
                             'id_factura', 

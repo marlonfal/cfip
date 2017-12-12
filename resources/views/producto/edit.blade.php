@@ -17,12 +17,12 @@
                             {!! Form::text('nombre', $producto->nombre, ['class' => 'form-control']) !!}
                         </div>
                         <div class="form-group">
-                            {!! Form::label('precioventagramo', 'Precio de venta por kilo') !!}
-                            {!! Form::number('precioventagramo', $producto->precioventagramo * 1000, ['class' => 'form-control']) !!}
+                            {!! Form::label('precioventakilo', 'Precio de venta por kilo') !!}
+                            {!! Form::number('precioventakilo', $producto->precioventakilo, ['class' => 'form-control']) !!}
                         </div>
                         <div class="form-group">
-                            {!! Form::label('preciocompragramo', 'Precio de compra por kilo') !!}
-                            {!! Form::number('preciocompragramo', $producto->preciocompragramo * 1000, ['class' => 'form-control']) !!}
+                            {!! Form::label('preciocomprakilo', 'Precio de compra por kilo') !!}
+                            {!! Form::number('preciocomprakilo', $producto->preciocomprakilo, ['class' => 'form-control']) !!}
                         </div>
                         <div class="form-group">
                             {!! Form::label('cantidad', 'Cantidad') !!}

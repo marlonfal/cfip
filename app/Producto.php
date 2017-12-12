@@ -30,7 +30,7 @@ class Producto extends Model
     }
 
     protected $table = 'productos';
-    protected $fillable =['nombre','precioventagramo', 'imagen', 'cantidad', 'gramos', 'activo', 'preciocompragramo'];
+    protected $fillable =['nombre','precioventakilo', 'imagen', 'cantidad', 'gramos', 'activo', 'preciocomprakilo'];
 
     /**
      * función que devuelve todos los productos

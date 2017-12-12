@@ -15,7 +15,7 @@ class DetalleFacturaMigration extends Migration
         Schema::create('detalle_factura', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_detalle');
-            $table->integer('peso_gramo');
+            $table->double('peso_kilo');
             $table->integer('precio');
             $table->integer('cantidad');
             $table->integer('id_factura')->unsigned();

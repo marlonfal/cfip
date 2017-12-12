@@ -23,18 +23,18 @@
                             </tr>
                             <tr>
                                 <td>Precio de venta por kilo:</td>
-                                <td>{{ $producto->precioventagramo * 1000 }}</td>
+                                <td>{{ $producto->precioventakilo}}</td>
                             </tr>
                             <tr>
                                 <td>Precio de compra por kilo:</td>
-                                <td>{{ $producto->preciocompragramo * 1000}}</td>
+                                <td>{{ $producto->preciocomprakilo }}</td>
                             </tr>
                             <tr>
                                 <td>Cantidad disponible:</td>
                                 <td>{{ $producto->cantidad }}</td>
                             </tr>
                             <tr>
-                                <td>Gramos disponibles:</td>
+                                <td>Kilos disponibles:</td>
                                 <td>{{ $producto->gramos }}</td>
                             </tr>
                             <tr>

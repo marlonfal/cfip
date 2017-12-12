@@ -18,13 +18,13 @@
                         </div>
 
                         <div class="form-group">
-                            {!! Form::label('precioventagramo', 'Precio de venta por kilo') !!}
-                            {!! Form::number('precioventagramo', null, ['class' => 'form-control', 'required' => 'required', 'min' => '0']) !!}
+                            {!! Form::label('precioventakilo', 'Precio de venta por kilo') !!}
+                            {!! Form::number('precioventakilo', null, ['class' => 'form-control', 'required' => 'required', 'min' => '0']) !!}
                         </div>
 
                         <div class="form-group">
-                            {!! Form::label('preciocompragramo', 'Precio de compra por kilo') !!}
-                            {!! Form::number('preciocompragramo', null, ['class' => 'form-control', 'required' => 'required', 'min' => '0']) !!}
+                            {!! Form::label('preciocomprakilo', 'Precio de compra por kilo') !!}
+                            {!! Form::number('preciocomprakilo', null, ['class' => 'form-control', 'required' => 'required', 'min' => '0']) !!}
                         </div>
 
                         <div class="form-group">
@@ -34,7 +34,7 @@
                         
 
                         <div class="form-group">
-                            {!! Form::label('gramos', 'Gramos disponibles') !!}
+                            {!! Form::label('gramos', 'Kilos disponibles') !!}
                             {!! Form::number('gramos', null, ['class' => 'form-control', 'required' => 'required', 'min' => '0']) !!}
                         </div>
                         <div class="form-group">

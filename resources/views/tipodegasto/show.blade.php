@@ -7,22 +7,18 @@
             <div class="panel panel-primary animated bounceInUp">
                 <div class="panel-heading">
                     @include('_mensaje')
-                    <h1 align="center"><b>Tipo de gastos {{$tipodegasto->id}}</b></h1>
+                    <h1 align="center"><b>Tipo de gasto: {{$tipodegasto->nombre_tipo_gasto}}</b></h1>
                 </div>
 
                 <div class="panel-body">  
                     <table class="table table-hover table-striped table-bordered">
                         <tbody>
                             <tr>
-                                <td>Id: </td>
-                                <td>{{$tipodegasto->id}}</td>
-                            </tr>
-                            <tr>
                                 <td>Nombre </td>
                                 <td>{{$tipodegasto->nombre_tipo_gasto}}</td>
                             </tr>
                             <tr>
-                                <td>Precio:</td>
+                                <td>Descripción:</td>
                                 <td>{{$tipodegasto->descripcion}}</td>
                             </tr>
                             <tr>

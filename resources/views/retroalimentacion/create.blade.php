@@ -1,19 +1,19 @@
-@extends('layouts.paginaweb')
+@extends('layouts.app')
 @section('title', 'Enviar retroalimentación')
 @section('content')
-<div class="container animatedParent" style="margin-top: 55px;">
+<div class="container animatedParent" >
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-            <div class="panel panel-primary animated bounceInUp">
+            <div class="panel panel-primary animated bounceInDown">
                 <div class="panel-heading">
-                    <h1 align="center">Enviar retroalimentación</h1>
+                    <h1 align="center">Enviar realimentación</h1>
                 </div>
                 @include('_error')
                 <div class="panel-body">
                     {!! Form::open(['route' => 'retroalimentacion.store']) !!}
                         <div class="form-group">
                             {!! Form::label('nombre', 'Nombre') !!}
-                            {!! Form::text('nombre', null, ['class' => 'form-control', 'required' => 'required']) !!}
+                            {!! Form::text('nombre', Auth::user()->name, ['class' => 'form-control', 'required' => 'required', 'readonly' => 'readonly']) !!}
                         </div>
 
                         <div class="form-group">

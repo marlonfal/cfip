@@ -13,48 +13,48 @@ class ProductosTableSeeder extends Seeder
     {
         DB::table('productos')->insert([
             'nombre' => 'Pernil',
-            'precioventagramo' => 6.28,
-            'preciocompragramo' => 4,
+            'precioventakilo' => 6300,
+            'preciocomprakilo' => 5600,
             'imagen' => 'muslo.jpg',
             'cantidad' => 20,
-            'gramos' => 20000,
+            'gramos' => 20,
             'activo' => 1,
         ]);
              
         DB::table('productos')->insert([
             'nombre' => 'Alas',
-            'precioventagramo' => 5,
-            'preciocompragramo' => 3,
+            'precioventakilo' => 5900,
+            'preciocomprakilo' => 3900,
             'imagen' => 'ala.jpg',
             'cantidad' => 18,
-            'gramos' => 18000,
+            'gramos' => 18,
             'activo' => 1,
         ]);
 
         DB::table('productos')->insert([
             'nombre' => 'Pechuga',
-            'precioventagramo' => 10,
-            'preciocompragramo' => 7,
+            'precioventakilo' => 7000,
+            'preciocomprakilo' => 6000,
             'imagen' => 'pechuga.jpg',
             'cantidad' => 13,
-            'gramos' => 12567,
+            'gramos' => 12,
             'activo' => 1,
         ]);
 
         DB::table('productos')->insert([
             'nombre' => 'Pollo Entero',
-            'precioventagramo' => 8,
-            'preciocompragramo' => 6,
+            'precioventakilo' => 8000,
+            'preciocomprakilo' => 6000,
             'imagen' => "polloentero.png",
             'cantidad' => 17,
-            'gramos' => 12456,
+            'gramos' => 12,
             'activo' => 1,
         ]);
 
         DB::table('productos')->insert([
             'nombre' => 'Visceras',
-            'precioventagramo' => 5,
-            'preciocompragramo' => 3,
+            'precioventakilo' => 5,
+            'preciocomprakilo' => 3,
             'imagen' => 'visceras.jpg',
             'cantidad' => 20,
             'gramos' => 20000,
@@ -63,21 +63,21 @@ class ProductosTableSeeder extends Seeder
 
         DB::table('productos')->insert([
             'nombre' => 'Corazones',
-            'precioventagramo' => 6,
-            'preciocompragramo' => 4,
+            'precioventakilo' => 6000,
+            'preciocomprakilo' => 4000,
             'imagen' => 'corazones.jpg',
             'cantidad' => 18,
-            'gramos' => 34890,
+            'gramos' => 18,
             'activo' => 1,
         ]);
 
         DB::table('productos')->insert([
             'nombre' => 'Rabadilla',
-            'precioventagramo' => 6,
-            'preciocompragramo' => 5,
+            'precioventakilo' => 6000,
+            'preciocomprakilo' => 5000,
             'imagen' => 'rabadilla.jpg',
             'cantidad' => 4,
-            'gramos' => 5000,
+            'gramos' => 5,
             'activo' => 1,
         ]);
     }

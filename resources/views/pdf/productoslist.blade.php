@@ -22,7 +22,7 @@
                 <th>Id</th>
                 <th>Nombre</th>
                 <th>Unidades disponibles</th>
-                <th>Gramos disponibles</th>
+                <th>Kilos disponibles</th>
             </tr>
         </thead>
         <tbody>

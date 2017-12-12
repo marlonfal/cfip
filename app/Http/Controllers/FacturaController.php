@@ -44,6 +44,7 @@ class FacturaController extends Controller
      */
     public function store(Request $request)
     {
+        
         $factura = new Factura();
         $factura->fecha = $request->fecha;
         $factura->vendedor = $request->vendedor;
@@ -60,18 +61,19 @@ class FacturaController extends Controller
             $pedido->id_factura = $factura->id;
             $pedido->save();
         }
-   
+        $contador = 0;
         for($i = 0; $i < $request->cantidaddetalles; $i++){
                 //Select es el producto
                 $detalleFactura = new DetalleFactura();
                 $detalleFactura->id_detalle = $i +1;
-                $detalleFactura->peso_gramo = $request->pesodetalle[$i];
+                $detalleFactura->peso_kilo = $request->pesodetalle[$i];
                 $detalleFactura->precio = $request->preciodetalle[$i];
                 $detalleFactura->cantidad = $request->cantidaddetalle[$i];
                 $detalleFactura->id_factura = $factura->id;
                 $detalleFactura->id_tipo_producto = $request->select[$i];
 
                 $detalleFactura->save();
+                $contador += 1;
 
                 $producto = Producto::where('id', '=', $request->select[$i])->first();
                 $producto->cantidad -= $request->cantidaddetalle[$i];
@@ -83,6 +85,32 @@ class FacturaController extends Controller
                     $producto->gramos = 0;
                 }
                 $producto->save();
+        }
+        if($request->obsequio == 1){
+            if(Producto::where('nombre', '=', 'Corazones')->count() > 0){
+                $producto = Producto::where('nombre', '=', 'Corazones')->first();
+
+                $detalleFactura = new DetalleFactura();
+                $detalleFactura->id_detalle = $contador;
+                $detalleFactura->peso_kilo = 500;
+                $detalleFactura->precio = 0;
+                $detalleFactura->cantidad = 1;
+                $detalleFactura->id_factura = $factura->id;
+                $detalleFactura->id_tipo_producto = $producto->id;
+
+                $detalleFactura->save();
+                $contador++;
+
+                $producto->cantidad -= 1;
+                $producto->gramos -= 500;
+                if($producto->cantidad < 0){
+                    $producto->cantidad = 0;
+                }
+                if($producto->gramos < 0){
+                    $producto->gramos = 0;
+                }
+                $producto->save();
+            }
         }
         
         return redirect()->route('factura.show', $factura)->with('info', 'Se guardó la venta');
@@ -149,7 +177,7 @@ class FacturaController extends Controller
             $detalle = DetalleFactura::where('id_factura', '=', $factura->id)->where('id_detalle', '=', $i)->first();
             $producto = Producto::where('id', '=', $detalle->id_tipo_producto)->first();
             $producto->cantidad += $detalle->cantidad;
-            $producto->gramos += $detalle->peso_gramo;
+            $producto->gramos += $detalle->peso_kilo;
 
             $producto->save();
         }

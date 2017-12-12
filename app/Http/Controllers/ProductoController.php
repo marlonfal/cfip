@@ -65,10 +65,10 @@ class ProductoController extends Controller
             $producto = new Producto();
             $producto->imagen = $request->file('imagen')->store('public');
             $producto->nombre = $request->nombre;
-            $producto->precioventagramo = $request->precioventagramo / 1000;
+            $producto->precioventakilo = $request->precioventakilo;
             $producto->cantidad = $request->cantidad;
             $producto->gramos = $request->gramos;
-            $producto->preciocompragramo = $request->preciocompragramo / 1000;
+            $producto->preciocomprakilo = $request->preciocomprakilo;
             $producto->activo = $request->activo;
             $producto->save();
             return redirect()->route('producto.show', $producto)->with('info', 'Se creó el producto');
@@ -113,10 +113,10 @@ class ProductoController extends Controller
         }
         
         $producto->nombre = $request->nombre;
-        $producto->precioventagramo = ($request->precioventagramo / 1000);
+        $producto->precioventakilo = $request->precioventakilo;
         $producto->cantidad = $request->cantidad;
         $producto->gramos = $request->gramos;
-        $producto->preciocompragramo = $request->preciocompragramo / 1000;
+        $producto->preciocomprakilo = $request->preciocomprakilo;
         $producto->activo = $request->activo;
 
         $producto->save();

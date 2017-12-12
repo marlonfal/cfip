@@ -112,9 +112,6 @@
 								<li>
 									<a href="{{ route('balanceporproductos') }}">Por productos </a>
 								</li>
-								<li>
-									<a href="{{ route('compra.index') }}">Por producto </a>
-								</li>
 							</ul>
 						</li>
 						@endrole

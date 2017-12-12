@@ -46,7 +46,7 @@
                 <td>
                     <label>{{ $detalle->producto->nombre }}</label>
                 </td>
-                <td>{{ $detalle->peso_gramo }} /  {{ $detalle->cantidad }}</td>
+                <td>{{ $detalle->peso_kilo }} /  {{ $detalle->cantidad }}</td>
                 <td>${{ $detalle->precio }}</td>
             </tr>
         @endforeach

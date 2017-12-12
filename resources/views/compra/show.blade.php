@@ -54,7 +54,7 @@
                                     <td colspan="2">
                                         <label>{{ $detalle->producto->nombre }} </label> 
                                     </td>
-                                    <td width="60"><b> {{ $detalle->peso_gramo }} </b></td>
+                                    <td width="60"><b> {{ $detalle->peso_kilo }} </b></td>
                                     <td width="60"><b> {{ $detalle->cantidad }} </b></td>
                                     <td><b>$ {{ $detalle->precio }} </b></td>
                                 </tr>

@@ -28,7 +28,7 @@
                             <th>Nombre</th>
                             <th>Precio por kilo</th>
                             <th>Cantidad disponible</th>
-                            <th>Gramos disponibles</th>
+                            <th>Kilos disponibles</th>
                             <th colspan="3">Opciones</th>
                         </tr>
                     </thead>
@@ -43,7 +43,7 @@
                         @endif
                                 <td>{{ $producto->id }}</td>
                                 <td><b> {{ $producto->nombre }}</b></td>
-                                <td>{{ $producto->precioventagramo *1000 }}</td>
+                                <td>{{ $producto->precioventakilo *1000 }}</td>
                                 <td>{{ $producto->cantidad }}</td>
                                 <td>{{ $producto->gramos }}</td>
                                 <td width="50">

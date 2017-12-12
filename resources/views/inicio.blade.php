@@ -58,16 +58,21 @@
 													<thead>
 														<tr>
 															<th>Producto</th>
-															<th>Cantidad</th>
-															<th>Cantidad disponible</th>
+															<th>Unidades pedidas</th>
+															<th>Unidades disponibles</th>
 														</tr>
 													</thead>
-													<tbody>
+													<tbody class="centertext">
 														@foreach($pedido->detalles as $pd)
 														<tr>
 															<td>{{ $pd->id_tipo_producto }}</td>
 															<td>{{ $pd->cantidad }}</td>
-															<td>{{ $pd->cantidaddisponible }}</td>
+															@if($pd->cantidad > $pd->cantidaddisponible)
+															<td class="menos5productos">
+															@else
+															<td>
+															@endif
+															{{ $pd->cantidaddisponible }}</td>
 														</tr>
 														@endforeach
 													</tbody>
@@ -211,7 +216,6 @@
 														<tr>
 															<th>Producto</th>
 															<th>Cantidad</th>
-															<th>Cantidad disponible</th>
 														</tr>
 													</thead>
 													<tbody>
@@ -219,7 +223,6 @@
 														<tr>
 															<td>{{ $pd->id_tipo_producto }}</td>
 															<td>{{ $pd->cantidad }}</td>
-															<td>{{ $pd->cantidaddisponible }}</td>
 														</tr>
 														@endforeach
 													</tbody>
@@ -303,7 +306,7 @@
 		</div>
 		@endrole @role('cliente')
 		<div class="row">
-			<div class="col-md-12" style="padding: 5px;">
+			<div class="col-md-8 col-md-offset-2" style="padding: 5px;">
 				<div class="panel panel-primary animated bounceInDown">
 					<div class="panel-heading" style="margin: 0;">
 						<h3>
@@ -329,7 +332,7 @@
 					<div class="panel-body" style="padding: 0;">
 						<table class="table table-bordered" style="margin: 0px;">
 							<tbody>
-								@foreach($pedidospendientes as $pedido)
+								@foreach($pedidoscliente as $pedido)
 								<tr>
 									<td colspan="5" style="margin: 0; padding: 0;">
 										<div class="accordion-container">
@@ -367,7 +370,6 @@
 															<tr>
 																<th>Producto</th>
 																<th>Cantidad</th>
-																<th>Cantidad disponible</th>
 															</tr>
 														</thead>
 														<tbody>
@@ -375,7 +377,6 @@
 															<tr>
 																<td>{{ $pd->id_tipo_producto }}</td>
 																<td>{{ $pd->cantidad }}</td>
-																<td>{{ $pd->cantidaddisponible }}</td>
 															</tr>
 															@endforeach
 														</tbody>
@@ -384,7 +385,7 @@
 												<span></span>
 
 												@if($pedido->estado == 'Pendiente')
-												<a target="_blank" href="{{ route('cancelarpedido', $pedido->id_factura) }}" class="btn btn-danger pull-right">
+												<a target="_blank" href="{{ route('cancelarpedido', $pedido->id) }}" class="btn btn-danger pull-right">
 													Cancelar Pedido
 													<i class="fa fa-times"></i>
 												</a>
@@ -401,6 +402,9 @@
 								@endforeach
 							</tbody>
 						</table>
+					</div>
+					<div class="panel-footer">
+						<a href="{{ url('/') }}" class="btn btn-default">Ir a la página web</a>
 					</div>
 				</div>
 			</div>

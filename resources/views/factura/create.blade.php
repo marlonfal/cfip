@@ -45,7 +45,7 @@
                                 <td width="60"><b> Número </b></td>
                                 <td><b> Producto </b></td>
                                 <td><b> Unidades </b></td>
-                                <td><b> Peso (Gr) </b></td>
+                                <td><b> Kilos </b></td>
                                 <td><b> Precio </b></td>
                                 <td colspan="1"></td>
                             </tr>
@@ -58,17 +58,26 @@
                                 </td>
                             </tr>
                             <tr>
+                                @if($infogeneral->iva != 0)
                                 <td colspan="2" align="center"><b>Subtotal: </b>
-                                    <input type="number" readonly="readonly" id="subtotal" name="subtotal" class="form-control pull-left" placeholder="0" />
+                                @else
+                                <td colspan="2"></td>
+                                <td colspan="2" align="center"><b>Subtotal: </b>
+                                @endif
+                                <input type="number" readonly="readonly" id="subtotal" name="subtotal" class="form-control pull-left" placeholder="0" />
                                 </td>
+                                
+                                @if($infogeneral->iva != 0)
                                 <td colspan="2" align="center"><b>Iva: </b>
                                     <input type="number" readonly="readonly" id="ivacompra" name="ivacompra" class="form-control pull-left" placeholder="0" />
                                 </td>
+                                @endif
                                 <td colspan="4" align="center"><b>Total: </b>
                                     <input type="number" readonly="readonly" id="total" name="total" class="form-control pull-left" placeholder="0" />
                                 </td>
                             </tr>
-                            <input type="text" name="cantidaddetalles" id="cantidaddetalles"  hidden/>                        
+                            <input type="text" name="cantidaddetalles" id="cantidaddetalles"  hidden/>
+                            <input type="number" name="obsequio" id="obsequio" value="0"  hidden/>                         
                     </table>
                 </div>
             </div>

@@ -48,11 +48,11 @@
 								<td colspan="2">
 									<b>Producto </b>
 								</td>
-								<td width="80">
-									<b> Peso (Gr) </b>
-								</td>
 								<td width="60">
-									<b> Unidades</b>
+									<b> Unidades </b>
+								</td>
+								<td width="80">
+									<b> Kilos</b>
 								</td>
 								<td>
 									<b> Precio </b>
@@ -65,10 +65,10 @@
 									<label>{{ $detalle->producto->nombre }} </label>
 								</td>
 								<td width="60">
-									<b> {{ $detalle->peso_gramo }} </b>
+									<b> {{ $detalle->cantidad }} </b>
 								</td>
 								<td width="60">
-									<b> {{ $detalle->cantidad }} </b>
+									<b> {{ $detalle->peso_kilo }} </b>
 								</td>
 								<td>
 									<b>$ {{ $detalle->precio }} </b>

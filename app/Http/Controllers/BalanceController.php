@@ -8,12 +8,14 @@ use App\Compra;
 use PDF;
 use App\DetalleFactura;
 use Illuminate\Http\Request;
+use DateTime;
 
 class BalanceController extends Controller
 {
     /**
      * 
      */
+    
     public function index(Request $request){
         $lcompras = Compra::orderBy('fecha', 'DESC')->with('detalles')->take(5)->get();
 
@@ -28,12 +30,28 @@ class BalanceController extends Controller
         $compras = 0;
         $gastos = 0;
         if(trim($request->fechainicio) != "" || trim($request->fechafin) != ""){
+            /*$fechainicio = new Datetime($request->fechainicio);
+            $mesinicio = $fechainicio->format('m');
+            $añoinicio = $fechainicio->format('y');
+            $fechafin = new Datetime($request->fechafinal);
+            $mesfin = $fechafin->format('m');
+            $añofin = $fechafin->format('y');
+            if($añofin > $añoinicio){
+                for($i = $mesinicio; $i <= 12; $i++){
+                    
+                    $ventaspormes->$i = Factura::whereMonth('fecha', '=', $i)->sum('total');
+                    return $ventaspormes;
+                }
+            }*/
+
+
             $ventas = Factura::whereBetween('fecha', array($request->fechainicio, $request->fechafinal))->sum('total');
             $compras = Compra::whereBetween('fecha', array($request->fechainicio, $request->fechafinal))->sum('total');
             $gastos = Gasto::whereBetween('fecha', array($request->fechainicio, $request->fechafinal))->sum('total');
+            
         }
         $tgastos = Gasto::orderBy('total', 'DESC')->get();
-
+        
         return view('balance.index', compact('ventas', 'compras', 'gastos', 'lcompras', 'tgastos'));
     }
     /**
@@ -68,11 +86,11 @@ class BalanceController extends Controller
                     $p = $productos->where('id', $detalle->id_tipo_producto)->first();
                     $p->totalvendido += $detalle->precio;
                     $p->cantidadventas += $detalle->cantidad;
-                    $p->gramosvendidos += $detalle->peso_gramo;
+                    $p->gramosvendidos += $detalle->peso_kilo;
                 }
             }
             foreach($productos as $producto){
-                $producto->totalcomprado = (int)($producto->gramosvendidos * $producto->preciocompragramo);
+                $producto->totalcomprado = (int)($producto->gramosvendidos * $producto->preciocomprakilo);
                 $ganancia += (int)($producto->totalvendido - $producto->totalcomprado);
             }
         }
@@ -101,11 +119,11 @@ class BalanceController extends Controller
                 $p = $productos->where('id', $detalle->id_tipo_producto)->first();
                 $p->totalvendido += $detalle->precio;
                 $p->cantidadventas += $detalle->cantidad;
-                $p->gramosvendidos += $detalle->peso_gramo;
+                $p->gramosvendidos += $detalle->peso_kilo;
             }
         }
         foreach($productos as $producto){
-            $producto->totalcomprado = $producto->gramosvendidos * $producto->preciocompragramo;
+            $producto->totalcomprado = $producto->gramosvendidos * $producto->preciocomprakilo;
             $ganancia += $producto->totalvendido - $producto->totalcomprado;
         }
 

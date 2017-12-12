@@ -30,7 +30,7 @@ $factory->define(App\Producto::class, function (Faker\Generator $faker) {
 
     return [
         'nombre' => $faker->name,
-        'precioventagramo' => $faker->numberBetween(100,500),
+        'precioventakilo' => $faker->numberBetween(100,500),
     ];
 });
 
