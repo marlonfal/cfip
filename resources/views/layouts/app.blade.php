@@ -166,7 +166,7 @@
 											<input type="hidden" name="_token" value="{{ csrf_token() }}"> {{ csrf_field() }}
 										</form>
 									</li>
-									<!--<li><a href="{{ url('')}}">Cambiar contraseña</a></li>-->
+									<li><a href="{{ route('changepassword')}}">Cambiar contraseña</a></li>
 								</ul>
 							</li>
 							<li style="padding: 0px; margin: 0px">

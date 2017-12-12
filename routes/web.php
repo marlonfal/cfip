@@ -41,6 +41,8 @@ Route::group(['middleware' => 'auth'], function(){
     route::get('pedidoentregado/{pedido}', 'PedidoController@entregado')->name('pedidoentregado');
     route::get('pedidonoentregado/{pedido}', 'PedidoController@noentregado')->name('pedidonoentregado');
     route::get('pedido/factura/{pedido}', 'PedidoController@factura')->name('pedido/factura/');
+    route::get('/changepassword', 'UserController@password')->name('changepassword');
+    route::post('/updatepassword', 'UserController@updatePassword')->name('updatepassword');
     /**Route::get('producto', ['middleware' => 'role:admin',
     'uses' => 'ProductoController@index'])->name('producto.index');;*/
 });
