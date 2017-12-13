@@ -29,7 +29,7 @@
                             {!! Form::number('cantidad', $producto->cantidad, ['class' => 'form-control', 'required' => 'required', 'min' => '0']) !!}
                         </div>
                         <div class="form-group">
-                            {!! Form::label('gramos', 'Gramos') !!}
+                            {!! Form::label('gramos', 'Kilos') !!}
                             {!! Form::number('gramos', $producto->gramos, ['class' => 'form-control', 'required' => 'required', 'min' => '0']) !!}
                         </div>
                         <div class="form-group">

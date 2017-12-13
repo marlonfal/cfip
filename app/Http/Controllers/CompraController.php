@@ -38,11 +38,15 @@ class CompraController extends Controller
      */
     public function store(Request $request)
     {
+        if($request->cantidaddetalles < 1){
+            return redirect()->route('compra.create')->with('error', 'No se puede guardar una compra sin productos');
+        }
         $compra = new Compra();
         $compra->usuario = $request->usuario;
         $compra->fecha = $request->fecha;
         $compra->proveedor = $request->proveedor;
         $compra->total = $request->total;
+        $compra->estado = 'valida';
 
         $compra->save();
 
@@ -55,6 +59,7 @@ class CompraController extends Controller
             $detalleCompra->cantidad = $request->cantidaddetalle[$i];
             $detalleCompra->id_compra = $compra->id;
             $detalleCompra->id_tipo_producto = $request->select[$i];
+
 
             $detalleCompra->save();
 

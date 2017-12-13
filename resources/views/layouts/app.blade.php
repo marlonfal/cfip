@@ -90,7 +90,7 @@
 								@role('admin')
 								<li role="separator" class="divider"></li>
 								<li>
-									<a href="{{ route('retroalimentacion.index') }}">Retroalimentaciones</a>
+									<a href="{{ route('retroalimentacion.index') }}">Realimentaciones</a>
 								</li>
 								<li>
 									<a href="{{ url('admin/users') }}"> Usuarios </a>

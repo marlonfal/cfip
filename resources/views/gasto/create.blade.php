@@ -15,8 +15,9 @@
 						</td>
 					</tr>
 				</table>
+                @include('error')
             </div>
-            @include('_error')
+            
             {!! Form::open(['route' => 'gasto.store', 'name' => 'creargasto']) !!}
             <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token" />
             <div class="panel-body" style="padding: 0;">
@@ -63,8 +64,8 @@
                             </tr>
                             <tr>
                                 <td colspan="3" align="right"><b>Total: </b></td>
-                                <td colspan="2">
-                                    <input type="number" readonly="readonly" id="total" name="total" class="form-control pull-left" placeholder="0" />
+                                <td colspan="2"> $ 
+                                    <input style="width: 87%" type="number" readonly="readonly" id="total" name="total" class="form-control pull-right" placeholder="0" />
                                 </td>
                             </tr>
                             <input type="text" name="cantidaddetalles" id="cantidaddetalles"  hidden/>        

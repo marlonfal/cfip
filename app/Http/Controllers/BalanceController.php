@@ -15,9 +15,9 @@ use DateTime;
 class BalanceController extends Controller
 {
     /**
-     * 
+     * Devuelve la vista para calcular un estado de resultados, después de seleccionar la fecha,
+     * calcula el estado de resultados
      */
-    
     public function index(Request $request) {
 
         $fechai = $request->fechainicio;
@@ -132,7 +132,7 @@ class BalanceController extends Controller
         return view('balance.index', compact('ventas', 'compras', 'gastos', 'lcompras', 'tgastos', 'meses', 'fechai', 'fechaf'));
     }
     /**
-     * 
+     * Función que calcula la diferencia entre ventas y compras de productos
      */
     public function porproductos(Request $request) {
         $lcompras = Compra::where('estado', '=', 'valida')->orderBy('fecha', 'DESC')->with('detalles')->take(5)->get();
@@ -187,6 +187,9 @@ class BalanceController extends Controller
         return view('balance.producto', compact('lcompras', 'productos', 'mt', 'ganancia', 'fechai', 'fechaf'));
     }
 
+    /**
+     * Función que imprime la diferencia entre ventas y compras de productos
+     */
     public function printtable(Request $request){
         $productos = Producto::orderBy('id', 'ASC')->get();
         $ganancia = 0;
@@ -219,6 +222,10 @@ class BalanceController extends Controller
         $pdf = PDF::loadView('pdf.balancetabla', ['productos' => $productos, 'ganancia' => $ganancia, 'fechai' => $fechai, 'fechaf' => $fechaf]);
         return $pdf->stream('balancetabla.pdf');
     }
+
+    /**
+     * Función que imprime la diferencia el estado de resultados
+     */
     public function printestadoderesultado(Request $request){
         $fechai = $request->fechainicio;
         $fechaf = $request->fechafinal;
@@ -299,6 +306,4 @@ class BalanceController extends Controller
                                                             'gastos' => $gastos]);
             return $pdf->stream('estadoderesultados.pdf'); 
         }    
-
-    
 }

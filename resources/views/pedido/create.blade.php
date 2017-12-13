@@ -13,8 +13,9 @@
 						</td>
 					</tr>
 				</table>
+                @include('error')
 			</div>
-			@include('_error') {!! Form::open(['route' => 'pedido.store', 'name' => 'crearfactura']) !!}
+			{!! Form::open(['route' => 'pedido.store', 'name' => 'crearfactura']) !!}
 			<input type="hidden" name="_token" value="{{ csrf_token() }}" id="token" />
 			<div class="panel-body" style="padding: 0px;">
 				<div class="table-responsive">

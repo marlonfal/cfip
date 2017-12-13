@@ -49,6 +49,9 @@ class PedidoController extends Controller
      */
     public function store(Request $request)
     {   
+        if($request->cantidaddetalles < 1){
+            return redirect()->route('pedido.create')->with('error', 'No se puede hacer un pedido sin al menos un producto');
+        }
         $pedido = new Pedido();
         $pedido->estado = 'Pendiente';
         $pedido->fecha_entrega = $request->fecha_entrega;

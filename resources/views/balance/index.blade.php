@@ -100,7 +100,7 @@
 					</tr>
 					@endif @endforeach
 					<tr>
-						<td> 
+						<td colspan="5"> 
 						{!! Form::open(['route' => 'imprimirestadoderesultados', 'method' => 'GET', 'target' => '_blank']) !!} 
 						{{ Form::hidden('fechainicio',
 						$fechai) }} {{ Form::hidden('fechafinal', $fechaf) }}

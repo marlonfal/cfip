@@ -16,7 +16,7 @@
                     <thead>
                         <tr>
                             <th>Id</th>
-                            <th>Tipo del gasto</th>
+                            <th>Tipo de gasto</th>
                             <th>Descripción</th>
                             <th colspan="2">Opciones</th>
                         </tr>

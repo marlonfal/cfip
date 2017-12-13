@@ -12,13 +12,20 @@ use Carbon\Carbon;
 
 
 class InfoController extends Controller
-{
+{   
+    /**
+     * Función que devuelve la vista de inicio la página web
+     */
     public function index()
     {   
         $infogeneral = InfoGeneral::first();
         $productos = Producto::orderBy('id', 'ASC')->get();
         return view('info.index', compact('productos', 'infogeneral'));
     }
+
+    /**
+     * Función que devuelve la vista de inicio de la aplicación web
+     */
     public function inicio()
     {
         $productos = Producto::orderBy('cantidad', 'ASC')->where('activo', '=', 1)->take(5)->get();
@@ -57,6 +64,9 @@ class InfoController extends Controller
                                 'cantidadpedidospendientes', 'cantidadpedidospendienteshoy', 'cantidadpedidosencamino'));
     }
 
+    /**
+     * Función que devuelve la vista del manual
+     */
     public function manual(){
         return view('manual');
     }

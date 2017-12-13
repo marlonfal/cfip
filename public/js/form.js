@@ -16,6 +16,7 @@ $(document).ready(function () {
 /**
  * FACTURA - FACTURA - FACTURA - FACTURA - FACTURA - FACTURA - FACTURA - FACTURA - FACTURA
  */
+
 a = 0;
 cantidad = 0;
 /**
@@ -43,14 +44,18 @@ function addProducto() {
             '<input type="number" disabled required id="cantidaddetalle' + a + '" onchange="cantidadPositiva(' + a + ')" min="0" name="cantidaddetalle[]" style="width: 90px;" class="form-control"/>' +
             '</td><td>' +
             '<input type="number" disabled required id="pesodetalle' + a + '" min="0" name="pesodetalle[]" onchange="updatePrecios(' + a + ')" style="width: 90px;" class="form-control"/>' +
-            '</td><td>' +
-            '<input type="number" style="width: 100%;" id="preciodetalle' + a + '" readonly="readonly" name="preciodetalle[]" placeholder="0" style="width: 90px;" class="form-control"/>' +
+            '</td><td> $' +
+            '<input type="number" style="width: 87%;" id="preciodetalle' + a + '" readonly="readonly" name="preciodetalle[]" placeholder="0" style="width: 90px;" class="form-control"/>' +
             '</td>' +
             '<td><a id="btn-borrar' + a + '" class="btn btn-danger" onclick="deleteProducto(' + a + ')"> <i class="fa fa-minus fa-3" aria-hidden="true"></a></td>';
         document.getElementById('productosfactura').appendChild(tr); document.getElementById('productosfactura').appendChild(tr);
     })
 }
 
+/**
+ * función que pregunta si se desea obsequiar un paquete de corazones al cliente
+ * cuando la venta supera los 80.000 pesos
+ */
 function addProductoObsequio() {
     a++;
 
@@ -66,6 +71,10 @@ function addProductoObsequio() {
     document.getElementById('productosfactura').appendChild(tr); document.getElementById('productosfactura').appendChild(tr);
 }
 
+/**
+ * función que verifica cuál opción está marcada en el radio button del obsequio
+ * @param {*} x 
+ */
 function handleClick(x) {
     console.log(x);
     if (x == 1) {
@@ -161,6 +170,10 @@ function deleteProducto(id) {
     calcularTotal();
 
 }
+
+/**
+ * Función para confirmar una venta
+ */
 function confirmarventa() {
     var r = 0;
     var nombre = document.getElementById('comprador').value;
@@ -179,10 +192,11 @@ function confirmarventa() {
         for (i = 1; i <= a; i++) {
             if ($('#detalle' + i).length) {
                 r = 0;
+                var detalles = document.getElementById('cantidaddetalles').value;
                 var producto = document.getElementById('select' + i).value;
                 var cantidad = document.getElementById('cantidaddetalle' + i).value;
                 var pesodetalle = document.getElementById('pesodetalle' + i).value;
-                if (!producto || !cantidad || !pesodetalle) {
+                if (!producto || !cantidad || !pesodetalle || detalles == 0) {
                     r = 1;
                     $.alert({
                         type: 'orange',
@@ -222,6 +236,9 @@ function confirmarventa() {
  * PEDIDO - PEDIDO - PEDIDO - PEDIDO - PEDIDO - PEDIDO - PEDIDO - PEDIDO - PEDIDO - PEDIDO - 
 */
 
+ /**
+  * función para añadir los detalles del pedido
+  */
 function addProductoPedido() {
     a++;
     $.get("productosp", function (response) {
@@ -241,13 +258,17 @@ function addProductoPedido() {
             + '</td> <td colspan="1"><select id="select' + a + '" required="required" name="select[]" onchange="changeSelectPedido(' + a + ')" style="width: 100%;" placeholder="Seleccione" class="form-control">'
             + options + '</select> </td>' +
             '<td width="60">' +
-            '<input type="number" min="1" required disabled onchange="cantidadPositiva(' + a + ')" id="cantidaddetalle' + a + '" name="cantidad[]" placeholder="0" style="width: 90px;"class="form-control"/>' +
+            '<input type="number" min="1" placeholder="1" required disabled onchange="cantidadPositiva(' + a + ')" id="cantidaddetalle' + a + '" name="cantidad[]" style="width: 90px;"class="form-control"/>' +
             '</td>' +
             '<td><a id="btn-borrar' + a + '" class="btn btn-danger" onclick="deleteProductoP(' + a + ')"><i class="fa fa-minus"></i></a></td>';
         document.getElementById('productospedido').appendChild(tr); document.getElementById('productospedido').appendChild(tr);
     })
 }
 
+/**
+ * función que desbloquea los input de una fila cuando cambia el estado de el select
+ * @param {*} id 
+ */
 function changeSelectPedido(id) {
     if (document.getElementById('cantidaddetalle' + id).disabled) {
         document.getElementById('cantidaddetalle' + id).disabled = false;
@@ -264,6 +285,9 @@ function deleteProductoP(id) {
     document.getElementById('cantidaddetalles').value = cantidad;
 }
 
+/**
+ * funcion para confirmar el registro de un pedido
+ */
 function confirmarpedido() {
     var r = 0;
     var nombre = document.getElementById('nombre').value;
@@ -282,9 +306,10 @@ function confirmarpedido() {
         for (i = 1; i <= a; i++) {
             if ($('#detalle' + i).length) {
                 r = 0;
+                var detalles = document.getElementById('cantidaddetalles').value;
                 var producto = document.getElementById('select' + i).value;
                 var cantidad = document.getElementById('cantidaddetalle' + i).value;
-                if (!producto || !cantidad) {
+                if (!producto || !cantidad || detalles == 0) {
                     r = 1;
                     $.alert({
                         type: 'orange',
@@ -345,13 +370,18 @@ function addProductoCompra() {
             '<td>' +
             '<input type="number" style="width: 100%;" disabled required onchange="pesoPositivoc(' + a + ')" id="pesodetalle' + a + '" min="0" name="pesodetalle[]"  style="width: 90px;" class="form-control"/>' +
             '</td>' +
-            '<td align="center">' +
-            '<input type="number" style="width: 100%;" onchange="precioPositivoc(' + a + '); calcularTotalCompra();" disabled id="preciodetalle' + a + '" name="preciodetalle[]" placeholder="0" style="width: 90px;" class="form-control"/>' +
+            '<td align="center"> $' +
+            '<input type="number" style="width: 87%;" onchange="precioPositivoc(' + a + '); calcularTotalCompra();" disabled id="preciodetalle' + a + '" name="preciodetalle[]" placeholder="0" style="width: 90px;" class="form-control"/>' +
             '</td>' +
             '<td><a id="btn-borrar' + a + '" class="btn btn-danger" onclick="deleteProducto(' + a + ')"> <i class="fa fa-minus fa-3" aria-hidden="true"></a></td>';
         document.getElementById('productoscompra').appendChild(tr); document.getElementById('productoscompra').appendChild(tr);
     })
 }
+
+/**
+ * función que transforma un número negativo a positivo
+ * @param {*} id 
+ */
 function precioPositivoc(id) {
     var precio = $('#preciodetalle' + id).val();
     if (precio < 0) {
@@ -461,12 +491,12 @@ function addProductoGasto() {
 
     tr.setAttribute('class', 'form-inline');
     tr.innerHTML = ''
-        + '<td colspan="2"><input type="text" style="width: 100%;" required id="producto' + a + '" name="producto[]" class="form-control"/></td>' +
-        '<td>' +
+        + '<td  width="200"colspan="2"><input type="text" style="width: 100%;" required id="producto' + a + '" name="producto[]" class="form-control"/></td>' +
+        '<td width="90">' +
         '<input type="number" min="1" style="width: 100%;" required onchange="cantidadPositiva(' + a + ')" id="cantidaddetalle' + a + '" name="cantidad[]" class="form-control"/>' +
         '</td>' +
-        '<td>' +
-        '<input type="number" min="1" style="width: 100%;" required onchange="precioPositivo(' + a + '); calcularTotalG();" id="precio' + a + '" name="precio[]" class="form-control"/>' +
+        '<td width="150"> $ ' +
+        '<input type="number" min="1" style="width: 87%;" required onchange="precioPositivo(' + a + '); calcularTotalG();" id="precio' + a + '" name="precio[]" class="form-control"/>' +
         '</td>' +
         '<td><a id="btn-borrar' + a + '" class="btn btn-danger" onclick="deleteProductoG(' + a + ')"><i class="fa fa-minus"></i></a></td>';
     document.getElementById('productosgasto').appendChild(tr); document.getElementById('productosgasto').appendChild(tr);

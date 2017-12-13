@@ -135,6 +135,9 @@ class ProductoController extends Controller
         return redirect()->route('producto.index')->with('info', 'Fue eliminado exitosamente');
     }
 
+    /**
+     * Función que imprime la lista de productos
+     */
     public function printlist(){
         $productos = Producto::orderBy('activo', 'DESC')->orderBy('cantidad', 'ASC')->get();
         $pdf = PDF::loadView('pdf.productoslist', ['productos' => $productos]);

@@ -189,7 +189,7 @@
 				<div class="panel-body" style="padding: 0;">
 					<table class="table table-bordered" style="margin: 0px;">
 						<tbody>
-							@foreach($pedidospendientes as $pedido)
+							@foreach($pedidosencamino as $pedido)
 							<tr>
 								<td colspan="5" style="margin: 0; padding: 0;  border: 0px solid #ffffff">
 									<div class="accordion-container">

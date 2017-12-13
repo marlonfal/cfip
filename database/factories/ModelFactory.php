@@ -41,7 +41,7 @@ $factory->define(App\Factura::class, function (Faker\Generator $faker) {
         'comprador' => $faker->name,
         'subtotal' => $faker->numberBetween(1000, 80000),
         'iva' => $faker->numberBetween(1000, 20000),
-        'total' => $faker->numberBetween(1000, 100000),
+        'total' => $faker->numberBetween(1000, 120000),
         'id_pedido' => 0,
         'estado' => 'Valida',     
     ];
@@ -80,7 +80,7 @@ $factory->define(App\Compra::class, function (Faker\Generator $faker) {
         'fecha' => $faker->dateTimeBetween($startDate = '-2 years', $endDate = 'now', $timezone = date_default_timezone_get()),
         'proveedor' => $faker->name,
         'usuario' => $faker->name,
-        'total' => $faker->numberBetween(1000, 300000),
+        'total' => $faker->numberBetween(1000, 200000),
         'estado' => 'valida', 
     ];
 });

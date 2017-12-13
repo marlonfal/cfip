@@ -13,7 +13,7 @@
 	<br>
 	<div class="animatedParent" id="productos">
 		@if($infogeneral->descuentos == 1)
-			<img class="discount-label" src="{{ asset('/img/tag.png')}}" alt="descuentos" />
+			<img class="discount-label animated bounceInUp animatedOnce" src="{{ asset('/img/tag.png')}}" alt="descuentos" />
 		@endif
 		<div class="seccion animated bounceInUp">
 			<b>PRODUCTOS
@@ -56,15 +56,15 @@
 		<div class="bordecard animated bounceInUp">
 			<div class="container">
 				<div class="row centro">
-					<div class="col-md-7 col-lg-7 col-sm-12 col-xs-12 ">
+					<div class="col-md-6 col-lg-6 col-sm-12 col-xs-12 " style="padding: 0px">
 						<div class="table-responsive">
 							<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d31859.499237662552!2d-76.22192439472005!3d3.4856450904151095!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xeab6d1ce3b898cd1!2sPollos+El+Paisita!5e0!3m2!1ses!2sco!4v1513083747038"
-							 width="600" height="450" style="border:0" allowfullscreen>
+							 width="500" height="370" style="border:0" allowfullscreen>
 							</iframe>
 						</div>
 					</div>
-					<div class="col-md-5 col-lg-5 col-sm-8 col-xs-hide" style="color: black !important;">
-						<div style="padding-right: 35px; !important" align="center">
+					<div class="col-md-6 col-lg-6 col-sm-8 col-xs-hide" style="color: black !important;">
+						<div style="padding-right: 45px; !important" align="center">
 							<h1>
 								<b> ¿Quiénes somos? </b>
 							</h1>

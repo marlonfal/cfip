@@ -41,6 +41,9 @@ class GastoController extends Controller
      */
     public function store(Request $request)
     {
+        if($request->cantidaddetalles < 1){
+            return redirect()->route('gasto.create')->with('error', 'No se puede guardar un gasto sin al menos un producto');
+        }
         $gasto = new Gasto();
         $gasto->descripcion = $request->descripcion;
         $gasto->fecha = $request->fecha;
@@ -120,6 +123,9 @@ class GastoController extends Controller
         return redirect()->route('gasto.show', $gasto)->with('info', 'Se actualizó el gasto');
     }
 
+    /**
+     * Función que cambia el estado de un gasto a no válido
+     */
     public function novalido(Gasto $gasto){
 
         $gasto->estado = 'no valido';

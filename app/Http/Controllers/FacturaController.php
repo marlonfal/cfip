@@ -44,7 +44,9 @@ class FacturaController extends Controller
      */
     public function store(Request $request)
     {
-        
+        if($request->cantidaddetalles < 1){
+            return redirect()->route('factura.create')->with('error', 'No se puede guardar una venta sin al menos un producto');
+        }
         $factura = new Factura();
         $factura->fecha = $request->fecha;
         $factura->vendedor = $request->vendedor;
@@ -62,10 +64,10 @@ class FacturaController extends Controller
             $pedido->save();
         }
         $contador = 1;
-        for($i = 1; $i < $request->cantidaddetalles; $i++){
+        for($i = 0; $i < $request->cantidaddetalles; $i++){
                 //Select es el producto
                 $detalleFactura = new DetalleFactura();
-                $detalleFactura->id_detalle = $i;
+                $detalleFactura->id_detalle = $i + 1;
                 $detalleFactura->peso_kilo = $request->pesodetalle[$i];
                 $detalleFactura->precio = $request->preciodetalle[$i];
                 $detalleFactura->cantidad = $request->cantidaddetalle[$i];
@@ -92,7 +94,7 @@ class FacturaController extends Controller
 
                 $detalleFactura = new DetalleFactura();
                 $detalleFactura->id_detalle = $contador;
-                $detalleFactura->peso_kilo = 500;
+                $detalleFactura->peso_kilo = 1;
                 $detalleFactura->precio = 0;
                 $detalleFactura->cantidad = 1;
                 $detalleFactura->id_factura = $factura->id;
@@ -169,6 +171,9 @@ class FacturaController extends Controller
         return redirect()->route('factura.index')->with('info', 'Fue eliminado exitosamente');
     }
 
+    /**
+     * Función que cambia el estado de una factura a no válida
+     */
     public function novalida(Factura $factura){
 
         $cantidaddetalles = DetalleFactura::where('id_factura', '=', $factura->id)->count();
@@ -188,6 +193,9 @@ class FacturaController extends Controller
         return redirect()->route('factura.index')->with('info', 'Se cambió el estado de la venta a "No válida"');
     }
 
+    /**
+     * función que imprime una factura de venta
+     */
     public function print(Factura $factura){
         $height = 300;
         $nit = InfoGeneral::first()->nit;
@@ -198,6 +206,9 @@ class FacturaController extends Controller
         return $pdf->stream();
     }
 
+    /**
+     * función que descarga una factura de venta
+     */
     public function download(Factura $factura){
         $height = 300;
         $nit = InfoGeneral::first()->nit;

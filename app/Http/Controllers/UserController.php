@@ -9,10 +9,16 @@ use App\User;
 
 class UserController extends Controller
 {
+    /**
+     * Función que devuelve la vista para cambiar contraseña
+     */
     public function password(){
         return view('auth.changepassword');   
     }
 
+    /**
+     * Función que cambia la contraseña
+     */
     public function updatePassword(Request $request){
         $rules = [
             'mypassword' => 'required',
