@@ -16,7 +16,7 @@ class BalanceController extends Controller
 {
     /**
      * Devuelve la vista para calcular un estado de resultados, después de seleccionar la fecha,
-     * calcula el estado de resultados
+     * calcula el estado de resultados 
      */
     public function index(Request $request) {
 
